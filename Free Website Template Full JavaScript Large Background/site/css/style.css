@@ -4,7 +4,7 @@ mark, rp, rt, ruby, summary, time {display:inline }
 /* Left & Right alignment */
 .left  {float:left}
 .right  {float:right}
-.wrapper {width:100%;overflow:hidden}
+.wrapper {width:100%;overflow:hidden;}
 /* Global properties ======================================================== */
 body {background:#fff;border:0;font:14px Arial, Helvetica, sans-serif;color:#4d4d4d;line-height:25px;min-width:960px;overflow:hidden}
 .ic {border:0;float:right;background:#fff;color:#f00;width:50%;line-height:10px;font-size:10px;margin:-220% 0 0 0;overflow:hidden;padding:0}
@@ -18,10 +18,9 @@ body, html {height:100%}
 .box {width:100%;overflow:hidden;padding-top:30px;padding-bottom:30px;position:relative}
 .spinner {position:absolute;z-index:99;background:url(../images/loader.gif) 50% 50% no-repeat #fff;width:100%;height:100%;top:0;left:0}
 .bg_spinner {width:100px;height:13px;position:absolute;z-index:2;background:url(../images/loader2.gif) 0 0 no-repeat;top:10px;left:80px}
-#bgSlider  img {left:auto !important;right:0 !important}
+#bgSlider  img {left:auto !important;right:0 !important;  opacity: 0.75}
 .pagination {position:relative;padding:34px 0 0px 48px;float:left}
 .pagination li {float:left;padding-right:4px;font-size:18px;color:#434343;line-height:1.2em;letter-spacing:-1px}
-.pagination a {display:inline-block;background:url(../images/buttons.png) right 5px no-repeat;width:20px;height:25px;text-align:center;color:#08afee;text-decoration:none;text-align:center}
 .pagination a:hover, .pagination .current a {background-position:left;color:#fff;text-decoration:none}
 /* ============================= main layout ====================== */
 a {color:#4d4d4d;text-decoration:underline;outline:none}
@@ -30,19 +29,19 @@ h2 {font-size:36px;color:#08afee;line-height:1.2em;padding:17px 0 16px 0;letter-
 p {padding-bottom:25px}
 /* ============================= header ====================== */
 header {width:270px;float:left}
-#logo {display:block;text-indent:-9999px;background:url(../images/17_04_2014_20_01_55.jpg) 0 0 no-repeat;width:230px;height:200px}
-#menu  {padding-top:63px}
+#logo {display:block;text-indent:-9999px;background:url(../images/17_04_2014_20_01_55.jpg) 0 0 no-repeat;width:230px;height:200px; opacity: 0.90}
+#menu  {padding-top:50px}
 #menu > li  {width:100%;overflow:hidden;padding-bottom:3px}
 #menu > li > a {display:inline-block;font-size:21px;line-height:46px;color:#434343;background:#fff;text-decoration:none;position:relative;letter-spacing:-1px}
-#menu > li > a span {display:block;background:url(../images/menu_bg_active.gif) top repeat-x #038ee5;position:absolute;width:100%;height:100%;top:0;left:0}
+#menu > li > a span {display:block;background:url(../images/Azul-Klein..jpg) top repeat-x #fff;position:absolute;width:100%;height:100%;top:0;left:0}
 #menu > li > a strong {position:relative;display:block;border-right:1px solid #f6f6f6;border-bottom:1px solid #f0f0f0;padding:0 60px 0 48px;height:50px}
 #menu > li > a:hover, #menu > li > a.active {color:#fff}
 #menu > li > a:hover strong, #menu > li > a.active strong {border-bottom:0;border-right:0;padding-bottom:1px;padding-right:61px}
 /* ============================= content ====================== */
 #content > ul {width:690px;float:left;height:639px;position:relative}
 #content > ul > li {position:relative;height:639px;width:100%;bottom:0}
-#content > ul > #page_About {height:369px}
-.box1 {background:url(../images/content_bg.png) repeat;width:100%;height:100%;position:absolute;bottom:0;left:0}
+#content > ul > #page_About {height:639px}
+.box1 {background:url(../images/content_bg.png) repeat;width:100%;height:100%;position:absolute;bottom:0;left:0;}
 .inner {padding:25px 60px;position:relative}
 .pad_left1 {padding-left:70px}
 .pad_bot2 {padding-bottom:10px}
