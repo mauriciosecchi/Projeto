@@ -31,7 +31,7 @@ p {padding-bottom:25px}
 header {width:270px;float:left}
 #logo {display:block;text-indent:-9999px;background:url(../images/17_04_2014_20_01_55.jpg) 0 0 no-repeat;width:230px;height:200px; opacity: 0.90}
 #menu  {padding-top:50px}
-#menu > li  {width:100%;overflow:hidden;padding-bottom:3px}
+#menu > li  {width:100%;overflow:hidden;padding-bottom:3px; width: 170px;}
 #menu > li > a {display:inline-block;font-size:21px;line-height:46px;color:#434343;background:#fff;text-decoration:none;position:relative;letter-spacing:-1px}
 #menu > li > a span {display:block;background:url(../images/Azul-Klein..jpg) top repeat-x #fff;position:absolute;width:100%;height:100%;top:0;left:0}
 #menu > li > a strong {position:relative;display:block;border-right:1px solid #f6f6f6;border-bottom:1px solid #f0f0f0;padding:0 60px 0 48px;height:50px}
@@ -84,9 +84,9 @@ footer span {color:#08afee}
 .aToolTip .aToolTipContent  {position:relative;margin:0;padding:0}
 .col_2 {padding:35px 0 0 0;text-align:center}
 /* ============================= forms ============================= */
-#ContactForm {margin-top:-2px}
-#ContactForm .wrapper {overflow:inherit;min-height:35px}
-#ContactForm .textarea_box{min-height:130px}
-#ContactForm a {margin-left:20px;float:right;line-height:18px}
-#ContactForm .input  {margin:0;width:540px;height:18px;background:#fff;border:1px solid #e5e4e3;padding:5px 14px;color:#a6a6a6;font:14px Arial, Helvetica, sans-serif}
-#ContactForm textarea  {overflow:auto;margin:0;width:540px;height:112px;background:#fff;border:1px solid #e5e4e3;padding:5px 14px;color:#a6a6a6;font:14px Arial, Helvetica, sans-serif}
+#Form {margin-top:-2px}
+#Form .wrapper {overflow:inherit;min-height:35px}
+#Form .textarea_box{min-height:130px}
+#Form a {margin-left:20px;float:right;line-height:18px}
+#Form .input  {margin:0;width: 400px;height:18px;background:#fff;border:1px solid #e5e4e3;padding:5px 14px;color:#a6a6a6;font:14px Arial, Helvetica, sans-serif}
+#Form textarea  {overflow:auto;margin:0;width:540px;height:112px;background:#fff;border:1px solid #e5e4e3;padding:5px 14px;color:#a6a6a6;font:14px Arial, Helvetica, sans-serif}
