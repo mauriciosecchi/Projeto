@@ -85,8 +85,9 @@ footer span {color:#08afee}
 .col_2 {padding:35px 0 0 0;text-align:center}
 /* ============================= forms ============================= */
 #Form {margin-top:-2px}
-#Form .wrapper {overflow:inherit;min-height:35px}
+#Form .wrapper {overflow:inherit;min-height:40px;}
+#Form .select {left:}
 #Form .textarea_box{min-height:130px}
 #Form a {margin-left:20px;float:right;line-height:18px}
-#Form .input  {margin:0;width: 400px;height:18px;background:#fff;border:1px solid #e5e4e3;padding:5px 14px;color:#a6a6a6;font:14px Arial, Helvetica, sans-serif}
+#Form .input  {position: absolute; left: 160px; width: 400px;height:18px;background:#fff;border:1px solid #e5e4e3;padding:5px 14px;color:#a6a6a6;font:14px Arial, Helvetica, sans-serif}
 #Form textarea  {overflow:auto;margin:0;width:540px;height:112px;background:#fff;border:1px solid #e5e4e3;padding:5px 14px;color:#a6a6a6;font:14px Arial, Helvetica, sans-serif}
