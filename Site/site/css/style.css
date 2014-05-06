@@ -86,10 +86,10 @@ footer span {color:#08afee}
 .col_2 {padding:35px 0 0 0;text-align:center}
 /* ============================= forms ============================= */
 #Form {margin-top:-2px}
-#Form .wrapper {overflow:inherit;min-height:40px;}
-#Form .select {left:}
+#Form .wrapper {overflow:inherit;min-height:35px}
 #Form .textarea_box{min-height:130px}
 #Form a {margin-left:20px;float:right;line-height:18px}
+<<<<<<< HEAD
 #Form .input  {position: absolute; left: 160px; width: 400px;height:18px;background:#fff;border:1px solid #e5e4e3;padding:5px 14px;color:#a6a6a6;font:14px Arial, Helvetica, sans-serif}
 =======
 <<<<<<< HEAD
@@ -280,4 +280,7 @@ footer span {color:#08afee}
 #Form .input  {margin:0;width: 400px;height:18px;background:#fff;border:1px solid #e5e4e3;padding:5px 14px;color:#a6a6a6;font:14px Arial, Helvetica, sans-serif}
 >>>>>>> a6dc0ddc49df93070bb209ac38b8b14bb4c5cd1e
 >>>>>>> 61131e6f8566fc1d9afaf4fa4194e8a60aca58d5
+=======
+#Form .input  {margin:0;width: 400px;height:18px;background:#fff;border:1px solid #e5e4e3;padding:5px 14px;color:#a6a6a6;font:14px Arial, Helvetica, sans-serif}
+>>>>>>> parent of 0164d39... Projeto 1.6
 #Form textarea  {overflow:auto;margin:0;width:540px;height:112px;background:#fff;border:1px solid #e5e4e3;padding:5px 14px;color:#a6a6a6;font:14px Arial, Helvetica, sans-serif}
