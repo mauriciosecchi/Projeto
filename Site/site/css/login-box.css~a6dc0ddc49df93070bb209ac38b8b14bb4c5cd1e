@@ -1,8 +1,8 @@
 
 #login-box {
-        position: absolute; 
-        left: 33%;
-        top: 20%;
+    position: absolute; 
+    left: 33%;
+    top: 7%;
 	width:333px;
 	height: 352px;
 	padding: 58px 76px 0px 76px;
@@ -33,7 +33,6 @@
 }
 
 #login-box-field {
-	float: left;
 	display:inline;
 	width:230px;
 	margin:0;
@@ -42,7 +41,7 @@
 
 
 .form-login  {
-	width: 205px;
+	width: 250px;
 	padding: 10px 4px 6px 3px;
 	border: 1px solid #0d2c52;
 	background-color:#1e4f8a;
@@ -53,7 +52,7 @@
 
 .login-box-options  {
 	clear:both;
-	padding-left:87px;
+	
 	font-size: 11px;
 }
 
@@ -63,11 +62,20 @@
 }
 
 #logo{
-        position: absolute; 
-        left: 0%;
-        top: 0%;
-	width:1360px;
-	height: 225px;
+    position: absolute; 
+    left: 0%;
+    top: 0%;
+	width:1149px;
+	height: 186px;
 	padding: 58px 76px 0px 76px;
-	background: url(../images/392102_102139713273706_1335985972_n.jpg) no-repeat left top;
+	background: url(../images/logo.jpg) no-repeat left top;
+}
+#fundo{
+	position: absolute;
+	background: url(../images/yellow.gif);
+	background-repeat: no-repeat;
+	width:1300px;
+	height: 500px;
+	left: 0px;
+	top: 185px;
 }
