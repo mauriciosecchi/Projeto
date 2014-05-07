@@ -1,10 +1,23 @@
+.clearfix:before,
+.clearfix:after {
+  content:"";
+  display:table;
+}
+.clearfix:after {
+  clear:both;
+}
+.clearfix {
+  zoom:1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+
 /* Getting the new tags to behave */
 article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block}
 mark, rp, rt, ruby, summary, time {display:inline }
 /* Left & Right alignment */
 .left  {float:left}
 .right  {float:right}
-.wrapper {width:100%;overflow:hidden;}
+.wrapper {width:100%;}
 /* Global properties ======================================================== */
 body {background:#fff;border:0;font:14px Arial, Helvetica, sans-serif;color:#4d4d4d;line-height:25px;min-width:960px;overflow:hidden}
 .ic {border:0;float:right;background:#fff;color:#f00;width:50%;line-height:10px;font-size:10px;margin:-220% 0 0 0;overflow:hidden;padding:0}
@@ -90,3 +103,30 @@ footer span {color:#08afee}
 #Form .textarea_box{min-height:130px}
 #Form a {margin-left:20px;float:right;line-height:18px}
 #Form .input  {position: absolute; left: 160px; width: 400px;height:18px;background:#fff;border:1px solid #e5e4e3;padding:5px 14px;color:#a6a6a6;font:14px Arial, Helvetica, sans-serif;}
+
+#Form .input-cidade  {
+	float: left;
+	width: 70% ;
+}
+
+.input-estado  {
+	float: left;
+	width: 28% ;
+}
+
+#cidade-estado label {
+	width: 95px !important;
+	display: inline-block !important;
+}
+
+.input-cidade input {
+	position: static !important;
+	left: auto !important;
+	width: auto !important;
+}
+
+.input-estado input {
+	position: static !important;
+	left: auto !important;
+	width: 40px !important;
+}
