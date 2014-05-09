@@ -81,6 +81,8 @@ header {width:270px;float:left}
 .table td.bg {background:url(../images/table_bg3.png) repeat}
 .table td.bg2 {background:url(../images/table_bg4.png) repeat}
 .address {float:left;width:82px;padding-bottom:19px}
+.itemreserva{color:green}
+.itemreservado{color:red}
 /* ============================= columns ====================== */
 .col_1 {width:270px;float:left}
 .col_2 {width:690px;float:left}
