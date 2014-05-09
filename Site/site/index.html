@@ -108,72 +108,119 @@
 					<!===========================================PAGINA CADASTRO    =======================================================>
 
 					<li id="page_Schedule">
-					<div class="box1">
+						<div class="box1">
 							<div class="inner">
 								<a href="#" class="close" data-type="close"><span></span></a>
-					
-					<h2>Meu Cadastro</h2>
-					<form name="CadForm" id="Form" method="post" action="" onSubmit="return validaform('formcont');">
-					
-						<div class="wrapper"> <label for="id"> ID: </label> <input class="input" type="text" value="id"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" ></div>
 						
-						<div class="wrapper"> <label for="nome"> Nome:</label> <input class="input" type="text" value="Nome"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" ></div>
-
-						<div class="wrapper"> <label for="sobrenome">Sobrenome:</label> <input class="input" type="text" value="Sobrenome"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" ></div>
-
-						<div id="cidade-estado" class="clearfix">
-							<div class="wrapper input-cidade"> <label for="cidade">Cidade:</label> <input class="input" type="text" id="cida" name="cidade" value="Cidade"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" ></div>
-
-							<div class="wrapper input-estado"> 
-								<label for="sobrenome">Estado:</label>
-								<select name="escolheestado" value="Estado">
-									<option value "0">AC</option> 
-									<option value="1">AL</option>
-									<option value="2">AP</option>
-									<option value="3">AM</option> 
-									<option value="4">BA</option>
-									<option value="5">CE</option>
-									<option value="6">DF</option>
-									<option value="7">ES</option>
-									<option value="8">GO</option>
-									<option value="9">MA</option>
-									<option value="10">MT</option>
-									<option value="11">MS</option>
-									<option value="12">MG</option>
-									<option value="13">PA</option>
-									<option value="14">PB</option>
-									<option value="15">PR</option>
-									<option value="16">PE</option>
-									<option value="17">PI</option>
-									<option value="18">RJ</option>
-									<option value="19">RN</option>
-									<option value="20">RO</option>
-									<option value="21">RR</option>
-									<option value="22">RS</option>
-									<option value="23">SC</option>
-									<option value="24">SP</option>
-									<option value="25">SE</option>
-									<option value="26">TO</option>
-								</select>		
-							</div>
-						</div>
-
-
-						<div class="wrapper"> CPF <input class="input" type="text" value="CPF"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" ></div>
-
-						<div class="wrapper"> RG <input class="input" type="text" value="RG"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" ></div>
-
-						<div class="wrapper"> Logradouro <input class="input" type="text" value="Logradouro"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" ></div>
-
-						<div class="wrapper"> Fone <input class="input" type="text" value="Fone"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" ></div>
-
-						<div class="wrapper"> E-mail <input class="input" type="text" value="Email"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" ></div>
-
-						<div class="wrapper"> Senha <input class="input" type="text" value="Senha"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" ></div>
-					</form>
-										
-				<input type="submit" value="Enviar Formulário" value="Place order" class = "enviar_">
+								<h2>Meu Cadastro</h2>
+								<form name="CadForm" id="Form" method="post" action="" onSubmit="return validaform('formcont');">
 								
+									<div class="wrapper"> 
+										<label for="id"> ID: </label> 
+										<input class="input" type="text" value="id"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+									</div>
+									
+									<div class="wrapper"> 
+										<label for="nome"> Nome:</label> 
+										<input class="input" type="text" value="Nome"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+									</div>
+
+									<div class="wrapper"> 
+										<label for="sobrenome">Sobrenome:</label> 
+										<input class="input" type="text" value="Sobrenome"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+									</div>
+									
+									<div class="wrapper"> 
+										<label for="cpf">CPF:</label>
+										<input class="input" type="text" value="CPF" onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+									</div>
+
+									<div class="wrapper">
+										<label for="rg">RG:</label>
+										<input class="input" type="text" value="RG"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+									</div>
+									<div id="datas" class="clearfix">
+										<div class="wrapper input-data"> 
+											<label for="dt_nasc">Data de Nasc:</label>
+											<input class="input" type="date" onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+										</div>
+										
+										<div class="wrapper input-data"> 
+											<label for="dt_assoc">Data de Assoc:</label>
+											<input class="input" type="date"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+										</div>
+									</div>
+
+									<div class="wrapper">
+										<label for="logradouro">Logradouro:</label>
+										<input class="input" type="text" value="Logradouro"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+									</div>
+
+									<div id="cidade-estado" class="clearfix">
+										<div class="wrapper input-cidade"> 
+											<label for="cidade">Cidade:</label> 
+											<input class="input" type="text" name="cidade" value="Cidade"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+										</div>
+
+										<div class="wrapper input-estado"> 
+											<label for="estado">Estado:</label>
+											<select name="escolheestado" value="Estado">
+												<option value "0">AC</option> 
+												<option value="1">AL</option>
+												<option value="2">AP</option>
+												<option value="3">AM</option> 
+												<option value="4">BA</option>
+												<option value="5">CE</option>
+												<option value="6">DF</option>
+												<option value="7">ES</option>
+												<option value="8">GO</option>
+												<option value="9">MA</option>
+												<option value="10">MT</option>
+												<option value="11">MS</option>
+												<option value="12">MG</option>
+												<option value="13">PA</option>
+												<option value="14">PB</option>
+												<option value="15">PR</option>
+												<option value="16">PE</option>
+												<option value="17">PI</option>
+												<option value="18">RJ</option>
+												<option value="19">RN</option>
+												<option value="20">RO</option>
+												<option value="21">RR</option>
+												<option value="22">RS</option>
+												<option value="23">SC</option>
+												<option value="24">SP</option>
+												<option value="25">SE</option>
+												<option value="26">TO</option>
+											</select>		
+										</div>
+									</div>
+									
+									<div id="telefones" class="clearfix">
+										<div class="wrapper input-telefone">
+											<label for="telefone">Telefone:</label>
+											<input class="input" type="text" value="Telefone"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+										</div>
+										
+										<div class="wrapper input-telefone">
+											<label for="telefone">Celular:</label>
+											<input class="input" type="text" value="Celular"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+										</div>
+									</div>
+
+									<div class="wrapper">
+										<label for="email">E-mail:</label>
+										<input class="input" type="text" value="Email"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+									</div>
+
+									<div class="wrapper">
+										<label for="senha">Senha:</label>
+										<input class="input" type="text" value="Senha"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+									</div>
+								</form>
+													
+								<input type="submit" value="Enviar Formulário" value="Place order" class = "enviar_">
+										
 							</div>
 						</div>
 					</li>

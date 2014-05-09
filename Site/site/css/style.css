@@ -10,7 +10,6 @@
   zoom:1; /* For IE 6/7 (trigger hasLayout) */
 }
 
-
 /* Getting the new tags to behave */
 article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block}
 mark, rp, rt, ruby, summary, time {display:inline }
@@ -108,12 +107,12 @@ footer span {color:#08afee}
 
 #Form .input-cidade  {
 	float: left;
-	width: 70% ;
+	width: 67% ;
 }
 
 .input-estado  {
 	float: left;
-	width: 28% ;
+	width: 30% ;
 }
 
 #cidade-estado label {
@@ -131,4 +130,36 @@ footer span {color:#08afee}
 	position: static !important;
 	left: auto !important;
 	width: 40px !important;
+}
+
+#Form .input-data  {
+	float: left;
+	width: auto;
+}
+
+#datas label{
+	width: 36% !important;
+	display: inline-block !important;
+}
+
+.input-data input {
+	position: static !important;
+	left: auto !important;
+	width: 45% !important;
+}
+
+#Form .input-telefone  {
+	float: left;
+	width: auto;
+}
+
+#telefones label{
+	width: 40% !important;
+	display: inline-block !important;
+}
+
+.input-telefone input{
+	position: static !important;
+	left: auto !important;
+	width: 45% !important;
 }
