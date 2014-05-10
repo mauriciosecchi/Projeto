@@ -1,54 +1,52 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Login Box HTML Code - www.PSDGraphics.com</title>
 
-<link href="css/login-box.css" rel="stylesheet" type="text/css" />
-</head>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
 
-<body>
+    <head>
 
+        <meta charset="utf-8">
+        <title>Fullscreen Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-<div style="padding: 100px 0 0 250px;">
-<div id="logo">
+        <!-- CSS -->
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+        <link rel="stylesheet" href="assets/css/reset_login.css">
+        <link rel="stylesheet" href="assets/css/supersized_login.css">
+        <link rel="stylesheet" href="assets/css/style_login.css">
 
-</div>
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-<div id="login-box">
+    </head>
+    
+    <body>
+        <div id="logo">
 
-<H2>Login</H2>
-Informe seu usuário e senha para acessar seu perfil
-<br />
-<br />
-<div id="login-box-name" style="margin-top:20px;">Usuário:</div><div id="login-box-field" style="margin-top:20px;"><input name="q" class="form-login" title="Username" value="" size="30" maxlength="2048" /></div>
-<div id="login-box-name">Senha:</div><div id="login-box-field"><input name="q" type="password" class="form-login" title="Password" value="" size="30" maxlength="2048" /></div>
-<br />
-<span class="login-box-options"><a href="#" style="margin-left:30px;">Esqueceu sua senha?</a></span>
-<br />
-<br />
-<a href="index.html"><img src="images/login-btn.png" width="103" height="42" style="margin-left:90px;" /></a>
+        </div>    
+        <div class="page-container">
+            <h1>Login</h1>
+            <form action="index.html" method="post">
+                <input type="text" name="username" class="username" placeholder="UsuÃ¡rio">
+                <input type="password" name="password" class="password" placeholder="Senha">
+                <button type="submit">Entrar</button>
+                <div class="error"><span>+</span></div>
+            </form>
+            <br>
+            <!--<a class = "link" href="#">Esqueci minha senha</a>
+            <a class = "link" href="#" style="margin-left:65px;" >Cadastre-se</a>-->
+        </div>
 
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.8.2.min.js"></script>
+        <script src="assets/js/supersized.3.2.7.min.js"></script>
+        <script src="assets/js/supersized-init.js"></script>
+        <script src="assets/js/scripts.js"></script>
 
+    </body>
 
-
-
-
-</div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
 </html>
+
