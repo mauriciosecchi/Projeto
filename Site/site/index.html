@@ -42,11 +42,12 @@
 				<h1><a href="index.html" id="logo"></a></h1>
 				<nav class="menu">
 					<ul id="menu">
-						<li><a href="#!/page_About"><span></span><strong>Home</strong></a></li>
-						<li><a href="#!/page_Teachers"><span></span><strong>Reservas</strong></a></li>
-						<li><a href="#!/page_Schedule"><span></span><strong>Cadastro</strong></a></li>
+						<li><a href="#!/page_Home"><span></span><strong>Home</strong></a></li>
+						<li><a href="#!/page_Reservas"><span></span><strong>Reservas</strong></a></li>
+						<li><a href="#!/page_Cadastro"><span></span><strong>Cadastro</strong></a></li>
+						<li><a href="#!/page_CadReservas"><span></span><strong>Reservar</strong></a></li>
 						<li><a href="#!/page_Contact"><span></span><strong>Contato</strong></a></li>
-						<li><a href="#!/page_Prices"><span></span><strong>Help</strong></a></li>
+						
 					</ul>
 				</nav>
 			</header>
@@ -56,7 +57,7 @@
 			<article id="content">
 				<ul>
 					<!===========================================PAGINA HOME   =======================================================>
-					<li id="page_About">
+					<li id="page_Home">
 						<div class="box1">
 							<div class="inner">
 								<a href="#" class="close" data-type="close"><span></span></a>
@@ -71,8 +72,8 @@
 						</div>
 					</li>
 
-					<!===========================================PAGINA RESERVAS    =======================================================>
-					<li id="page_Teachers">
+					<!===========================================PAGINA VISUALIZAÇAO DE RESERVAS    =======================================================>
+					<li id="page_Reservas">
 						<div class="box1">
 							<div class="inner">
 								<a href="#" class="close" data-type="close"><span></span></a>
@@ -107,7 +108,7 @@
 
 					<!===========================================PAGINA CADASTRO    =======================================================>
 
-					<li id="page_Schedule">
+					<li id="page_Cadastro">
 						<div class="box1">
 							<div class="inner">
 								<a href="#" class="close" data-type="close"><span></span></a>
@@ -117,81 +118,82 @@
 								
 									<div class="wrapper"> 
 										<label for="id"> ID: </label> 
-										<input class="input" type="text" value="id"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+										<input class="input" type="text" value="ID"  onblur="if(this.value=='') this.value='ID'" onFocus="if(this.value =='ID' ) this.value=''" >
 									</div>
 									
 									<div class="wrapper"> 
 										<label for="nome"> Nome:</label> 
-										<input class="input" type="text" value="Nome"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+										<input class="input" type="text" value="Nome"  onblur="if(this.value=='') this.value='Nome'" onFocus="if(this.value =='Nome' ) this.value=''" >
 									</div>
 
 									<div class="wrapper"> 
 										<label for="sobrenome">Sobrenome:</label> 
-										<input class="input" type="text" value="Sobrenome"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+										<input class="input" type="text" value="Sobrenome"  onblur="if(this.value=='') this.value='Sobrenome'" onFocus="if(this.value =='Sobrenome' ) this.value=''" >
 									</div>
 									
 									<div class="wrapper"> 
 										<label for="cpf">CPF:</label>
-										<input class="input" type="text" value="CPF" onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+										<input class="input" type="text" value="CPF" onblur="if(this.value=='') this.value='CPF'" onFocus="if(this.value =='CPF' ) this.value=''" >
 									</div>
 
 									<div class="wrapper">
 										<label for="rg">RG:</label>
-										<input class="input" type="text" value="RG"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+										<input class="input" type="text" value="RG"  onblur="if(this.value=='') this.value='RG'" onFocus="if(this.value =='RG' ) this.value=''" >
 									</div>
 									<div id="datas" class="clearfix">
 										<div class="wrapper input-data"> 
-											<label for="dt_nasc">Data de Nasc:</label>
-											<input class="input" type="date" onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+											<label for="dt_nasc">Data Nasc:</label>
+											<input class="input" type="date">
 										</div>
 										
 										<div class="wrapper input-data"> 
-											<label for="dt_assoc">Data de Assoc:</label>
-											<input class="input" type="date"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+											<label for="dt_assoc">Data Assoc:</label>
+											<input class="input" type="date">
 										</div>
 									</div>
 
 									<div class="wrapper">
-										<label for="logradouro">Logradouro:</label>
-										<input class="input" type="text" value="Logradouro"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+										<label for="logradouro">Endereço:</label>
+										<input class="input" type="text" value="Endereço"  onblur="if(this.value=='') this.value='Endereço'" onFocus="if(this.value =='Endereço' ) this.value=''" >
 									</div>
 
 									<div id="cidade-estado" class="clearfix">
 										<div class="wrapper input-cidade"> 
 											<label for="cidade">Cidade:</label> 
-											<input class="input" type="text" name="cidade" value="Cidade"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+											<input class="input" type="text" name="cidade" value="Cidade"  onblur="if(this.value=='') this.value='Cidade'" onFocus="if(this.value =='Cidade' ) this.value=''" >
 										</div>
 
 										<div class="wrapper input-estado"> 
 											<label for="estado">Estado:</label>
 											<select name="escolheestado" value="Estado">
-												<option value "0">AC</option> 
-												<option value="1">AL</option>
-												<option value="2">AP</option>
-												<option value="3">AM</option> 
-												<option value="4">BA</option>
-												<option value="5">CE</option>
-												<option value="6">DF</option>
-												<option value="7">ES</option>
-												<option value="8">GO</option>
-												<option value="9">MA</option>
-												<option value="10">MT</option>
-												<option value="11">MS</option>
-												<option value="12">MG</option>
-												<option value="13">PA</option>
-												<option value="14">PB</option>
-												<option value="15">PR</option>
-												<option value="16">PE</option>
-												<option value="17">PI</option>
-												<option value="18">RJ</option>
-												<option value="19">RN</option>
-												<option value="20">RO</option>
-												<option value="21">RR</option>
-												<option value="22">RS</option>
-												<option value="23">SC</option>
-												<option value="24">SP</option>
-												<option value="25">SE</option>
-												<option value="26">TO</option>
+												<option value "0">Selec:</option>
+												<option value "1">AC</option> 
+												<option value="2">AL</option>
+												<option value="3">AP</option>
+												<option value="4">AM</option> 
+												<option value="5">BA</option>
+												<option value="6">CE</option>
+												<option value="7">DF</option>
+												<option value="8">ES</option>
+												<option value="9">GO</option>
+												<option value="10">MA</option>
+												<option value="11">MT</option>
+												<option value="12">MS</option>
+												<option value="13">MG</option>
+												<option value="14">PA</option>
+												<option value="15">PB</option>
+												<option value="16">PR</option>
+												<option value="17">PE</option>
+												<option value="18">PI</option>
+												<option value="19">RJ</option>
+												<option value="20">RN</option>
+												<option value="21">RO</option>
+												<option value="22">RR</option>
+												<option value="23">RS</option>
+												<option value="24">SC</option>
+												<option value="25">SP</option>
+												<option value="26">SE</option>
+												<option value="27">TO</option>
 											</select>		
 										</div>
 									</div>
@@ -199,44 +201,83 @@
 									<div id="telefones" class="clearfix">
 										<div class="wrapper input-telefone">
 											<label for="telefone">Telefone:</label>
-											<input class="input" type="text" value="Telefone"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+											<input class="input" type="text" value="Telefone"  onblur="if(this.value=='') this.value='Telefone'" onFocus="if(this.value =='Telefone' ) this.value=''" >
 										</div>
 										
 										<div class="wrapper input-telefone">
 											<label for="telefone">Celular:</label>
-											<input class="input" type="text" value="Celular"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+											<input class="input" type="text" value="Celular"  onblur="if(this.value=='') this.value='Celular'" onFocus="if(this.value =='Celular' ) this.value=''" >
 										</div>
 									</div>
 
 									<div class="wrapper">
 										<label for="email">E-mail:</label>
-										<input class="input" type="text" value="Email"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+										<input class="input" type="text" value="E-mail"  onblur="if(this.value=='') this.value='E-mail'" onFocus="if(this.value =='E-mail' ) this.value=''" >
 									</div>
 
 									<div class="wrapper">
 										<label for="senha">Senha:</label>
-										<input class="input" type="text" value="Senha"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" >
+										<input class="input" type="password" value="Password"  onblur="if(this.value=='') this.value='Password'" onFocus="if(this.value =='Password' ) this.value=''" >
 									</div>
 								</form>
 													
-								<input type="submit" value="Enviar Formulário" value="Place order" class = "enviar_">
+								<input type="submit" value="Enviar Informações" value="Place order" class = "enviar_">
 										
 							</div>
 						</div>
 					</li>
 
-					<!===========================================PAGINA HELP    =======================================================>
+					<!===========================================PAGINA CADASTRO DE RESERVAS    =======================================================>
 
-					<li id="page_Prices">
+					<li id="page_CadReservas">
 						<div class="box1">
 							<div class="inner">
 								<a href="#" class="close" data-type="close"><span></span></a>
-								<div class="wrapper">
-									<h2>Help</h2>
+								<h2>Cadastro de Reservas</h2>
+								<form name="ReservForm" id="Form" method="post" action="" onSubmit="return validaform('formcont');">
+								
+									<div class="wrapper"> 
+										<label for="id"> ID: </label> 
+										<input class="input" type="text" value="1234" disabled="disabled" onblur="if(this.value=='') this.value='1234'" onFocus="if(this.value =='ID' ) this.value=''" >
+									</div>
 									
-									<p>
-											Breve tutorial de reserva quadras. </p>
-								</div>
+									<div class="wrapper"> 
+										<label for="nome"> Nome:</label> 
+										<input class="input" type="text" value="Alonso da Silva" disabled="disabled" onblur="if(this.value=='') this.value='Nome'" onFocus="if(this.value =='Nome' ) this.value=''" >
+									</div>
+									
+									<div class="wrapper"> 
+										<label for="quadra"> Quadra:</label> 
+										<select class="combo" name="escolhequadra" value="Quadra">
+												<option value "0">Selecione a quadra:</option>
+												<option value "1">Quadra Tenis 1</option> 
+												<option value="2">Quadra Tenis 2</option>
+												<option value="3">Quadra Futebol 7</option>
+												<option value="4">Quadra Voleibol</option> 
+											</select>		
+
+									</div>
+
+									<div id="data-reserva" class="clearfix">
+										<div class="wrapper input-date"> 
+											<label for="dt_nasc">Data Reserva:</label>
+											<input class="input" type="date">
+										</div>
+										
+										<div class="wrapper input-time"> 
+											<label for="dt_assoc">Horário:</label>
+											<input class="input" type="time">
+										</div>
+									</div>
+
+									<div class="wrapper">
+										<label for="desc_reserva">Observação:</label>										
+										<textarea class="textarea" cols="50" rows="3" value="Insira uma observação..."  onblur="if(this.value=='') this.value='Insira uma observação...'" onFocus="if(this.value =='Insira uma observação...' ) this.value=''" ></textarea>	
+									</div>
+										
+								</form>
+													
+								<input type="submit" value="Enviar Informações" value="Place order" class = "enviar_">
 							</div>
 						</div>
 					</li>
