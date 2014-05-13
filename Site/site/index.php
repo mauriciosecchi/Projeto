@@ -32,7 +32,6 @@
 </head>
 
 <body>
-<div class="spinner"></div>
 <div id="bgSlider"></div>
 <div class="extra">
 	<div class="main">
@@ -93,10 +92,10 @@
 													<th><strong>Sábado</strong></th>
 												</tr>
 											</thead>
-											<?php
-												include_once "funcoesreserva.php";
-												gerarhorarios();
-											?>
+					
+					
+					
+					
 											<tbody>
 											</tbody>
 										</table>
@@ -270,15 +269,14 @@
 										</div>
 									</div>
 
-									<div class="wrapper1">
+									<div class="wrapper">
 										<label for="desc_reserva">Observação:</label>										
 										<textarea class="textarea" cols="50" rows="3" value="Insira uma observação..."  onblur="if(this.value=='') this.value='Insira uma observação...'" onFocus="if(this.value =='Insira uma observação...' ) this.value=''" ></textarea>	
 									</div>
 										
 								</form>
-												
-								<input type="submit" value="Enviar Informações" value="Place order" class = "botao">
-								
+													
+								<input type="submit" value="Enviar Informações" value="Place order" class = "enviar_">
 							</div>
 						</div>
 					</li>
@@ -349,13 +347,15 @@
 							 <a href="images/editado1.jpg"></a></li>
 							</a></li>
 						</ul>
+<div class="spinner"></div>	
 
 <script>
 $(window).load(function() {	
-	$('.spinner').fadeOut();
-	$('body').css({overflow:'inherit'})
-})
-</script>
+$('.spinner').fadeOut();
+$('body').css({overflow:'inherit'})
+ })
+ </script>
 </body>
 >>>>>>> 61131e6f8566fc1d9afaf4fa4194e8a60aca58d5
 </html>
+
