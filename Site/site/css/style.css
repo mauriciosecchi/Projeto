@@ -115,10 +115,11 @@ footer span {color:#08afee}
 	color:#a6a6a6;
 	font:14px Arial, Helvetica, sans-serif;
 }
+#Form .wrapper1 {overflow:inherit;min-height:80px;}
 #Form .combo {
 	position: absolute; 
 	left: 160px; 
-	width: 400px;
+	width: 430px;
 	height:auto;
 	background:#fff;
 	border:1px solid #e5e4e3;
@@ -126,6 +127,8 @@ footer span {color:#08afee}
 	color:#a6a6a6;
 	font:14px Arial, Helvetica, sans-serif;
 }
+
+
 
 /* ============================= Formatação campos cidade e estado ============================= */
 #Form .input-cidade  {
