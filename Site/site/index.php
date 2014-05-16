@@ -259,7 +259,7 @@
 
 									<div id="data-reserva" class="clearfix">
 										<div class="wrapper input-date"> 
-											<label for="dt_nasc">Data Reserva:</label>
+											<label for="dt_nasc">Data:</label>
 											<input class="input" type="date">
 										</div>
 										
