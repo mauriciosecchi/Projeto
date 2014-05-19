@@ -78,6 +78,22 @@
 								<a href="#" class="close" data-type="close"><span></span></a>
 								<div class="wrapper">
 									<h2>Reservas</h2>
+									<div class="wrapper"> 
+										<label for="quadra"> Quadra:</label> 
+										<select class="combo" name="escolhequadra" value="Quadra">
+												<option value "0">Selecione a quadra:</option>
+												<option value "1">Quadra Tenis 1</option> 
+												<option value="2">Quadra Tenis 2</option>
+												<option value="3">Quadra Futebol 7</option>
+												<option value="4">Quadra Voleibol</option> 
+											</select>		
+									</div>
+									<div id="data-reserva" class="clearfix">
+										<div class="wrapper input-date"> 
+											<label for="dt_nasc">Data:</label>
+											<input class="input" type="date">
+										</div>
+									</div>
 									<div class="table">
 										<table>
 											<thead>
@@ -92,7 +108,10 @@
 													<th><strong>Sábado</strong></th>
 												</tr>
 											</thead>
-					
+											<?php
+												include_once "funcoesreserva.php";
+												gerarhorarios();
+											?>
 					
 					
 					
