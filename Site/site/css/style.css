@@ -22,12 +22,12 @@ body {background:#fff;border:0;font:14px Arial, Helvetica, sans-serif;color:#4d4
 .ic {border:0;float:right;background:#fff;color:#f00;width:50%;line-height:10px;font-size:10px;margin:-220% 0 0 0;overflow:hidden;padding:0}
 .css3{border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;box-shadow:0 0 4px rgba(0, 0, 0, .4);-moz-box-shadow:0 0 4px rgba(0, 0, 0, .4);-webkit-box-shadow:0 0 4px rgba(0, 0, 0, .4);position:relative}
 /* Global Structure ============================================================= */
-.main {	margin:0 auto;width:960px;overflow:hidden}
+.main {margin-left: 8%;width:100%;overflow:hidden}
 .block {height:131px}
 .extra {min-height:100%;height:auto !important;height:100%;margin:0 auto -131px;position:relative;background:url(../images/bg_top.png) top repeat-x}
 body, html {height:100%}
 .bg1 {background:#fff;position:relative;z-index:1;height:131px}
-.box {width:100%;overflow:hidden;padding-top:30px;padding-bottom:30px;position:relative}
+.box {width:100%;overflow:hidden;padding-top:30px;padding-bottom:30px;position:relative;}
 .spinner {position:absolute;z-index:99;background:url(../images/loader.gif) 50% 50% no-repeat #fff;width:100%;height:100%;top:0;left:0}
 .bg_spinner {width:100px;height:13px;position:absolute;z-index:2;background:url(../images/loader2.gif) 0 0 no-repeat;top:10px;left:80px}
 #bgSlider  img {left:auto !important;right:0 !important;  opacity: 0.75}
@@ -40,17 +40,18 @@ a:hover {text-decoration:none}
 h2 {font-size:36px;color:#08afee;line-height:1.2em;padding:17px 0 16px 0;letter-spacing:-2px}
 p {padding-bottom:25px}
 /* ============================= header ====================== */
-header {width:270px;float:left}
+header {width:270px;float:left;}
 #logo {display:block;text-indent:-9999px;background:url(../images/17_04_2014_20_01_55.jpg) 0 0 no-repeat;width:230px;height:200px; opacity: 0.90}
 #menu  {padding-top:50px}
-#menu > li  {width:100%;overflow:hidden;padding-bottom:3px; width: 170px;}
-#menu > li > a {display:inline-block;font-size:21px;line-height:46px;color:#434343;background:#fff;text-decoration:none;position:relative;letter-spacing:-1px}
+#menu > li  {width:230px;overflow:hidden;padding-bottom:3px; }
+#menu > li > a {display:inline-block;font-size:21px;line-height:46px;color:#434343;background:#fff;text-decoration:none;position:relative;letter-spacing:-1px; width: 100%}
 #menu > li > a span {display:block;background:url(../images/Azul-Klein..jpg) top repeat-x #fff;position:absolute;width:100%;height:100%;top:0;left:0}
-#menu > li > a strong {position:relative;display:block;border-right:1px solid #f6f6f6;border-bottom:1px solid #f0f0f0;padding:0 60px 0 48px;height:50px}
+#menu > li > a strong {position:relative;display:block;border-right:1px solid #f6f6f6;border-bottom:1px solid #f0f0f0;padding:0 60px 0 48px;height:50px; text-align: center}
 #menu > li > a:hover, #menu > li > a.active {color:#fff}
 #menu > li > a:hover strong, #menu > li > a.active strong {border-bottom:0;border-right:0;padding-bottom:1px;padding-right:61px}
+
 /* ============================= content ====================== */
-#content > ul {width:690px;float:left;height:639px;position:relative}
+#content > ul {width:800px;float:left;height:639px;position:relative}
 #content > ul > li {position:relative;height:639px;width:100%;bottom:0}
 #content > ul > #page_About {height:639px}
 .box1 {background:url(../images/content_bg.png) repeat;width:100%;height:100%;position:absolute;bottom:0;left:0;}
@@ -103,11 +104,11 @@ footer span {color:#08afee}
 #Form .select {left:}
 #Form .textarea_box{min-height:130px}
 #Form a {margin-left:20px;float:right;line-height:18px}
-#Form .input  {position: absolute; left: 160px; width: 400px;height:18px;background:#fff;border:1px solid #e5e4e3;padding:5px 14px;color:#a6a6a6;font:14px Arial, Helvetica, sans-serif;}
+#Form .input  {position: absolute; left: 160px; width: 65%;height:18px;background:#fff;border:1px solid #e5e4e3;padding:5px 14px;color:#a6a6a6;font:14px Arial, Helvetica, sans-serif;}
 #Form .textarea {
 	position: absolute; 
 	left: 160px; 
-	width: 400px;
+	width: 65%;
 	height:50px;
 	background:#fff;
 	border:1px solid #e5e4e3;
@@ -115,11 +116,15 @@ footer span {color:#08afee}
 	color:#a6a6a6;
 	font:14px Arial, Helvetica, sans-serif;
 }
+
 #Form .wrapper1 {overflow:inherit;min-height:80px;}
+
+#Form .wrapper2 {overflow:inherit;min-height:80px; margin-top: 300px;}
+
 #Form .combo {
 	position: absolute; 
 	left: 160px; 
-	width: 430px;
+	width: 550px;
 	height:auto;
 	background:#fff;
 	border:1px solid #e5e4e3;
@@ -133,26 +138,26 @@ footer span {color:#08afee}
 /* ============================= Formatação campos cidade e estado ============================= */
 #Form .input-cidade  {
 	float: left;
-	width: 65% ;
+	width: 70% ;
 }
 
-.input-estado  {
+#Form .input-estado  {
 	float: left;
-	width: 35% ;
+	width: 30% ;
 }
 
 #cidade-estado label {
-	width: 26% !important;
+	width: 95px !important;
 	display: inline-block !important;
 }
 
 .input-cidade input {
 	position: static !important;
 	left: auto !important;
-	width: 62% !important;
+	width: 65% !important;
 }
 
-.input-estado input {
+.input-estado select {
 	position: static !important;
 	left: auto !important;
 	width: auto !important;
@@ -160,36 +165,36 @@ footer span {color:#08afee}
 /* ============================= formatação campos data no cadastro de usuarios ============================= */
 #Form .input-data  {
 	float: left;
-	width: 47%;
+	width: 50%;
 }
 
 #datas label{
-	width: 36% !important;
+	width: 28% !important;
 	display: inline-block !important;
 }
 
 .input-data input {
 	position: static !important;
 	left: auto !important;
-	width: 49% !important;
+	width: 53% !important;
 }
 
 /* ============================= formatação campo telefones cadastro de usuarios ============================= */
 
 #Form .input-telefone  {
 	float: left;
-	width: 48%;
+	width: 50%;
 }
 
 #telefones label{
-	width: 35% !important;
+	width: 28% !important;
 	display: inline-block !important;
 }
 
 .input-telefone input{
 	position: static !important;
 	left: auto !important;
-	width: 46% !important;
+	width: 53% !important;
 }
 
 /* ============================= formatação campo de data cadastro de reservas ============================= */
@@ -205,7 +210,7 @@ footer span {color:#08afee}
 }
 
 #data-reserva label {
-	width: 26% !important;
+	width: 95px !important;
 	display: inline-block !important;
 }
 
@@ -218,5 +223,5 @@ footer span {color:#08afee}
 .input-time input {
 	position: static !important;
 	left: auto !important;
-	width: auto !important;
+	width: 33% !important;
 }

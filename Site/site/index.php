@@ -78,6 +78,22 @@
 								<a href="#" class="close" data-type="close"><span></span></a>
 								<div class="wrapper">
 									<h2>Reservas</h2>
+									<div class="wrapper"> 
+										<label for="quadra"> Quadra:</label> 
+										<select class="combo" name="escolhequadra" value="Quadra">
+												<option value "0">Selecione a quadra:</option>
+												<option value "1">Quadra Tenis 1</option> 
+												<option value="2">Quadra Tenis 2</option>
+												<option value="3">Quadra Futebol 7</option>
+												<option value="4">Quadra Voleibol</option> 
+											</select>		
+									</div>
+									<div id="data-reserva" class="clearfix">
+										<div class="wrapper input-date"> 
+											<label for="dt_nasc">Data:</label>
+											<input class="input" type="date">
+										</div>
+									</div>
 									<div class="table">
 										<table>
 											<thead>
@@ -92,7 +108,10 @@
 													<th><strong>Sábado</strong></th>
 												</tr>
 											</thead>
-					
+											<?php
+												include_once "funcoesreserva.php";
+												gerarhorarios();
+											?>
 					
 					
 					
@@ -259,7 +278,7 @@
 
 									<div id="data-reserva" class="clearfix">
 										<div class="wrapper input-date"> 
-											<label for="dt_nasc">Data Reserva:</label>
+											<label for="dt_nasc">Data:</label>
 											<input class="input" type="date">
 										</div>
 										
@@ -269,7 +288,7 @@
 										</div>
 									</div>
 
-									<div class="wrapper">
+									<div class="wrapper1">
 										<label for="desc_reserva">Observação:</label>										
 										<textarea class="textarea" cols="50" rows="3" value="Insira uma observação..."  onblur="if(this.value=='') this.value='Insira uma observação...'" onFocus="if(this.value =='Insira uma observação...' ) this.value=''" ></textarea>	
 									</div>
@@ -289,31 +308,31 @@
 								<a href="#" class="close" data-type="close"><span></span></a>
 								<div class="wrapper">
 									<div class="col1">
-										<h2>Endereço</h2>
-										<p><strong>8901 Marmora, <br>
-												Glasgow, D04 89GR</strong></p>
-										<p class="address">Freephone:<br>
-												Telephone:<br>
-												FAX:<br>
-												E-mail:</p>
-										<p class="pad_bot1">+1 800 559 6580<br>
-												+1 959 603 6035<br>
-												+1 504 889 9898<br>
-												<a href="mailto:" class="color1">mail@demolink.org</a></p>
+										<h2>Contato</h2>
+										<p><strong>Associação Atlética Banco do Brasil<br>
+												Rua: Conda - Maria Goretti<br>
+												CEP: 89.801-130  - Chapecó-SC<br>
+												Telefone: (49) 3322 -1140</strong></p>
+												E-mail: aabb@aabb.com.br
 									</div>
 								</div>
-								<div class="wrapper">
-									<h2>Contact Form</h2>
-									<form id="Form">
+
+								<div class="wrapper1">
+									<form name="FormContato" id="Form">
 									<div>
-										<div class="wrapper"><input class="input" type="text" value="Name"  onblur="if(this.value=='') this.value='Name'" onFocus="if(this.value =='Name' ) this.value=''" ></div>
-										<div class="wrapper"><input class="input" type="text" value="Email"  onblur="if(this.value=='') this.value='Email'" onFocus="if(this.value =='Email' ) this.value=''" ></div>
-										<div class="textarea_box"><textarea cols="1" rows="1" onBlur="if(this.value=='') this.value='Message'" onFocus="if(this.value =='Message' ) this.value=''"  >Message</textarea></div>
-										<a href="#" class="color1" onClick="document.getElementById('ContactForm').submit()">Send</a>
-										<a href="#" class="color1" onClick="document.getElementById('ContactForm').reset()">Clear</a>
+										<div class="wrapper1"> 
+										<label for="nome"> Nome:</label> 
+										<input class="input" type="text" value="Nome"  onblur="if(this.value=='') this.value='Nome'" onFocus="if(this.value =='Nome' ) this.value=''" >
+									</div>
+
+									<div class="wrapper1"> 
+										<label for="sobrenome">Sobrenome:</label> 
+										<input class="input" type="text" value="Sobrenome"  onblur="if(this.value=='') this.value='Sobrenome'" onFocus="if(this.value =='Sobrenome' ) this.value=''" >
+									</div>
 									</div>
 									</form>
 								</div>
+
 							</div>
 						</div>
 					</li>
