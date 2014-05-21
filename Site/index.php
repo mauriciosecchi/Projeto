@@ -1,15 +1,3 @@
-<?php
-	session_start();
-	if(isset($_SESSION['logado'])){
-		if($_SESSION['logado'] != 1)
-			header("Location:login.php");
-	}
-	else{
-		header("Location:login.php");
-	}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
