@@ -1,3 +1,14 @@
+<?php
+	session_start();
+	if(isset($_SESSION['logado'])){
+		if($_SESSION['logado'] != 1)
+			header("Location:login.php");
+	}
+	else{
+		header("Location:login.php");
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +30,7 @@
   <script type="text/javascript" src="js/jcarousellite.js"></script>
   <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
   <script type="text/javascript" src="js/atooltip.jquery.js"></script>
+  <script type="text/javascript" src="js/js_valida.js"> </script>
  
   <!--[if lt IE 9]>
   	<script type="text/javascript" src="js/html5.js"></script>
@@ -29,6 +41,7 @@
 			<a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0"  alt="" /></a>
 		</div>
 	<![endif]-->
+
 </head>
 
 <body>
@@ -38,7 +51,7 @@
 		<div class="box">
 			<!--header -->
 			<header><br>
-				<h1><a href="index.html" id="logo"></a></h1>
+				<h1><a href="index.php" id="logo"></a></h1>
 				<nav class="menu">
 					<ul id="menu">
 						<li><a href="#!/page_Home"><span></span><strong>Home</strong></a></li>
@@ -134,29 +147,30 @@
 								<h2>Meu Cadastro</h2>
 								<form name="CadForm" id="Form" method="post" action="" onSubmit="return validaform('formcont');">
 								
-									<div class="wrapper"> 
-										<label for="id"> ID: </label> 
-										<input class="input" type="text" value="ID"  onblur="if(this.value=='') this.value='ID'" onFocus="if(this.value =='ID' ) this.value=''" >
-									</div>
 									
 									<div class="wrapper"> 
 										<label for="nome"> Nome:</label> 
-										<input class="input" type="text" value="Nome"  onblur="if(this.value=='') this.value='Nome'" onFocus="if(this.value =='Nome' ) this.value=''" >
+										<input class="input" type="text" id="nome" onblur="validaName('nome');" onFocus="limpa_campo('nome');" >
 									</div>
 
 									<div class="wrapper"> 
 										<label for="sobrenome">Sobrenome:</label> 
-										<input class="input" type="text" value="Sobrenome"  onblur="if(this.value=='') this.value='Sobrenome'" onFocus="if(this.value =='Sobrenome' ) this.value=''" >
+										<input class="input" type="text" id="sobre" onblur="validaName('sobre');" onFocus="limpa_campo('sobre');" >
 									</div>
 									
 									<div class="wrapper"> 
+										<label for="apelido"> Apelido: </label> 
+										<input class="input" type="text" id="apelido" onblur="validaName('apelido');" onFocus="limpa_campo('apelido');">
+									</div>
+
+									<div class="wrapper"> 
 										<label for="cpf">CPF:</label>
-										<input class="input" type="text" value="CPF" onblur="if(this.value=='') this.value='CPF'" onFocus="if(this.value =='CPF' ) this.value=''" >
+										<input class="input" type="text" id="cpf" onblur="valida_Cpf('cpf');" onFocus="limpa_campo('cpf');" >
 									</div>
 
 									<div class="wrapper">
 										<label for="rg">RG:</label>
-										<input class="input" type="text" value="RG"  onblur="if(this.value=='') this.value='RG'" onFocus="if(this.value =='RG' ) this.value=''" >
+										<input class="input" type="text" id="rg" onblur="validaName('rg');" onFocus="limpa_campo('rg');" >
 									</div>
 									<div id="datas" class="clearfix">
 										<div class="wrapper input-data"> 
@@ -172,13 +186,13 @@
 
 									<div class="wrapper">
 										<label for="logradouro">Endereço:</label>
-										<input class="input" type="text" value="Endereço"  onblur="if(this.value=='') this.value='Endereço'" onFocus="if(this.value =='Endereço' ) this.value=''" >
+										<input class="input" type="text" id="ender" onblur="validaName('ender');" onFocus="limpa_campo('ender');" >
 									</div>
 
 									<div id="cidade-estado" class="clearfix">
 										<div class="wrapper input-cidade"> 
 											<label for="cidade">Cidade:</label> 
-											<input class="input" type="text" name="cidade" value="Cidade"  onblur="if(this.value=='') this.value='Cidade'" onFocus="if(this.value =='Cidade' ) this.value=''" >
+											<input class="input" type="text" name="cidade" id="cidade" onblur="validaName('cidade');" onFocus="limpa_campo('cidade');" >
 										</div>
 
 										<div class="wrapper input-estado"> 
@@ -219,24 +233,31 @@
 									<div id="telefones" class="clearfix">
 										<div class="wrapper input-telefone">
 											<label for="telefone">Telefone:</label>
-											<input class="input" type="text" value="Telefone"  onblur="if(this.value=='') this.value='Telefone'" onFocus="if(this.value =='Telefone' ) this.value=''" >
+											<input class="input" type="text" id="fone" onblur="validaName('fone');" onFocus="limpa_campo('fone');">
 										</div>
 										
 										<div class="wrapper input-telefone">
 											<label for="telefone">Celular:</label>
-											<input class="input" type="text" value="Celular"  onblur="if(this.value=='') this.value='Celular'" onFocus="if(this.value =='Celular' ) this.value=''" >
+											<input class="input" type="text" id="cel" onblur="validaName('cel');" onFocus="limpa_campo('cel');" >
 										</div>
 									</div>
 
 									<div class="wrapper">
 										<label for="email">E-mail:</label>
-										<input class="input" type="text" value="E-mail"  onblur="if(this.value=='') this.value='E-mail'" onFocus="if(this.value =='E-mail' ) this.value=''" >
+										<input class="input" type="text" id="email" onblur="validaName('email');" onFocus="limpa_campo('email');" >
+									</div>
+
+
+									<div class="wrapper"> 
+										<label for="login"> Login:</label> 
+										<input class="input" type="text" id="login" onblur="validaName('login');" onFocus="limpa_campo('login');" >
 									</div>
 
 									<div class="wrapper">
 										<label for="senha">Senha:</label>
-										<input class="input" type="password" value="Password"  onblur="if(this.value=='') this.value='Password'" onFocus="if(this.value =='Password' ) this.value=''" >
+										<input class="input" type="password" id="senha" onFocus="limpa_campo('senha');" >
 									</div>
+
 								</form>
 													
 								<input type="submit" value="Enviar Informações" value="Place order" class = "enviar_">
@@ -316,22 +337,9 @@
 												E-mail: aabb@aabb.com.br
 									</div>
 								</div>
-
-								<div class="wrapper1">
-									<form name="FormContato" id="Form">
-									<div>
-										<div class="wrapper1"> 
-										<label for="nome"> Nome:</label> 
-										<input class="input" type="text" value="Nome"  onblur="if(this.value=='') this.value='Nome'" onFocus="if(this.value =='Nome' ) this.value=''" >
+								    <div class="wrapper">
+									<iframe width="300" height="220" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/ms?ll=-27.099973,-52.608526&amp;spn=0.011633,0.021136&amp;t=h&amp;z=16&amp;msa=0&amp;msid=205805511263589055805.0004f9f4638a25cb9a954"></iframe><br /><small>Visualizar <a href="https://www.google.com/maps/ms?ll=-27.099973,-52.608526&amp;spn=0.011633,0.021136&amp;t=h&amp;z=16&amp;msa=0&amp;msid=205805511263589055805.0004f9f4638a25cb9a954&amp;source=embed" style="color:#0000FF;text-align:left">AABB - Chapecó-SC</a> em um mapa maior</small>
 									</div>
-
-									<div class="wrapper1"> 
-										<label for="sobrenome">Sobrenome:</label> 
-										<input class="input" type="text" value="Sobrenome"  onblur="if(this.value=='') this.value='Sobrenome'" onFocus="if(this.value =='Sobrenome' ) this.value=''" >
-									</div>
-									</div>
-									</form>
-								</div>
 
 							</div>
 						</div>
