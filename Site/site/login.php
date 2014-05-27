@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
@@ -29,7 +28,7 @@
         </div>    
         <div class="page-container">
             <h1>Login</h1>
-            <form action="index.php" method="post">
+            <form action="index.html" method="post">
                 <input type="text" name="username" class="username" placeholder="Usuário">
                 <input type="password" name="password" class="password" placeholder="Senha">
                 <button type="submit">Entrar</button>
