@@ -1,5 +1,11 @@
-
 <!DOCTYPE html>
+
+<?php
+    session_start();
+	require_once 'functions.php';
+	$db = conectadb();
+?>
+
 <html lang="en" class="no-js">
 
     <head>
@@ -29,11 +35,32 @@
         </div>    
         <div class="page-container">
             <h1>Login</h1>
-            <form action="index.html" method="post">
+            <form action="" method="post">
                 <input type="text" name="username" class="username" placeholder="Usuário">
                 <input type="password" name="password" class="password" placeholder="Senha">
-                <button type="submit">Entrar</button>
+                <button type="submit" name="submit">Entrar</button>
                 <div class="error"><span>+</span></div>
+				<?php
+					//Testa se realizou a coneção
+					if (isset($_POST['submit'])) {
+						//Faz a busca no BD
+						$query = "SELECT * FROM usuario WHERE login = '$_POST[username]' AND senha = '$_POST[password]'";
+						$result = query($query, $db);
+						//Testa se retornou um registro
+						if(mysql_num_rows($result) > 0){
+							$rows = mysql_fetch_assoc($result);
+							$_SESSION['id_usuario'] = $rows['id_usuario'];
+							$_SESSION['apelido'] = $rows['apelido'];
+							$_SESSION['logado'] = 1;
+							header("Location:index.php");
+						}
+						else{
+							echo "<script LANGUAGE=\"Javascript\">
+								alert(\"Usuario ou senha inválidos.\");
+								</SCRIPT>";
+						}						
+					}
+				?>
             </form>
             <br>
             <!--<a class = "link" href="#">Esqueci minha senha</a>
