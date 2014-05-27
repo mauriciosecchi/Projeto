@@ -19,6 +19,7 @@
   <script type="text/javascript" src="js/jcarousellite.js"></script>
   <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
   <script type="text/javascript" src="js/atooltip.jquery.js"></script>
+  <script type="text/javascript" src="js/js_valida.js"> </script>
  
   <!--[if lt IE 9]>
   	<script type="text/javascript" src="js/html5.js"></script>
@@ -29,6 +30,7 @@
 			<a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0"  alt="" /></a>
 		</div>
 	<![endif]-->
+
 </head>
 
 <body>
@@ -38,7 +40,7 @@
 		<div class="box">
 			<!--header -->
 			<header><br>
-				<h1><a href="index.html" id="logo"></a></h1>
+				<h1><a href="index.php" id="logo"></a></h1>
 				<nav class="menu">
 					<ul id="menu">
 						<li><a href="#!/page_Home"><span></span><strong>Home</strong></a></li>
@@ -136,27 +138,28 @@
 								
 									<div class="wrapper"> 
 										<label for="id"> ID: </label> 
-										<input class="input" type="text" value="ID"  onblur="if(this.value=='') this.value='ID'" onFocus="if(this.value =='ID' ) this.value=''" >
+										<input class="input" type="text" onblur="if(this.value=='') this.value=' '" onFocus="if(this.value ==' ' ) this.value=''" >
 									</div>
 									
 									<div class="wrapper"> 
 										<label for="nome"> Nome:</label> 
-										<input class="input" type="text" value="Nome"  onblur="if(this.value=='') this.value='Nome'" onFocus="if(this.value =='Nome' ) this.value=''" >
+										<input class="input" type="text" id="nome" onblur="validaName('nome');" onFocus="if(this.value =='' ) this.value=''" >
+										<span id = "erronome"></span><br><br>
 									</div>
 
 									<div class="wrapper"> 
 										<label for="sobrenome">Sobrenome:</label> 
-										<input class="input" type="text" value="Sobrenome"  onblur="if(this.value=='') this.value='Sobrenome'" onFocus="if(this.value =='Sobrenome' ) this.value=''" >
+										<input class="input" type="text" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
 									</div>
 									
 									<div class="wrapper"> 
 										<label for="cpf">CPF:</label>
-										<input class="input" type="text" value="CPF" onblur="if(this.value=='') this.value='CPF'" onFocus="if(this.value =='CPF' ) this.value=''" >
+										<input class="input" type="text" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
 									</div>
 
 									<div class="wrapper">
 										<label for="rg">RG:</label>
-										<input class="input" type="text" value="RG"  onblur="if(this.value=='') this.value='RG'" onFocus="if(this.value =='RG' ) this.value=''" >
+										<input class="input" type="text" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
 									</div>
 									<div id="datas" class="clearfix">
 										<div class="wrapper input-data"> 
@@ -172,13 +175,13 @@
 
 									<div class="wrapper">
 										<label for="logradouro">Endereço:</label>
-										<input class="input" type="text" value="Endereço"  onblur="if(this.value=='') this.value='Endereço'" onFocus="if(this.value =='Endereço' ) this.value=''" >
+										<input class="input" type="text" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
 									</div>
 
 									<div id="cidade-estado" class="clearfix">
 										<div class="wrapper input-cidade"> 
 											<label for="cidade">Cidade:</label> 
-											<input class="input" type="text" name="cidade" value="Cidade"  onblur="if(this.value=='') this.value='Cidade'" onFocus="if(this.value =='Cidade' ) this.value=''" >
+											<input class="input" type="text" name="cidade" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
 										</div>
 
 										<div class="wrapper input-estado"> 
@@ -219,23 +222,23 @@
 									<div id="telefones" class="clearfix">
 										<div class="wrapper input-telefone">
 											<label for="telefone">Telefone:</label>
-											<input class="input" type="text" value="Telefone"  onblur="if(this.value=='') this.value='Telefone'" onFocus="if(this.value =='Telefone' ) this.value=''" >
+											<input class="input" type="text" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
 										</div>
 										
 										<div class="wrapper input-telefone">
 											<label for="telefone">Celular:</label>
-											<input class="input" type="text" value="Celular"  onblur="if(this.value=='') this.value='Celular'" onFocus="if(this.value =='Celular' ) this.value=''" >
+											<input class="input" type="text" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
 										</div>
 									</div>
 
 									<div class="wrapper">
 										<label for="email">E-mail:</label>
-										<input class="input" type="text" value="E-mail"  onblur="if(this.value=='') this.value='E-mail'" onFocus="if(this.value =='E-mail' ) this.value=''" >
+										<input class="input" type="text" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
 									</div>
 
 									<div class="wrapper">
 										<label for="senha">Senha:</label>
-										<input class="input" type="password" value="Password"  onblur="if(this.value=='') this.value='Password'" onFocus="if(this.value =='Password' ) this.value=''" >
+										<input class="input" type="password"  onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
 									</div>
 								</form>
 													
@@ -317,21 +320,7 @@
 									</div>
 								</div>
 
-								<div class="wrapper1">
-									<form name="FormContato" id="Form">
-									<div>
-										<div class="wrapper1"> 
-										<label for="nome"> Nome:</label> 
-										<input class="input" type="text" value="Nome"  onblur="if(this.value=='') this.value='Nome'" onFocus="if(this.value =='Nome' ) this.value=''" >
-									</div>
 
-									<div class="wrapper1"> 
-										<label for="sobrenome">Sobrenome:</label> 
-										<input class="input" type="text" value="Sobrenome"  onblur="if(this.value=='') this.value='Sobrenome'" onFocus="if(this.value =='Sobrenome' ) this.value=''" >
-									</div>
-									</div>
-									</form>
-								</div>
 
 							</div>
 						</div>
