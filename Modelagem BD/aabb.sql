@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 20-Maio-2014 às 02:36
+-- Generation Time: 22-Maio-2014 às 01:09
 -- Versão do servidor: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -53,12 +53,6 @@ CREATE TABLE IF NOT EXISTS `quadra` (
   KEY `id_modalidade` (`id_modalidade`)
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=1 ;
 
---
--- RELATIONS FOR TABLE `quadra`:
---   `id_modalidade`
---       `modalidade` -> `id_modalidade`
---
-
 -- --------------------------------------------------------
 
 --
@@ -79,14 +73,6 @@ CREATE TABLE IF NOT EXISTS `reserva` (
   KEY `id_quadra` (`id_quadra`)
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=1 ;
 
---
--- RELATIONS FOR TABLE `reserva`:
---   `id_usuario`
---       `usuario` -> `id_usuario`
---   `id_quadra`
---       `quadra` -> `id_quadra`
---
-
 -- --------------------------------------------------------
 
 --
@@ -103,12 +89,6 @@ CREATE TABLE IF NOT EXISTS `restricao` (
   KEY `id_usuario` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=1 ;
 
---
--- RELATIONS FOR TABLE `restricao`:
---   `id_usuario`
---       `usuario` -> `id_usuario`
---
-
 -- --------------------------------------------------------
 
 --
@@ -120,7 +100,6 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `id_usuario` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cpf` varchar(15) COLLATE ascii_bin NOT NULL,
   `nome` varchar(45) COLLATE ascii_bin DEFAULT NULL,
-  `id_socio` varchar(15) COLLATE ascii_bin DEFAULT NULL,
   `rg` varchar(45) COLLATE ascii_bin DEFAULT NULL,
   `dt_nasc` date DEFAULT NULL,
   `dt_assoc` date DEFAULT NULL,
@@ -136,7 +115,10 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `aprovacao` int(10) unsigned DEFAULT NULL,
   `telefone` varchar(45) COLLATE ascii_bin DEFAULT NULL,
   `celular` varchar(45) COLLATE ascii_bin DEFAULT NULL,
-  PRIMARY KEY (`id_usuario`)
+  `login` varchar(20) COLLATE ascii_bin DEFAULT NULL,
+  `apelido` varchar(10) COLLATE ascii_bin NOT NULL,
+  PRIMARY KEY (`id_usuario`),
+  UNIQUE KEY `login` (`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=1 ;
 
 --
