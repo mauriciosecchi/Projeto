@@ -9,7 +9,6 @@
 	}
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,30 +147,30 @@
 								<h2>Meu Cadastro</h2>
 								<form name="CadForm" id="Form" method="post" action="" onSubmit="return validaform('formcont');">
 								
-									<div class="wrapper"> 
-										<label for="id"> ID: </label> 
-										<input class="input" type="text" onblur="if(this.value=='') this.value=' '" onFocus="if(this.value ==' ' ) this.value=''" >
-									</div>
 									
 									<div class="wrapper"> 
 										<label for="nome"> Nome:</label> 
-										<input class="input" type="text" id="nome" onblur="validaName('nome');" onFocus="if(this.value =='' ) this.value=''" >
-										<span id = "erronome"></span><br><br>
+										<input class="input" type="text" id="nome" onblur="validaName('nome');" onFocus="limpa_campo('nome');" >
 									</div>
 
 									<div class="wrapper"> 
 										<label for="sobrenome">Sobrenome:</label> 
-										<input class="input" type="text" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
+										<input class="input" type="text" id="sobre" onblur="validaName('sobre');" onFocus="limpa_campo('sobre');" >
 									</div>
 									
 									<div class="wrapper"> 
+										<label for="apelido"> Apelido: </label> 
+										<input class="input" type="text" id="apelido" onblur="validaName('apelido');" onFocus="limpa_campo('apelido');">
+									</div>
+
+									<div class="wrapper"> 
 										<label for="cpf">CPF:</label>
-										<input class="input" type="text" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
+										<input class="input" type="text" id="cpf" onblur="valida_Cpf('cpf');" onFocus="limpa_campo('cpf');" >
 									</div>
 
 									<div class="wrapper">
 										<label for="rg">RG:</label>
-										<input class="input" type="text" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
+										<input class="input" type="text" id="rg" onblur="validaName('rg');" onFocus="limpa_campo('rg');" >
 									</div>
 									<div id="datas" class="clearfix">
 										<div class="wrapper input-data"> 
@@ -187,13 +186,13 @@
 
 									<div class="wrapper">
 										<label for="logradouro">Endereço:</label>
-										<input class="input" type="text" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
+										<input class="input" type="text" id="ender" onblur="validaName('ender');" onFocus="limpa_campo('ender');" >
 									</div>
 
 									<div id="cidade-estado" class="clearfix">
 										<div class="wrapper input-cidade"> 
 											<label for="cidade">Cidade:</label> 
-											<input class="input" type="text" name="cidade" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
+											<input class="input" type="text" name="cidade" id="cidade" onblur="validaName('cidade');" onFocus="limpa_campo('cidade');" >
 										</div>
 
 										<div class="wrapper input-estado"> 
@@ -234,24 +233,31 @@
 									<div id="telefones" class="clearfix">
 										<div class="wrapper input-telefone">
 											<label for="telefone">Telefone:</label>
-											<input class="input" type="text" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
+											<input class="input" type="text" id="fone" onblur="validaName('fone');" onFocus="limpa_campo('fone');">
 										</div>
 										
 										<div class="wrapper input-telefone">
 											<label for="telefone">Celular:</label>
-											<input class="input" type="text" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
+											<input class="input" type="text" id="cel" onblur="validaName('cel');" onFocus="limpa_campo('cel');" >
 										</div>
 									</div>
 
 									<div class="wrapper">
 										<label for="email">E-mail:</label>
-										<input class="input" type="text" onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
+										<input class="input" type="text" id="email" onblur="validaName('email');" onFocus="limpa_campo('email');" >
+									</div>
+
+
+									<div class="wrapper"> 
+										<label for="login"> Login:</label> 
+										<input class="input" type="text" id="login" onblur="validaName('login');" onFocus="limpa_campo('login');" >
 									</div>
 
 									<div class="wrapper">
 										<label for="senha">Senha:</label>
-										<input class="input" type="password"  onblur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
+										<input class="input" type="password" id="senha" onFocus="limpa_campo('senha');" >
 									</div>
+
 								</form>
 													
 								<input type="submit" value="Enviar Informações" value="Place order" class = "enviar_">
@@ -331,8 +337,9 @@
 												E-mail: aabb@aabb.com.br
 									</div>
 								</div>
-
-
+								    <div class="wrapper">
+									<iframe width="300" height="220" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/ms?ll=-27.099973,-52.608526&amp;spn=0.011633,0.021136&amp;t=h&amp;z=16&amp;msa=0&amp;msid=205805511263589055805.0004f9f4638a25cb9a954"></iframe><br /><small>Visualizar <a href="https://www.google.com/maps/ms?ll=-27.099973,-52.608526&amp;spn=0.011633,0.021136&amp;t=h&amp;z=16&amp;msa=0&amp;msid=205805511263589055805.0004f9f4638a25cb9a954&amp;source=embed" style="color:#0000FF;text-align:left">AABB - Chapecó-SC</a> em um mapa maior</small>
+									</div>
 
 							</div>
 						</div>
