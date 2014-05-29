@@ -25,9 +25,6 @@ CREATE TABLE usuario (
 CREATE TABLE modalidade (
   id_modalidade INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   desc_modalidade VARCHAR(45) NULL,
-  horario_base DATETIME NULL,
-  horario_ini DATETIME NULL,
-  horario_fim DATETIME NULL,
   PRIMARY KEY(id_modalidade)
 );
 
@@ -47,7 +44,11 @@ CREATE TABLE quadra (
   id_quadra INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   id_modalidade INTEGER UNSIGNED NOT NULL,
   desc_quadra VARCHAR(45) NULL,
+  horario_base DATETIME NULL,
+  horario_ini DATETIME NULL,
+  horario_fim DATETIME NULL,
   PRIMARY KEY(id_quadra),
+  INDEX quadra_FKIndex1(id_modalidade),
   FOREIGN KEY(id_modalidade)
     REFERENCES modalidade(id_modalidade)
       ON DELETE NO ACTION
