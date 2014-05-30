@@ -19,8 +19,11 @@ function tem_numeros(texto){
  }
 
  function limpa_campo(campo){
- 	var name = document.getElementById(campo);
-		name.value= "";
+    var name = document.getElementById(campo);
+    
+        if(name.value == "Preenchimento obrigatório deste campo."){
+        name.value= "";
+        }
  }
 
  function valida_Cpf(campo) {

@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include_once "functions.php";
 	if(isset($_SESSION['logado'])){
 		if($_SESSION['logado'] != 1)
 			header("Location:login.php");
@@ -147,85 +148,115 @@
 								<h2>Meu Cadastro</h2>
 								<form name="CadForm" id="Form" method="post" action="" onSubmit="return validaform('formcont');">
 								
+								<?php
+									$estado = "Estado"; 
+									if(isset($_SESSION['id_usuario'])){
+										$query = "SELECT * FROM usuario WHERE id_usuario = $_SESSION[id_usuario]";
+										$teste = conectadb();
 									
+
+										$result = query($query, $teste);
+										if(mysql_num_rows($result) > 0){
+											$rows = mysql_fetch_assoc($result);
+											$nome = $rows['nome'];
+											$sobrenome = $rows['sobrenome'];
+											$apelido = $rows['apelido'];
+											$cpf = $rows['cpf'];
+											$rg = $rows['rg'];
+											$dt_nasc = $rows['dt_nasc'];
+											$dt_assoc = $rows['dt_assoc'];
+											$logradouro = $rows['logradouro'];
+											$cidade = $rows['cidade'];
+											$estado = $rows['estado'];		
+											$telefone = $rows['telefone'];
+											$celular = $rows['celular'];
+											$email = $rows['email'];
+											$login = $rows['login'];
+											$senha = $rows['senha'];
+										}
+									}
+
+								?>	
+
+
 									<div class="wrapper"> 
 										<label for="nome"> Nome:</label> 
-										<input class="input" type="text" id="nome" onblur="validaName('nome');" onFocus="limpa_campo('nome');" >
+										<input class="input" <?php echo ("value= '$nome'") ?> type="text" id="nome" onblur="validaName('nome');" onFocus="limpa_campo('nome');" >
 									</div>
 
 									<div class="wrapper"> 
 										<label for="sobrenome">Sobrenome:</label> 
-										<input class="input" type="text" id="sobre" onblur="validaName('sobre');" onFocus="limpa_campo('sobre');" >
+										<input class="input" <?php echo ("value= '$sobrenome'") ?> type="text" id="sobre" onblur="validaName('sobre');" onFocus="limpa_campo('sobre');" >
 									</div>
 									
 									<div class="wrapper"> 
 										<label for="apelido"> Apelido: </label> 
-										<input class="input" type="text" id="apelido" onblur="validaName('apelido');" onFocus="limpa_campo('apelido');">
+										<input class="input" <?php echo ("value= '$apelido'") ?> type="text" id="apelido" onblur="validaName('apelido');" onFocus="limpa_campo('apelido');">
 									</div>
 
 									<div class="wrapper"> 
 										<label for="cpf">CPF:</label>
-										<input class="input" type="text" id="cpf" onblur="valida_Cpf('cpf');" onFocus="limpa_campo('cpf');" >
+										<input class="input" <?php echo ("value= '$cpf'") ?> type="text" id="cpf" onblur="valida_Cpf('cpf');" onFocus="limpa_campo('cpf');" >
 									</div>
 
 									<div class="wrapper">
 										<label for="rg">RG:</label>
-										<input class="input" type="text" id="rg" onblur="validaName('rg');" onFocus="limpa_campo('rg');" >
+										<input class="input" <?php echo ("value= '$rg'") ?> type="text" id="rg" onblur="validaName('rg');" onFocus="limpa_campo('rg');" >
 									</div>
 									<div id="datas" class="clearfix">
 										<div class="wrapper input-data"> 
 											<label for="dt_nasc">Data Nasc:</label>
-											<input class="input" type="date">
+											<input class="input" <?php echo ("value= '$dt_nasc'") ?> type="date">
 										</div>
 										
 										<div class="wrapper input-data"> 
 											<label for="dt_assoc">Data Assoc:</label>
-											<input class="input" type="date">
+											<input class="input" <?php echo ("value= '$dt_assoc'") ?> type="date">
 										</div>
 									</div>
 
 									<div class="wrapper">
 										<label for="logradouro">Endereço:</label>
-										<input class="input" type="text" id="ender" onblur="validaName('ender');" onFocus="limpa_campo('ender');" >
+										<input class="input" <?php echo ("value= '$logradouro'") ?> type="text" id="ender" onblur="validaName('ender');" onFocus="limpa_campo('ender');" >
 									</div>
 
 									<div id="cidade-estado" class="clearfix">
 										<div class="wrapper input-cidade"> 
 											<label for="cidade">Cidade:</label> 
-											<input class="input" type="text" name="cidade" id="cidade" onblur="validaName('cidade');" onFocus="limpa_campo('cidade');" >
+											<input class="input" <?php echo ("value= '$cidade'") ?> type="text" name="cidade" id="cidade" onblur="validaName('cidade');" onFocus="limpa_campo('cidade');" >
 										</div>
 
 										<div class="wrapper input-estado"> 
 											<label for="estado">Estado:</label>
-											<select name="escolheestado" value="Estado">
-												<option value "0">Selec:</option>
-												<option value "1">AC</option> 
-												<option value="2">AL</option>
-												<option value="3">AP</option>
-												<option value="4">AM</option> 
-												<option value="5">BA</option>
-												<option value="6">CE</option>
-												<option value="7">DF</option>
-												<option value="8">ES</option>
-												<option value="9">GO</option>
-												<option value="10">MA</option>
-												<option value="11">MT</option>
-												<option value="12">MS</option>
-												<option value="13">MG</option>
-												<option value="14">PA</option>
-												<option value="15">PB</option>
-												<option value="16">PR</option>
-												<option value="17">PE</option>
-												<option value="18">PI</option>
-												<option value="19">RJ</option>
-												<option value="20">RN</option>
-												<option value="21">RO</option>
-												<option value="22">RR</option>
-												<option value="23">RS</option>
-												<option value="24">SC</option>
-												<option value="25">SP</option>
-												<option value="26">SE</option>
-												<option value="27">TO</option>
+											<select name="escolheestado" <?php echo ("value= '$estado'") ?>>
+											
+												<option value "AC">AC</option> 
+												<option value="AL">AL</option>
+												<option value="AP">AP</option>
+												<option value="AM">AM</option> 
+												<option value="BA">BA</option>
+												<option value="CE">CE</option>
+												<option value="DF">DF</option>
+												<option value="ES">ES</option>
+												<option value="GO">GO</option>
+												<option value="MA">MA</option>
+												<option value="ME">MT</option>
+												<option value="MS">MS</option>
+												<option value="MG">MG</option>
+												<option value="PA">PA</option>
+												<option value="PB">PB</option>
+												<option value="PR">PR</option>
+												<option value="PE">PE</option>
+												<option value="PI">PI</option>
+												<option value="RJ">RJ</option>
+												<option value="RN">RN</option>
+												<option value="RO">RO</option>
+												<option value="RR">RR</option>
+												<option value="RS">RS</option>
+												<option value="SC">SC</option>
+												<option value="SP">SP</option>
+												<option value="SE">SE</option>
+												<option value="TO">TO</option>
 											</select>		
 										</div>
 									</div>
@@ -233,29 +264,29 @@
 									<div id="telefones" class="clearfix">
 										<div class="wrapper input-telefone">
 											<label for="telefone">Telefone:</label>
-											<input class="input" type="text" id="fone" onblur="validaName('fone');" onFocus="limpa_campo('fone');">
+											<input class="input" <?php echo ("value= '$telefone'") ?> type="text" id="fone" onblur="validaName('fone');" onFocus="limpa_campo('fone');">
 										</div>
 										
 										<div class="wrapper input-telefone">
 											<label for="telefone">Celular:</label>
-											<input class="input" type="text" id="cel" onblur="validaName('cel');" onFocus="limpa_campo('cel');" >
+											<input class="input" <?php echo ("value= '$celular'") ?> type="text" id="cel" onblur="validaName('cel');" onFocus="limpa_campo('cel');" >
 										</div>
 									</div>
 
 									<div class="wrapper">
 										<label for="email">E-mail:</label>
-										<input class="input" type="text" id="email" onblur="validaName('email');" onFocus="limpa_campo('email');" >
+										<input class="input" <?php echo ("value= '$email'") ?> type="text" id="email" onblur="validaName('email');" onFocus="limpa_campo('email');" >
 									</div>
 
 
 									<div class="wrapper"> 
 										<label for="login"> Login:</label> 
-										<input class="input" type="text" id="login" onblur="validaName('login');" onFocus="limpa_campo('login');" >
+										<input class="input" <?php echo ("value= '$login'") ?> type="text" id="login" onblur="validaName('login');" onFocus="limpa_campo('login');" >
 									</div>
 
 									<div class="wrapper">
 										<label for="senha">Senha:</label>
-										<input class="input" type="password" id="senha" onFocus="limpa_campo('senha');" >
+										<input class="input" <?php echo ("value= '$senha'") ?> type="password" id="senha" onFocus="limpa_campo('senha');" >
 									</div>
 
 								</form>
@@ -338,7 +369,7 @@
 									</div>
 								</div>
 								    <div class="wrapper">
-									<iframe width="300" height="220" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/ms?ll=-27.099973,-52.608526&amp;spn=0.011633,0.021136&amp;t=h&amp;z=16&amp;msa=0&amp;msid=205805511263589055805.0004f9f4638a25cb9a954"></iframe><br /><small>Visualizar <a href="https://www.google.com/maps/ms?ll=-27.099973,-52.608526&amp;spn=0.011633,0.021136&amp;t=h&amp;z=16&amp;msa=0&amp;msid=205805511263589055805.0004f9f4638a25cb9a954&amp;source=embed" style="color:#0000FF;text-align:left">AABB - Chapecó-SC</a> em um mapa maior</small>
+									<iframe width="400" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/ms?t=h&amp;msa=0&amp;msid=205805511263589055805.0004f9f4638a25cb9a954&amp;source=embed&amp;ie=UTF8&amp;ll=-27.099973,-52.608547&amp;spn=0.011461,0.012875&amp;z=15&amp;output=embed"></iframe><br /><small>Visualizar <a href="https://www.google.com/maps/ms?t=h&amp;msa=0&amp;msid=205805511263589055805.0004f9f4638a25cb9a954&amp;source=embed&amp;ie=UTF8&amp;ll=-27.099973,-52.608547&amp;spn=0.011461,0.012875&amp;z=15" style="color:#0000FF;text-align:left">AABB - Chapecó-SC</a> em um mapa maior</small>
 									</div>
 
 							</div>
