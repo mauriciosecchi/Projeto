@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 29-Maio-2014 às 01:09
+-- Generation Time: 03-Jun-2014 às 01:14
 -- Versão do servidor: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -33,7 +33,23 @@ CREATE TABLE IF NOT EXISTS `modalidade` (
   `id_modalidade` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `desc_modalidade` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_modalidade`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Extraindo dados da tabela `modalidade`
+--
+
+INSERT INTO `modalidade` (`id_modalidade`, `desc_modalidade`) VALUES
+(1, 'Tênis'),
+(2, 'Futebol 7'),
+(3, 'Volei'),
+(4, 'Volei de areia'),
+(5, 'Futsal'),
+(6, 'Basquete'),
+(7, 'Natação'),
+(8, 'Academia'),
+(9, 'Outras'),
+(10, 'Futebol');
 
 -- --------------------------------------------------------
 
@@ -116,8 +132,17 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `aprovacao` int(10) unsigned DEFAULT NULL,
   `telefone` varchar(45) DEFAULT NULL,
   `celular` varchar(45) DEFAULT NULL,
+  `login` varchar(20) NOT NULL,
+  `apelido` varchar(10) NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `cpf`, `nome`, `id_socio`, `rg`, `dt_nasc`, `dt_assoc`, `logradouro`, `cep`, `cidade`, `estado`, `email`, `senha`, `obs`, `tipo_usuario`, `sobrenome`, `aprovacao`, `telefone`, `celular`, `login`, `apelido`) VALUES
+(1, '08214497965', 'mauricio', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mauricio', NULL, 0, NULL, NULL, NULL, NULL, '', '');
 
 --
 -- Constraints for dumped tables
@@ -145,5 +170,3 @@ ALTER TABLE `restricao`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-INSERT INTO `aabb`.`modalidade` (`id_modalidade`, `desc_modalidade`) VALUES (NULL, 'Tênis'), (NULL, 'Futebol 7'), (NULL, 'Futebol'), (NULL, 'Futsal'),(NULL, 'Volei'), (NULL, 'Volei de areia'),  (NULL, 'Basquete'), (NULL, 'Natação'), (NULL, 'Academia'), (NULL, 'Outras');
