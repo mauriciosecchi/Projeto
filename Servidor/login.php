@@ -52,6 +52,7 @@
 							$_SESSION['id_usuario'] = $rows['id_usuario'];
 							$_SESSION['apelido'] = $rows['apelido'];
 							$_SESSION['logado'] = 1;
+							$_SESSION['tipo_usuario'] = $rows['tipo_usuario'];
 							header("Location:index.php");
 						}
 						else{

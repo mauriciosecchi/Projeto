@@ -26,5 +26,15 @@ function query($query, $db){
       die ("Acesso à base de dados falhou: ".mysql_error() . mysql_errno());      
     }
     return $result;
-}    
+}
+
+//------------------Função Monta Combo--------------  
+function montaCombo($nome, $rs, $valor, $descricao) {
+	echo("<select name='$nome' class='combo'>");
+	echo("t<option value=''>--Selecione--</option>");
+	while ($obj = mysql_fetch_object($rs)) {
+		echo("t<option value='" . $obj->$valor . "' > " . $obj->$descricao . " </option>");
+	}
+	echo("</select>");
+}        
 ?>

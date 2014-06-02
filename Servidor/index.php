@@ -59,6 +59,7 @@
 						<li><a href="#!/page_Reservas"><span></span><strong>Reservas</strong></a></li>
 						<li><a href="#!/page_Cadastro"><span></span><strong>Cadastro</strong></a></li>
 						<li><a href="#!/page_CadReservas"><span></span><strong>Reservar</strong></a></li>
+						<li><a href="#!/page_Quadra"><span></span><strong>Quadras</strong></a></li>
 						<li><a href="#!/page_Contact"><span></span><strong>Contato</strong></a></li>
 						
 					</ul>
@@ -317,15 +318,19 @@
 									</div>
 									
 									<div class="wrapper"> 
-										<label for="quadra"> Quadra:</label> 
-										<select class="combo" name="escolhequadra" value="Quadra">
-												<option value "0">Selecione a quadra:</option>
-												<option value "1">Quadra Tenis 1</option> 
-												<option value="2">Quadra Tenis 2</option>
-												<option value="3">Quadra Futebol 7</option>
-												<option value="4">Quadra Voleibol</option> 
-											</select>		
-
+										<label for="nome"> Modalidade:</label>
+										<?php
+												$rs = mysql_query("SELECT * FROM modalidade");
+												montaCombo("escolhemodalidade", $rs, "id_modalidade", "desc_modalidade");
+										?>
+									</div>
+									
+									<div class="wrapper"> 
+										<label for="nome"> Quadra:</label>
+										<?php
+												$rs = mysql_query("SELECT * FROM quadra q JOIN modalidade m WHERE q.id_modalidade = m.id_modalidade");
+												montaCombo("escolhequadra", $rs, "id_quadra", "desc_quadra");
+										?>
 									</div>
 
 									<div id="data-reserva" class="clearfix">
@@ -348,6 +353,50 @@
 								</form>
 													
 								<input type="submit" value="Enviar Informações" value="Place order" class = "enviar_">
+							</div>
+						</div>
+					</li>
+					
+					<!===========================================PAGINA CADASTRO DE MODALIDADES  =======================================================>
+					
+					<li id="page_Quadra">
+						<div class="box1">
+							<div class="inner">
+								<a href="#" class="close" data-type="close"><span></span></a>
+								<h2>Cadastro de Quadras</h2>
+								<form name="ReservForm" id="Form" method="post" action="" onSubmit="return validaform('formcont');">
+									
+									<div class="wrapper"> 
+										<label for="nome"> Modalidade:</label>
+										<?php
+												$rs = mysql_query("SELECT * FROM modalidade");
+												montaCombo("escolhemodalidade", $rs, "id_modalidade", "desc_modalidade");
+										?>
+									</div>
+									
+									<div class="wrapper"> 
+										<label for="nome"> Quadra:</label> 
+										<input class="input" type="text" value="" onblur="if(this.value=='') this.value='Quadra'" onFocus="if(this.value =='Quadra' ) this.value=''" >
+									</div>
+									
+									<div id="data-reserva" class="clearfix">									
+										<div class="wrapper input-time"> 
+											<label for="dt_assoc">Horário Base:</label>
+											<input class="input" type="time">
+										</div>
+										<div class="wrapper input-time"> 
+											<label for="dt_assoc">Horário Inicio:</label>
+											<input class="input" type="time">
+										</div>
+										<div class="wrapper input-time"> 
+											<label for="dt_assoc">Horário Fim:</label>
+											<input class="input" type="time">
+										</div>
+									</div>
+										
+								</form>
+													
+								<input type="submit" value="Cadastrar" value="Place order" class = "enviar_">
 							</div>
 						</div>
 					</li>
