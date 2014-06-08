@@ -364,39 +364,46 @@
 							<div class="inner">
 								<a href="#" class="close" data-type="close"><span></span></a>
 								<h2>Cadastro de Quadras</h2>
-								<form name="ReservForm" id="Form" method="post" action="" onSubmit="return validaform('formcont');">
+								<form name="ReservForm" id="Form" method="POST" action="" onSubmit="">
 									
 									<div class="wrapper"> 
 										<label for="nome"> Modalidade:</label>
 										<?php
 												$rs = mysql_query("SELECT * FROM modalidade");
-												montaCombo("escolhemodalidade", $rs, "id_modalidade", "desc_modalidade");
+												montaCombo("modalidade", $rs, "id_modalidade", "desc_modalidade");
 										?>
 									</div>
 									
 									<div class="wrapper"> 
-										<label for="nome"> Quadra:</label> 
-										<input class="input" type="text" value="" onblur="if(this.value=='') this.value='Quadra'" onFocus="if(this.value =='Quadra' ) this.value=''" >
+										<label for="quadra"> Quadra:</label> 
+										<input class="input" type="text" value="" id="quadra" onblur="validaName('quadra');" onFocus="limpa_campo('quadra');">
 									</div>
 									
 									<div id="data-reserva" class="clearfix">									
+										
 										<div class="wrapper input-time"> 
-											<label for="dt_assoc">Horário Base:</label>
-											<input class="input" type="time">
+											<label for="horario_ini">Horário Inicio:</label>
+											<input class="input" type="time" >
 										</div>
 										<div class="wrapper input-time"> 
-											<label for="dt_assoc">Horário Inicio:</label>
-											<input class="input" type="time">
+											<label for="horario_fim">Horário Fim:</label>
+											<input class="input" type="time" >
 										</div>
 										<div class="wrapper input-time"> 
-											<label for="dt_assoc">Horário Fim:</label>
-											<input class="input" type="time">
+											<label for="horario_base">Horário Base:</label>
+											<input class="input" type="time" >
 										</div>
 									</div>
-										
-								</form>
-													
-								<input type="submit" value="Cadastrar" value="Place order" class = "enviar_">
+								<input type='submit'></form>
+								
+								
+								<?php
+									if(isset($_POST['submit'])){
+										insereModalidade($_POST);
+									}	
+								?>
+								
+								
 							</div>
 						</div>
 					</li>
