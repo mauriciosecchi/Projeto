@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include_once "functions.php";
+	
 	if(isset($_SESSION['logado'])){
 		if($_SESSION['logado'] != 1)
 			header("Location:login.php");
@@ -8,6 +8,10 @@
 	else{
 		header("Location:login.php");
 	}
+?>
+<?php
+include_once "functions.php";
+$db = conectadb();
 ?>
 
 <!DOCTYPE html>
@@ -147,16 +151,14 @@
 								<a href="#" class="close" data-type="close"><span></span></a>
 						
 								<h2>Meu Cadastro</h2>
-								<form name="CadForm" id="Form" method="post" action="" onSubmit="return validaform('formcont');">
+								<form name="CadForm" id="Form" method="post" action="index.php#!/page_Home" >
 								
 								<?php
-									$estado = "Estado"; 
+									$estado = "estado"; 
 									if(isset($_SESSION['id_usuario'])){
-										$query = "SELECT * FROM usuario WHERE id_usuario = $_SESSION[id_usuario]";
-										$teste = conectadb();
-									
-
-										$result = query($query, $teste);
+										$query = "SELECT * FROM usuario WHERE id_usuario = $_SESSION[id_usuario]";									
+										
+										$result = query($query);
 										if(mysql_num_rows($result) > 0){
 											$rows = mysql_fetch_assoc($result);
 											$nome = $rows['nome'];
@@ -182,43 +184,43 @@
 
 									<div class="wrapper"> 
 										<label for="nome"> Nome:</label> 
-										<input class="input" <?php echo ("value= '$nome'") ?> type="text" id="nome" onblur="validaName('nome');" onFocus="limpa_campo('nome');" >
+										<input class="input" <?php echo ("value= '$nome'") ?> type="text" name="nome" id="nome" onblur="validaName('nome');" onFocus="limpa_campo('nome');" >
 									</div>
 
 									<div class="wrapper"> 
 										<label for="sobrenome">Sobrenome:</label> 
-										<input class="input" <?php echo ("value= '$sobrenome'") ?> type="text" id="sobre" onblur="validaName('sobre');" onFocus="limpa_campo('sobre');" >
+										<input class="input" <?php echo ("value= '$sobrenome'") ?> type="text" name="sobre" id="sobre" onblur="validaName('sobre');" onFocus="limpa_campo('sobre');" >
 									</div>
 									
 									<div class="wrapper"> 
 										<label for="apelido"> Apelido: </label> 
-										<input class="input" <?php echo ("value= '$apelido'") ?> type="text" id="apelido" onblur="validaName('apelido');" onFocus="limpa_campo('apelido');">
+										<input class="input" <?php echo ("value= '$apelido'") ?> type="text" name="apelido" id="apelido" onblur="validaName('apelido');" onFocus="limpa_campo('apelido');">
 									</div>
 
 									<div class="wrapper"> 
 										<label for="cpf">CPF:</label>
-										<input class="input" <?php echo ("value= '$cpf'") ?> type="text" id="cpf" onblur="valida_Cpf('cpf');" onFocus="limpa_campo('cpf');" >
+										<input class="input" <?php echo ("value= '$cpf'") ?> type="text" name="cpf" id="cpf" onblur="valida_Cpf('cpf');" onFocus="limpa_campo('cpf');" >
 									</div>
 
 									<div class="wrapper">
 										<label for="rg">RG:</label>
-										<input class="input" <?php echo ("value= '$rg'") ?> type="text" id="rg" onblur="validaName('rg');" onFocus="limpa_campo('rg');" >
+										<input class="input" <?php echo ("value= '$rg'") ?> type="text" name="rg" id="rg" onblur="validaName('rg');" onFocus="limpa_campo('rg');" >
 									</div>
 									<div id="datas" class="clearfix">
 										<div class="wrapper input-data"> 
 											<label for="dt_nasc">Data Nasc:</label>
-											<input class="input" <?php echo ("value= '$dt_nasc'") ?> type="date">
+											<input class="input" <?php echo ("value= '$dt_nasc'") ?> name="dt_nasc" type="date">
 										</div>
 										
 										<div class="wrapper input-data"> 
 											<label for="dt_assoc">Data Assoc:</label>
-											<input class="input" <?php echo ("value= '$dt_assoc'") ?> type="date">
+											<input class="input" <?php echo ("value= '$dt_assoc'") ?> name="dt_assoc" id="dt_assoc" type="date">
 										</div>
 									</div>
 
 									<div class="wrapper">
 										<label for="logradouro">Endereço:</label>
-										<input class="input" <?php echo ("value= '$logradouro'") ?> type="text" id="ender" onblur="validaName('ender');" onFocus="limpa_campo('ender');" >
+										<input class="input" <?php echo ("value= '$logradouro'") ?> type="text" name="ender" id="ender" onblur="validaName('ender');" onFocus="limpa_campo('ender');" >
 									</div>
 
 									<div id="cidade-estado" class="clearfix">
@@ -229,9 +231,8 @@
 
 										<div class="wrapper input-estado"> 
 											<label for="estado">Estado:</label>
-											<select name="escolheestado" <?php echo ("value= '$estado'") ?>>
-											
-												<option value "AC">AC</option> 
+											<select name="estado" <?php echo ("value= '$estado'") ?>>
+												<option value="AC">AC</option> 
 												<option value="AL">AL</option>
 												<option value="AP">AP</option>
 												<option value="AM">AM</option> 
@@ -265,34 +266,118 @@
 									<div id="telefones" class="clearfix">
 										<div class="wrapper input-telefone">
 											<label for="telefone">Telefone:</label>
-											<input class="input" <?php echo ("value= '$telefone'") ?> type="text" id="fone" onblur="validaName('fone');" onFocus="limpa_campo('fone');">
+											<input class="input" <?php echo ("value= '$telefone'") ?> type="text" name="fone" id="fone" onblur="validaName('fone');" onFocus="limpa_campo('fone');">
 										</div>
 										
 										<div class="wrapper input-telefone">
 											<label for="telefone">Celular:</label>
-											<input class="input" <?php echo ("value= '$celular'") ?> type="text" id="cel" onblur="validaName('cel');" onFocus="limpa_campo('cel');" >
+											<input class="input" <?php echo ("value= '$celular'") ?> type="text" name="cel" id="cel" onblur="validaName('cel');" onFocus="limpa_campo('cel');" >
 										</div>
 									</div>
 
 									<div class="wrapper">
 										<label for="email">E-mail:</label>
-										<input class="input" <?php echo ("value= '$email'") ?> type="text" id="email" onblur="validaName('email');" onFocus="limpa_campo('email');" >
+										<input class="input" <?php echo ("value= '$email'") ?> type="text" name="email" id="email" onblur="validaName('email');" onFocus="limpa_campo('email');" >
 									</div>
 
 
 									<div class="wrapper"> 
 										<label for="login"> Login:</label> 
-										<input class="input" <?php echo ("value= '$login'") ?> type="text" id="login" onblur="validaName('login');" onFocus="limpa_campo('login');" >
+										<input class="input" <?php echo ("value= '$login'") ?> type="text" name="login" id="login" onblur="validaName('login');" onFocus="limpa_campo('login');" >
 									</div>
 
 									<div class="wrapper">
 										<label for="senha">Senha:</label>
-										<input class="input" <?php echo ("value= '$senha'") ?> type="password" id="senha" onFocus="limpa_campo('senha');" >
+										<input class="input" <?php echo ("value= '$senha'") ?> type="password" name="senha" id="senha" onFocus="limpa_campo('senha');" >
 									</div>
+
+									<input type="submit" id="submit" value="Enviar">
 
 								</form>
 													
-								<input type="submit" value="Enviar Informações" value="Place order" class = "enviar_">
+							
+								<?php
+									 		$nome = $_POST['nome'];
+											$sobrenome = $_POST['sobre'];
+											$apelido = $_POST['apelido'];
+											$cpf = $_POST['cpf'];
+											$rg = $_POST['rg'];
+											$dt_nasc = $_POST['dt_nasc'];
+											$dt_assoc = $_POST['dt_assoc'];
+											$logradouro = $_POST['ender'];
+											$cidade = $_POST['cidade'];
+											$estado = $_POST['estado'];		
+											$telefone = $_POST['fone'];
+											$celular = $_POST['cel'];
+											$email = $_POST['email'];
+											$login = $_POST['login'];
+											$senha = $_POST['senha'];
+	
+									if ($nome && $sobrenome && $apelido && $cpf && $rg && $dt_nasc && $dt_assoc && $logradouro && $cidade && $estado && $telefone && $celular && $email && $login && $senha) {
+										
+										if (isset($_SESSION['id_usuario'])){
+
+											$sql = "UPDATE usuario SET 
+											cpf= '$_POST[cpf]', 
+											nome= '$_POST[nome]', 
+											rg='$_POST[rg]', 
+											dt_nasc = '$_POST[dt_nasc]', 
+											dt_assoc = '$_POST[dt_assoc]', 
+											logradouro ='$_POST[ender]', 
+											cidade = '$_POST[cidade]', 
+											estado = '$_POST[estado]',
+											email = '$_POST[email]',
+											senha = '$_POST[senha]',
+											sobrenome = '$_POST[sobre]',
+											telefone= '$_POST[fone]',
+											celular ='$_POST[cel]',
+											login = '$_POST[login]',
+											apelido ='$_POST[apelido]' 
+											WHERE id_usuario = $_SESSION[id_usuario]";
+											
+		
+										}else{
+											$sql = "INSERT INTO `usuario` 
+											(`cpf`, 
+											`nome`, 
+											`rg`, 
+											`dt_nasc`, 
+											`dt_assoc`, 
+											`logradouro`, 
+											`cidade`, 
+											`estado`, 
+											`email`, 
+											`senha`, 
+											`sobrenome`, 
+											`telefone`, 
+											`celular`, 
+											`login`, 
+											`apelido`) VALUES
+											('$_POST[cpf]', 
+											 '$_POST[nome]', 
+											 '$_POST[rg]', 
+											 '$_POST[dt_nasc]', 
+											 '$_POST[dt_assoc]', 
+											 '$_POST[ender]', 
+											 '$_POST[cidade]', 
+											 '$_POST[estado]', 
+											 '$_POST[email]', 
+											 '$_POST[senha]', 
+											 '$_POST[sobre]', 
+											 '$_POST[fone]', 
+											 '$_POST[cel]', 
+											 '$_POST[login]', 
+											 '$_POST[apelido]')";
+										}
+										
+										query($sql);
+										if (isset($_SESSION['id_usuario'])){
+											echo "<script type='text/javascript'> alert('Dados alterados com sucesso!') </script>";
+										}else{
+											echo "<script type='text/javascript'> alert('Cadastro Efetuado! Aguarde liberação do Administrador!''); </script>";
+										}
+									}	
+								?>
 										
 							</div>
 						</div>
@@ -364,7 +449,7 @@
 							<div class="inner">
 								<a href="#" class="close" data-type="close"><span></span></a>
 								<h2>Cadastro de Quadras</h2>
-								<form name="ReservForm" id="Form" method="POST" action="" onSubmit="">
+								<form name="ReservForm" id="Form" method="POST" action="index.php#!/page_Home" onSubmit="">
 									
 									<div class="wrapper"> 
 										<label for="nome"> Modalidade:</label>
@@ -376,30 +461,33 @@
 									
 									<div class="wrapper"> 
 										<label for="quadra"> Quadra:</label> 
-										<input class="input" type="text" value="" id="quadra" onblur="validaName('quadra');" onFocus="limpa_campo('quadra');">
+										<input class="input" type="text" value="" name="quadra" id="quadra" onblur="validaName('quadra');" onFocus="limpa_campo('quadra');">
 									</div>
 									
 									<div id="data-reserva" class="clearfix">									
 										
 										<div class="wrapper input-time"> 
 											<label for="horario_ini">Horário Inicio:</label>
-											<input class="input" type="time" >
+											<input class="input" type="time" name="horario_ini">
 										</div>
 										<div class="wrapper input-time"> 
 											<label for="horario_fim">Horário Fim:</label>
-											<input class="input" type="time" >
+											<input class="input" type="time" name="horario_fim">
 										</div>
 										<div class="wrapper input-time"> 
 											<label for="horario_base">Horário Base:</label>
-											<input class="input" type="time" >
+											<input class="input" type="time" name="horario_base">
 										</div>
 									</div>
-								<input type='submit'></form>
+									<input type="submit" name="submit" value="Enviar">
+								</form>
 								
 								
 								<?php
 									if(isset($_POST['submit'])){
 										insereModalidade($_POST);
+										echo "<script type='text/javascript'> alert('Dados inseridos com sucesso!') </script>";
+										
 									}	
 								?>
 								
@@ -424,9 +512,7 @@
 												E-mail: aabb@aabb.com.br
 									</div>
 								</div>
-								    <div class="wrapper">
-									<iframe width="400" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/ms?t=h&amp;msa=0&amp;msid=205805511263589055805.0004f9f4638a25cb9a954&amp;source=embed&amp;ie=UTF8&amp;ll=-27.099973,-52.608547&amp;spn=0.011461,0.012875&amp;z=15&amp;output=embed"></iframe><br /><small>Visualizar <a href="https://www.google.com/maps/ms?t=h&amp;msa=0&amp;msid=205805511263589055805.0004f9f4638a25cb9a954&amp;source=embed&amp;ie=UTF8&amp;ll=-27.099973,-52.608547&amp;spn=0.011461,0.012875&amp;z=15" style="color:#0000FF;text-align:left">AABB - Chapecó-SC</a> em um mapa maior</small>
-									</div>
+								  
 
 							</div>
 						</div>
@@ -470,6 +556,5 @@ $('body').css({overflow:'inherit'})
  })
  </script>
 </body>
->>>>>>> 61131e6f8566fc1d9afaf4fa4194e8a60aca58d5
 </html>
 

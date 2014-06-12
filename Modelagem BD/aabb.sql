@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 03-Jun-2014 às 01:14
+-- Generation Time: 12-Jun-2014 às 02:39
 -- Versão do servidor: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `aabb`
 --
-CREATE DATABASE IF NOT EXISTS `aabb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `aabb` DEFAULT CHARACTER SET ascii COLLATE ascii_bin;
 USE `aabb`;
 
 -- --------------------------------------------------------
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `modalidade` (
 --
 
 INSERT INTO `modalidade` (`id_modalidade`, `desc_modalidade`) VALUES
-(1, 'Tênis'),
+(1, 'Tenis'),
 (2, 'Futebol 7'),
 (3, 'Volei'),
 (4, 'Volei de areia'),
@@ -48,8 +48,8 @@ INSERT INTO `modalidade` (`id_modalidade`, `desc_modalidade`) VALUES
 (6, 'Basquete'),
 (7, 'Natação'),
 (8, 'Academia'),
-(9, 'Outras'),
-(10, 'Futebol');
+(9, 'Futebol'),
+(10, 'Outras');
 
 -- --------------------------------------------------------
 
@@ -62,12 +62,14 @@ CREATE TABLE IF NOT EXISTS `quadra` (
   `id_quadra` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_modalidade` int(10) unsigned NOT NULL,
   `desc_quadra` varchar(45) DEFAULT NULL,
-  `horario_base` datetime DEFAULT NULL,
-  `horario_ini` datetime DEFAULT NULL,
-  `horario_fim` datetime DEFAULT NULL,
+  `horario_base` time DEFAULT NULL,
+  `horario_ini` time DEFAULT NULL,
+  `horario_fim` time DEFAULT NULL,
   PRIMARY KEY (`id_quadra`),
   KEY `quadra_FKIndex1` (`id_modalidade`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+
+
 
 -- --------------------------------------------------------
 
@@ -137,15 +139,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`id_usuario`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
---
--- Extraindo dados da tabela `usuario`
---
 
-INSERT INTO `usuario` (`id_usuario`, `cpf`, `nome`, `id_socio`, `rg`, `dt_nasc`, `dt_assoc`, `logradouro`, `cep`, `cidade`, `estado`, `email`, `senha`, `obs`, `tipo_usuario`, `sobrenome`, `aprovacao`, `telefone`, `celular`, `login`, `apelido`) VALUES
-(1, '08214497965', 'mauricio', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mauricio', NULL, 0, NULL, NULL, NULL, NULL, '', '');
-
---
--- Constraints for dumped tables
 --
 
 --

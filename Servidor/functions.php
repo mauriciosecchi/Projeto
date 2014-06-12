@@ -1,4 +1,5 @@
 <?php
+ini_set("display_errors",1);  
   
 //--------- Função para conectar com o Banco de Dados ----------------------------------- 
 function conectadb(){
@@ -19,17 +20,16 @@ function conectadb(){
 }   
 
 //------------------------------------------------------------------
-function query($query, $db){
+function query($query){
     //$result conterá um recurso (do tipo mysql result, com linhas e colunas) que pode ser usado para extrair os resultados da query.
-    $result = mysql_query($query, $db);
+    $result = mysql_query($query);
     if(!$result){ //se tiver problemas, retorna falso
       die ("Acesso à base de dados falhou: ".mysql_error() . mysql_errno());      
     }
-    echo("Conectado dbConectado dbConectado dbConectado dbConectado dbConectado dbConectado dbConectado dbConectado dbConectado dbConectado db");
     return $result;
 }
 
-//------------------Função Monta Combo----------------------------------------  
+//------------------Função Monta Combo--------------  
 function montaCombo($nome, $rs, $valor, $descricao) {
 	echo("<select name='$nome' class='combo'>");
 	echo("t<option value=''>--Selecione--</option>");
@@ -41,30 +41,17 @@ function montaCombo($nome, $rs, $valor, $descricao) {
 
 //----------------Função Inserção Cadastro de Modalidades---------------------      
 function insereModalidade(){
-	$desc_quadra = $_POST('quadra');
-	$horario_ini = $_POST('horario_ini');
-	$horario_fim = $_POST('horario_fim');
-	$horario_base = $_POST('horario_base');
-	$desc_modalidade = $_POST('modalidade');
+	$desc_quadra = $_POST['quadra'];
+	$horario_ini = $_POST['horario_ini'];
+	$horario_fim = $_POST['horario_fim'];
+	$horario_base = $_POST['horario_base'];
+	$id_modalidade = $_POST['modalidade'];		
 	
-	$query = "SELECT id_modalidade FROM modalidade WHERE desc_modalidade = '" . $desc_modalidade . "'; ";
-	$id_modalidade = mysql_query($query); 
-	
-
-	$query = "INSERT INTO quadra(
+	$sql = "INSERT INTO quadra(
 			id_quadra, id_modalidade, desc_quadra, horario_base, horario_ini, horario_fim ) VALUES( '', 
 			'" . $id_modalidade . "','" . $desc_quadra . "', '" . $horario_base . "', '" . $horario_ini . "', '" . $horario_fim . "'
-			)";
-	$result = mysql_query($query);
+			)" ;
+	$result = query($sql);
     
-
-    if (!$result)
-        die("Database access failed" . mysql_error());
-	else
-        echo "Inserted!";
-
-}
-
-
-  
+}        
 ?>
