@@ -158,9 +158,9 @@ $db = conectadb();
 									if(isset($_SESSION['id_usuario'])){
 										$query = "SELECT * FROM usuario WHERE id_usuario = $_SESSION[id_usuario]";									
 										
-										$result = query($query);
+										$result = mysql_query($query);
 										if(mysql_num_rows($result) > 0){
-											$rows = mysql_fetch_assoc($result);
+											$rows = mysql_fetch_array($result);
 											$nome = $rows['nome'];
 											$sobrenome = $rows['sobrenome'];
 											$apelido = $rows['apelido'];
@@ -291,12 +291,13 @@ $db = conectadb();
 										<input class="input" <?php echo ("value= '$senha'") ?> type="password" name="senha" id="senha" onFocus="limpa_campo('senha');" >
 									</div>
 
-									<input type="submit" id="submit" value="Enviar">
+									<input type="submit" id="submit" name= "submit" value="Enviar">
 
-								</form>
+								
 													
 							
 								<?php
+										if (isset($_POST['submit'])) {
 									 		$nome = $_POST['nome'];
 											$sobrenome = $_POST['sobre'];
 											$apelido = $_POST['apelido'];
@@ -370,15 +371,16 @@ $db = conectadb();
 											 '$_POST[apelido]')";
 										}
 										
-										query($sql);
+										mysql_query($sql);
 										if (isset($_SESSION['id_usuario'])){
 											echo "<script type='text/javascript'> alert('Dados alterados com sucesso!') </script>";
 										}else{
 											echo "<script type='text/javascript'> alert('Cadastro Efetuado! Aguarde liberação do Administrador!''); </script>";
 										}
-									}	
+									}
+								}		
 								?>
-										
+							</form>	
 							</div>
 						</div>
 					</li>
@@ -483,12 +485,15 @@ $db = conectadb();
 								</form>
 								
 								
+								<! aqui tem problema, onde esta comentado nesse php >
+								
 								<?php
-									if(isset($_POST['submit'])){
-										insereModalidade($_POST);
-										echo "<script type='text/javascript'> alert('Dados inseridos com sucesso!') </script>";
+
+								//	if(isset($_POST['submit'])){
+								//		insereModalidade($_POST);
+								//		echo "<script type='text/javascript'> alert('Dados inseridos com sucesso!') </script>";
 										
-									}	
+								//	}	
 								?>
 								
 								
