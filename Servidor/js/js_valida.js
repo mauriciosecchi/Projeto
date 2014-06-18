@@ -1,4 +1,4 @@
-function validaName(campo){
+/*function validaName(campo){
 		var name = document.getElementById(campo);
 
 		if(name.value == ""){
@@ -24,7 +24,7 @@ function tem_numeros(texto){
         if(name.value == "Preenchimento obrigatório deste campo."){
         name.value= "";
         }
- }
+ }*/
 
  function valida_Cpf(campo) {
 	

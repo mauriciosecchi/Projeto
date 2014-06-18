@@ -20,7 +20,7 @@
 <head>
   <title></title>
   <meta charset="utf-8">
-  <script type="text/javascript" src="jquery-1.7.2.js"></script>	
+   <script type="text/javascript" src="jquery-1.7.2.js"></script>	
   <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
   <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
   <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
@@ -48,16 +48,17 @@
 			<a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0"  alt="" /></a>
 		</div>
 	<![endif]-->
-    <script type="text/javascript">
+
+	<script type="text/javascript">
         $(document).ready(function(){
             $("#modalidades").change( function() {
                 $("#quadras").hide();
                 $("#result").html('buscando...');
-								var uf = $(this).val();
+				var uf = $(this).val();
 								
                 $.post("funcoesreserva.php", {dados: uf}, function(msg){
                 	   if (msg != ''){
-												$("#quadras").html(msg).show();
+						$("#quadras").html(msg).show();
                         $("#result").html('');
                     }
                     else{
@@ -85,7 +86,9 @@
 						<li><a href="#!/page_Cadastro"><span></span><strong>Cadastro</strong></a></li>
 						<li><a href="#!/page_CadReservas"><span></span><strong>Reservar</strong></a></li>
 						<li><a href="#!/page_Quadra"><span></span><strong>Quadras</strong></a></li>
+						<li><a href="#!/page_Usuarios"><span></span><strong>Usuarios</strong></a></li>
 						<li><a href="#!/page_Contact"><span></span><strong>Contato</strong></a></li>
+
 						
 					</ul>
 				</nav>
@@ -104,6 +107,7 @@
 									<div class="col1">
 										<h2>Estrutura</h2>
 										<p class="quot"> A AABB fundada em xxxx, conta com uma infraestrutura completa para seus sócios dentre eles Piscinas, Quadras de Tenis, Quadra de Futebol de Salão, <img src="images/quot2.png" alt=""></p>
+										<p>Texto</p>
 									</div>
 								</div>
 							</div>
@@ -111,7 +115,7 @@
 					</li>
 
 					<!===========================================PAGINA VISUALIZAÇAO DE RESERVAS    =======================================================>
-					<li id="page_Reservas">
+										<li id="page_Reservas">
 						<div class="box1">
 							<div class="inner">
 								<a href="#" class="close" data-type="close"><span></span></a>
@@ -170,11 +174,35 @@
 								<a href="#" class="close" data-type="close"><span></span></a>
 						
 								<h2>Meu Cadastro</h2>
-								<form name="CadForm" id="Form" method="post" action="index.php#!/page_Home" >
+								<form name="CadForm" id="Form" method="post" action="" >
 								
 								<?php
 									$estado = "estado"; 
-									if(isset($_SESSION['id_usuario'])){
+									
+									if (isset($_GET['id_usuario'])) {
+									$query = "SELECT * FROM usuario WHERE id_usuario=$_GET[id_usuario]";									
+										
+										$result = mysql_query($query);
+										if(mysql_num_rows($result) > 0){
+											$rows = mysql_fetch_array($result);
+											$nome = $rows['nome'];
+											$sobrenome = $rows['sobrenome'];
+											$apelido = $rows['apelido'];
+											$cpf = $rows['cpf'];
+											$rg = $rows['rg'];
+											$dt_nasc = $rows['dt_nasc'];
+											$dt_assoc = $rows['dt_assoc'];
+											$logradouro = $rows['logradouro'];
+											$cidade = $rows['cidade'];
+											$estado = $rows['estado'];		
+											$telefone = $rows['telefone'];
+											$celular = $rows['celular'];
+											$email = $rows['email'];
+											$login = $rows['login'];
+											$senha = $rows['senha'];
+											$aprovacao = $rows['aprovacao'];
+										}
+									}else if(isset($_SESSION['id_usuario'])){
 										$query = "SELECT * FROM usuario WHERE id_usuario = $_SESSION[id_usuario]";									
 										
 										$result = mysql_query($query);
@@ -195,9 +223,9 @@
 											$email = $rows['email'];
 											$login = $rows['login'];
 											$senha = $rows['senha'];
+											$aprovacao = $rows['aprovacao'];
 										}
-									}
-
+									} 
 								?>	
 
 
@@ -249,36 +277,40 @@
 										</div>
 
 										<div class="wrapper input-estado"> 
-											<label for="estado">Estado:</label>
-											<select name="estado" <?php echo ("value= '$estado'") ?>>
-												<option value="AC">AC</option> 
-												<option value="AL">AL</option>
-												<option value="AP">AP</option>
-												<option value="AM">AM</option> 
-												<option value="BA">BA</option>
-												<option value="CE">CE</option>
-												<option value="DF">DF</option>
-												<option value="ES">ES</option>
-												<option value="GO">GO</option>
-												<option value="MA">MA</option>
-												<option value="ME">MT</option>
-												<option value="MS">MS</option>
-												<option value="MG">MG</option>
-												<option value="PA">PA</option>
-												<option value="PB">PB</option>
-												<option value="PR">PR</option>
-												<option value="PE">PE</option>
-												<option value="PI">PI</option>
-												<option value="RJ">RJ</option>
-												<option value="RN">RN</option>
-												<option value="RO">RO</option>
-												<option value="RR">RR</option>
-												<option value="RS">RS</option>
-												<option value="SC">SC</option>
-												<option value="SP">SP</option>
-												<option value="SE">SE</option>
-												<option value="TO">TO</option>
-											</select>		
+											<label for="estado">Estado:</label>				
+										  	<select name="estado">
+
+										        <option value="AC" <?php if (!(strcmp('AC', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>AC</option>
+										        <option value="AL" <?php if (!(strcmp('AL', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>AL</option>
+										        <option value="AP" <?php if (!(strcmp('AP', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>AP</option>
+										        <option value="AM" <?php if (!(strcmp('AM', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>AM</option>
+										        <option value="BA" <?php if (!(strcmp('BA', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>BA</option>
+										        <option value="CE" <?php if (!(strcmp('CE', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>CE</option>
+										        <option value="DF" <?php if (!(strcmp('DF', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>DF</option>
+										        <option value="ES" <?php if (!(strcmp('ES', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>ES</option>
+										        <option value="GO" <?php if (!(strcmp('GO', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>GO</option>
+										        <option value="MA" <?php if (!(strcmp('MA', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>MA</option>
+										        <option value="MT" <?php if (!(strcmp('MT', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>MT</option>
+										        <option value="MS" <?php if (!(strcmp('MS', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>MS</option>
+										        <option value="MG" <?php if (!(strcmp('MG', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>MG</option>
+										        <option value="PA" <?php if (!(strcmp('PA', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>PA</option>
+										        <option value="PB" <?php if (!(strcmp('PB', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>PB</option>
+										        <option value="PR" <?php if (!(strcmp('PR', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>PR</option>
+										        <option value="PE" <?php if (!(strcmp('PE', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>PE</option>
+										        <option value="PI" <?php if (!(strcmp('PI', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>PI</option>
+										        <option value="RJ" <?php if (!(strcmp('RJ', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>RJ</option>
+										        <option value="RN" <?php if (!(strcmp('RN', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>RN</option>
+										        <option value="RS" <?php if (!(strcmp('RS', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>RS</option>
+										        <option value="RO" <?php if (!(strcmp('RO', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>RO</option>
+										        <option value="RR" <?php if (!(strcmp('RR', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>RR</option>
+										        <option value="SC" <?php if (!(strcmp('SC', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>SC</option>
+										        <option value="SP" <?php if (!(strcmp('SP', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>SP</option>
+										        <option value="SE" <?php if (!(strcmp('SE', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>SE</option>
+										        <option value="TO" <?php if (!(strcmp('TO', htmlentities($estado, ENT_COMPAT, 'utf-8')))) {echo "SELECTED";} ?>>TO</option>
+
+									    	</select>
+
+												
 										</div>
 									</div>
 									
@@ -311,12 +343,14 @@
 									</div>
 
 									<input type="submit" id="submit" name= "submit" value="Enviar">
+									<input type="checkbox" <?php if ($aprovacao == "1"){ echo 'checked = "checked"';}?> name="OPCAO" value="1"> ATIVO
+									<input type="checkbox" <?php if ($aprovacao == "0"){ echo 'checked = "checked"';}?> name="OPCAO" value="0"> INATIVO
 
 								
 													
 							
 								<?php
-										if (isset($_POST['submit'])) {
+								if (isset($_POST['submit'])) {
 									 		$nome = $_POST['nome'];
 											$sobrenome = $_POST['sobre'];
 											$apelido = $_POST['apelido'];
@@ -332,9 +366,11 @@
 											$email = $_POST['email'];
 											$login = $_POST['login'];
 											$senha = $_POST['senha'];
-	
-									if ($nome && $sobrenome && $apelido && $cpf && $rg && $dt_nasc && $dt_assoc && $logradouro && $cidade && $estado && $telefone && $celular && $email && $login && $senha) {
 										
+	
+									if (empty($nome) || empty($sobrenome) || empty($apelido) || empty($cpf) || empty($rg) || empty($dt_nasc) || empty($dt_assoc) || empty($logradouro) || empty($cidade) || empty($estado) || empty($telefone) || empty($celular) || empty($email) || empty($login) || empty($senha)){
+										 echo "<script type='text/javascript'> alert('Preencha os campos em branco!') </script>";
+									}else{	
 										if (isset($_SESSION['id_usuario'])){
 
 											$sql = "UPDATE usuario SET 
@@ -353,7 +389,7 @@
 											celular ='$_POST[cel]',
 											login = '$_POST[login]',
 											apelido ='$_POST[apelido]' 
-											WHERE id_usuario = $_SESSION[id_usuario]";
+											WHERE id_usuario = $_GET[id_usuario]";
 											
 		
 										}else{
@@ -390,7 +426,27 @@
 											 '$_POST[apelido]')";
 										}
 										
+										if (isset($_POST['OPCAO'])){
+											
+											if (isset($_GET['id_usuario'])){
+												$checkk= "INSERT INTO `usuario` ('aprovacao') VALUES ($_POST[OPCAO])";
+		    									//$valorcheck = $_POST['OPCAO'];
+		    									//echo "valor " .$valorcheck;s
+		    									if (isset($valorcheck)){
+		    										$checkk = "UPDATE usuario SET 
+													aprovacao= '$_POST[OPCAO]'
+													WHERE id_usuario = $_GET[id_usuario]";
+												}else{
+													$checkk = "UPDATE usuario SET 
+													aprovacao= '$_POST[OPCAO]'
+													WHERE id_usuario = $_GET[id_usuario]";
+		    									}
+	    									}
+	    									mysql_query($checkk);
+    									}
+
 										mysql_query($sql);
+									
 										if (isset($_SESSION['id_usuario'])){
 											echo "<script type='text/javascript'> alert('Dados alterados com sucesso!') </script>";
 										}else{
@@ -427,7 +483,7 @@
 										<label for="nome"> Modalidade:</label>
 										<?php
 												$rs = mysql_query("SELECT * FROM modalidade");
-												montaCombo("escolhemodalidade", $rs, "id_modalidade", "desc_modalidade", '');
+												montaCombo("escolhemodalidade", $rs, "id_modalidade", "desc_modalidade");
 										?>
 									</div>
 									
@@ -435,7 +491,7 @@
 										<label for="nome"> Quadra:</label>
 										<?php
 												$rs = mysql_query("SELECT * FROM quadra q JOIN modalidade m WHERE q.id_modalidade = m.id_modalidade");
-												montaCombo("escolhequadra", $rs, "id_quadra", "desc_quadra", '');
+												montaCombo("escolhequadra", $rs, "id_quadra", "desc_quadra");
 										?>
 									</div>
 
@@ -476,7 +532,7 @@
 										<label for="nome"> Modalidade:</label>
 										<?php
 												$rs = mysql_query("SELECT * FROM modalidade");
-												montaCombo("modalidade", $rs, "id_modalidade", "desc_modalidade", '');
+												montaCombo("modalidade", $rs, "id_modalidade", "desc_modalidade");
 										?>
 									</div>
 									
@@ -500,7 +556,7 @@
 											<input class="input" type="time" name="horario_base">
 										</div>
 									</div>
-									<input type="submit" name="submit" value="Enviar">
+									<input type="submit" name="submit1" value="Enviar">
 								</form>
 								
 								
@@ -508,14 +564,78 @@
 								
 								<?php
 
-								//	if(isset($_POST['submit'])){
-								//		insereModalidade($_POST);
-								//		echo "<script type='text/javascript'> alert('Dados inseridos com sucesso!') </script>";
-										
-								//	}	
+									if(isset($_POST['submit1'])){
+										insereModalidade($_POST);
+										echo "<script type='text/javascript'> alert('Dados inseridos com sucesso!') </script>";
+											
+									}	
 								?>
 								
 								
+							</div>
+						</div>
+					</li>
+
+
+					<!===========================================PAGINA LISTAGEM DE USUARIOS  =======================================================>
+						
+					<li id="page_Usuarios">
+						<div class="box1">
+							<div class="inner">
+								<a href="#" class="close" data-type="close"><span></span></a>
+								<h2>Lista de Usuários</h2>
+
+									<?php
+									      
+									$_BS['PorPagina'] = 10; // Número de registros por página
+
+									$sql = mysql_query("SELECT * FROM usuario");   // Descobrimos o total de registros encontrados $numRegistros = mysql_num_rows($sql); - See more at: http://rafaelcouto.com.br/sistema-de-busca-interna-com-php-mysql/#sthash.8kv0Ieie.dpuf
+									$total = mysql_num_rows($sql);
+									$paginas = (($total % $_BS['PorPagina']) > 0) ? (int)($total / $_BS['PorPagina']) + 1 : ($total / $_BS['PorPagina']);
+
+									if (isset($_GET['pagina'])) {
+
+									$pagina = (int)$_GET['pagina'];
+
+									} else {
+
+									$pagina = 1;
+
+									}
+
+									$pagina = max(min($paginas, $pagina), 1);
+
+									$inicio = ($pagina - 1) * $_BS['PorPagina'];
+
+									$sql = "SELECT * FROM usuario LIMIT ".$inicio.", ".$_BS['PorPagina']."";
+
+									$query = mysql_query($sql);
+									 
+									echo "<div id = 'tabela_1' align = 'center'>";
+									echo "<table border='2px' id = 'tab_1' align = 'center'>";
+									            echo "<tr><th padding = '72px'>Nome</th><th padding = '2px'>Aprovação</th>";
+									while($resultado = mysql_fetch_array($query)){
+									    echo "<tr>";
+									    
+									    echo"<td style= 'width: 150px; padding: 10px; border: 2px;'><a href='?id_usuario=".$resultado['id_usuario']."#!/page_Cadastro'</a>" . $resultado['nome'] ."</td>";
+									    echo"<td style= 'width: 150px; padding: 10px; border: 2px;'>" . $resultado['aprovacao'] ."</td>";
+									    echo "</tr>";
+									}
+									echo "<br>";
+									echo"</table>";
+									echo "</div>";
+
+									// comeca exibicao dos paginadores
+									if ($total > 0) {
+									echo "<div id = 'tabela_1' align = 'center'>";
+										for($n = 1; $n <= $paginas; $n++) {
+										echo "<a href='?pagina=".$n."#!/page_Usuarios'>".$n."</a>&nbsp;&nbsp;";
+										}
+									echo "</div>";
+									}
+
+									?>
+							
 							</div>
 						</div>
 					</li>
@@ -581,3 +701,4 @@ $('body').css({overflow:'inherit'})
  </script>
 </body>
 </html>
+

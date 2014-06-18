@@ -30,8 +30,8 @@ function query($query){
 }
 
 //------------------Função Monta Combo--------------  
-function montaCombo($nome, $rs, $valor, $descricao, $evento) {
-	echo("<select name='$nome' class='combo' id='$nome' $evento>");
+function montaCombo($nome, $rs, $valor, $descricao) {
+	echo("<select name='$nome' class='combo' id='$nome'>");
 	echo("t<option value=''>--Selecione--</option>");
 	while ($obj = mysql_fetch_object($rs)) {
 		echo("t<option value='" . $obj->$valor . "' > " . $obj->$descricao . " </option>");
@@ -54,4 +54,26 @@ function insereModalidade(){
 	$result = query($sql);
     
 }        
+
+// --------------------- Funçao Gerar Horários ---------------------------------
+
+function gerarhorarios()
+  {
+    $horainicial = 10;
+	$horafinal = 20;
+    for ($i=$horainicial;$i<$horafinal;$i++)
+	{
+		echo "<tr>";
+		echo "<td class='bg'><strong>$i:00</strong></td>";
+		echo "<td><a href='index.html' class='itemreserva'>12345678 12345678</a></td>";
+		echo "<td class='bg'><a href='index.html' class='itemreserva'>12345678 12345678</a></td>";
+		echo "<td><a href='index.html' class='itemreserva'>12345678 12345678</a></td>";
+		echo "<td class='bg'><a href='index.html' class='itemreserva'>12345678 12345678</a></td>";
+		echo "<td><a href='index.html' class='itemreserva'>12345678 12345678</a></td>";
+		echo "<td class='bg'><a href='index.html' class='itemreserva'>12345678 12345678</a></td>";
+		echo "<td><a href='index.html' class='itemreserva'>12345678 12345678</a></td>";
+		echo "</tr>";
+	}
+  
+  }
 ?>

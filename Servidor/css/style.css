@@ -225,3 +225,17 @@ footer span {color:#08afee}
 	left: auto !important;
 	width: 33% !important;
 }
+
+#tabela_1{
+    text-align: center;
+    margin-top:20px;
+    margin-bottom: 10px;
+
+}
+#tab_1{
+    background-color: #E8E8E8;
+    border-radius: 5px;
+    width: 40% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
