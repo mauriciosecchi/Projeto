@@ -10,8 +10,9 @@
 	}
 ?>
 <?php
-include_once "functions.php";
-$db = conectadb();
+  include_once "functions.php";
+  include_once "funcoesreserva.php";
+  $db = conectadb();
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +20,7 @@ $db = conectadb();
 <head>
   <title></title>
   <meta charset="utf-8">
+  <script type="text/javascript" src="jquery-1.7.2.js"></script>	
   <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
   <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
   <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
@@ -46,6 +48,25 @@ $db = conectadb();
 			<a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0"  alt="" /></a>
 		</div>
 	<![endif]-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#modalidades").change( function() {
+                $("#quadras").hide();
+                $("#result").html('buscando...');
+								var uf = $(this).val();
+								
+                $.post("funcoesreserva.php", {dados: uf}, function(msg){
+                	   if (msg != ''){
+												$("#quadras").html(msg).show();
+                        $("#result").html('');
+                    }
+                    else{
+                        $("#result").html('Sem Resultados');
+                    }                     
+                });
+            });
+        });
+    </script>
 
 </head>
 
@@ -83,7 +104,6 @@ $db = conectadb();
 									<div class="col1">
 										<h2>Estrutura</h2>
 										<p class="quot"> A AABB fundada em xxxx, conta com uma infraestrutura completa para seus sócios dentre eles Piscinas, Quadras de Tenis, Quadra de Futebol de Salão, <img src="images/quot2.png" alt=""></p>
-										<p>Texto</p>
 									</div>
 								</div>
 							</div>
@@ -97,38 +117,37 @@ $db = conectadb();
 								<a href="#" class="close" data-type="close"><span></span></a>
 								<div class="wrapper">
 									<h2>Reservas</h2>
-									<div class="wrapper"> 
-										<label for="quadra"> Quadra:</label> 
-										<select class="combo" name="escolhequadra" value="Quadra">
-												<option value "0">Selecione a quadra:</option>
-												<option value "1">Quadra Tenis 1</option> 
-												<option value="2">Quadra Tenis 2</option>
-												<option value="3">Quadra Futebol 7</option>
-												<option value="4">Quadra Voleibol</option> 
-											</select>		
-									</div>
-									<div id="data-reserva" class="clearfix">
-										<div class="wrapper input-date"> 
-											<label for="dt_nasc">Data:</label>
-											<input class="input" type="date">
-										</div>
-									</div>
-									<div class="table">
+									<form action="" method="post">
+										<p>    <!-- Buscando modalidades -->
+										<label for="nome"> Modalidade:</label>
+										<?php  
+										   $rs = mysql_query("SELECT * FROM modalidade");
+										   montaCombo("modalidades", $rs, "id_modalidade", "desc_modalidade", '');
+										 ?>
+										</p>
+
+										<p>
+										<label for="nome"> Quadras:</label>
+										<select id="quadras" name="quadra">Quadras:
+											<option value ='-1'>Nenhuma quadra localizada</option>
+										</select>
+										</p>
+									</form>
+									    <div class="table">
 										<table>
 											<thead>
 												<tr>
 													<th class="bg"></th>
+													<th><strong>Segunda</strong></th>
+													<th class="bg"><strong>Terça</strong></th>
+													<th><strong>Quarta</strong></th>
+													<th class="bg"><strong>Quinta</strong></th>
+													<th><strong>Sexta</strong></th>
+													<th class="bg"><strong>Sábado</strong></th>
 													<th><strong>Domingo</strong></th>
-													<th class="bg"><strong>Segunda</strong></th>
-													<th><strong>Terça</strong></th>
-													<th class="bg"><strong>Quarta</strong></th>
-													<th><strong>Quinta</strong></th>
-													<th class="bg"><strong>Sexta</strong></th>
-													<th><strong>Sábado</strong></th>
 												</tr>
 											</thead>
 											<?php
-												include_once "funcoesreserva.php";
 												gerarhorarios();
 											?>
 					
@@ -408,7 +427,7 @@ $db = conectadb();
 										<label for="nome"> Modalidade:</label>
 										<?php
 												$rs = mysql_query("SELECT * FROM modalidade");
-												montaCombo("escolhemodalidade", $rs, "id_modalidade", "desc_modalidade");
+												montaCombo("escolhemodalidade", $rs, "id_modalidade", "desc_modalidade", '');
 										?>
 									</div>
 									
@@ -416,7 +435,7 @@ $db = conectadb();
 										<label for="nome"> Quadra:</label>
 										<?php
 												$rs = mysql_query("SELECT * FROM quadra q JOIN modalidade m WHERE q.id_modalidade = m.id_modalidade");
-												montaCombo("escolhequadra", $rs, "id_quadra", "desc_quadra");
+												montaCombo("escolhequadra", $rs, "id_quadra", "desc_quadra", '');
 										?>
 									</div>
 
@@ -457,7 +476,7 @@ $db = conectadb();
 										<label for="nome"> Modalidade:</label>
 										<?php
 												$rs = mysql_query("SELECT * FROM modalidade");
-												montaCombo("modalidade", $rs, "id_modalidade", "desc_modalidade");
+												montaCombo("modalidade", $rs, "id_modalidade", "desc_modalidade", '');
 										?>
 									</div>
 									
@@ -562,4 +581,3 @@ $('body').css({overflow:'inherit'})
  </script>
 </body>
 </html>
-

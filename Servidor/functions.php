@@ -30,8 +30,8 @@ function query($query){
 }
 
 //------------------Função Monta Combo--------------  
-function montaCombo($nome, $rs, $valor, $descricao) {
-	echo("<select name='$nome' class='combo'>");
+function montaCombo($nome, $rs, $valor, $descricao, $evento) {
+	echo("<select name='$nome' class='combo' id='$nome' $evento>");
 	echo("t<option value=''>--Selecione--</option>");
 	while ($obj = mysql_fetch_object($rs)) {
 		echo("t<option value='" . $obj->$valor . "' > " . $obj->$descricao . " </option>");
