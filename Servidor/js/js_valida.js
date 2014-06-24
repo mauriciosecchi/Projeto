@@ -26,6 +26,8 @@ function tem_numeros(texto){
         }
  }*/
 
+ //Função para validar CPF 
+ 
  function valida_Cpf(campo) {
 	
 	CPF = document.getElementById('cpf').value;
@@ -65,3 +67,4 @@ function tem_numeros(texto){
     	return false;
     }
 }
+

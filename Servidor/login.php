@@ -4,6 +4,7 @@
     session_start();
 	require_once 'functions.php';
 	$db = conectadb();
+	$_SESSION['logado'] = 0;
 ?>
 
 <html lang="en" class="no-js">
@@ -39,6 +40,10 @@
                 <input type="text" name="username" class="username" placeholder="Usuário">
                 <input type="password" name="password" class="password" placeholder="Senha">
                 <button type="submit" name="submit">Entrar</button>
+				<ul>
+					<li style="width: 80px; padding-left: 5px; padding-top: 10px; border: 2px;" ><a href="index.php#!/page_Cadastro">Cadastre-se</a></li>
+					<li style="width: 150px; padding-left: 0px; padding-top: 10px; border: 2px;"><a href="index.php#!/page_Cadastro">Esqueceu sua senha?</a></li>
+				</ul>
                 <div class="error"><span>+</span></div>
 				<?php
 					//Testa se realizou a coneção

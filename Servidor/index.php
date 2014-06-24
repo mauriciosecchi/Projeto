@@ -2,8 +2,8 @@
 	session_start();
 	
 	if(isset($_SESSION['logado'])){
-		if($_SESSION['logado'] != 1)
-			header("Location:login.php");
+		/*if($_SESSION['logado'] != 1)
+			header("Location:login.php");*/
 	}
 	else{
 		header("Location:login.php");
@@ -49,25 +49,62 @@
 		</div>
 	<![endif]-->
 
-	<script type="text/javascript">
-        $(document).ready(function(){
-            $("#modalidades").change( function() {
-                $("#quadras").hide();
-                $("#result").html('buscando...');
-				var uf = $(this).val();
-								
-                $.post("funcoesreserva.php", {dados: uf}, function(msg){
-                	   if (msg != ''){
-						$("#quadras").html(msg).show();
-                        $("#result").html('');
-                    }
-                    else{
-                        $("#result").html('Sem Resultados');
-                    }                     
-                });
-            });
-        });
-    </script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#modalidades").change( function() {
+			$("#quadras").hide();
+			$("#result").html('buscando...');
+			var uf = $(this).val();
+							
+			$.post("funcoesreserva.php", {dados: uf}, function(msg){
+				   if (msg != ''){
+					$("#quadras").html(msg).show();
+					$("#result").html('');
+				}
+				else{
+					$("#result").html('Sem Resultados');
+				}                     
+			});
+		});
+	});
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+		var view = "<?php echo $_SESSION['logado']?>";
+		var tp_usuario = "<?php echo $_SESSION['tipo_usuario']?>";
+		 		
+		if(tp_usuario == 1){
+			$("#home").show();
+			$("#reservas").show();
+			$("#cadastro").show();
+			$("#reservar").show();
+			$("#quadras").show();
+			$("#usuarios").show();
+			$("#contato").show();
+			$("#sair").show();
+		}else if(view == 1){
+			$("#home").show();
+			$("#reservas").show();
+			$("#cadastro").show();
+			$("#reservar").show();
+			$("#quadras").hide();
+			$("#usuarios").hide();
+			$("#contato").show();
+			$("#sair").show();
+		}else if(view == 0){
+			$("#home").show();
+			$("#reservas").hide();
+			$("#cadastro").show();
+			$("#reservar").hide();
+			$("#quadras").hide();
+			$("#usuarios").hide();
+			$("#contato").show();
+			$("#sair").show();
+		}
+    });
+</script>	
 
 </head>
 
@@ -81,15 +118,14 @@
 				<h1><a href="index.php" id="logo"></a></h1>
 				<nav class="menu">
 					<ul id="menu">
-						<li><a href="#!/page_Home"><span></span><strong>Home</strong></a></li>
-						<li><a href="#!/page_Reservas"><span></span><strong>Reservas</strong></a></li>
-						<li><a href="#!/page_Cadastro"><span></span><strong>Cadastro</strong></a></li>
-						<li><a href="#!/page_CadReservas"><span></span><strong>Reservar</strong></a></li>
-						<li><a href="#!/page_Quadra"><span></span><strong>Quadras</strong></a></li>
-						<li><a href="#!/page_Usuarios"><span></span><strong>Usuarios</strong></a></li>
-						<li><a href="#!/page_Contact"><span></span><strong>Contato</strong></a></li>
-
-						
+						<li id="home"><a href="#!/page_Home"><span></span><strong>Home</strong></a></li>
+						<li id="reservas"><a href="#!/page_Reservas"><span></span><strong>Reservas</strong></a></li>
+						<li id="cadastro"><a href="#!/page_Cadastro"><span></span><strong>Cadastro</strong></a></li>
+						<li id="reservar"><a href="#!/page_CadReservas"><span></span><strong>Reservar</strong></a></li>
+						<li id="quadras"><a href="#!/page_Quadra"><span></span><strong>Quadras</strong></a></li>
+						<li id="usuarios"><a href="#!/page_Usuarios"><span></span><strong>Usuarios</strong></a></li>
+						<li id="contato"><a href="#!/page_Contact"><span></span><strong>Contato</strong></a></li>
+						<li id="sair"><a href="login.php" onclick="<?php session_destroy() ?>" ><span></span><strong>Sair</strong></a></li>
 					</ul>
 				</nav>
 			</header>
@@ -177,55 +213,75 @@
 								<form name="CadForm" id="Form" method="post" action="" >
 								
 								<?php
-									$estado = "estado"; 
-									
-									if (isset($_GET['id_usuario'])) {
-									$query = "SELECT * FROM usuario WHERE id_usuario=$_GET[id_usuario]";									
+									if(isset($_SESSION['tipo_usuario'])){
+										$estado = "estado"; 
 										
-										$result = mysql_query($query);
-										if(mysql_num_rows($result) > 0){
-											$rows = mysql_fetch_array($result);
-											$nome = $rows['nome'];
-											$sobrenome = $rows['sobrenome'];
-											$apelido = $rows['apelido'];
-											$cpf = $rows['cpf'];
-											$rg = $rows['rg'];
-											$dt_nasc = $rows['dt_nasc'];
-											$dt_assoc = $rows['dt_assoc'];
-											$logradouro = $rows['logradouro'];
-											$cidade = $rows['cidade'];
-											$estado = $rows['estado'];		
-											$telefone = $rows['telefone'];
-											$celular = $rows['celular'];
-											$email = $rows['email'];
-											$login = $rows['login'];
-											$senha = $rows['senha'];
-											$aprovacao = $rows['aprovacao'];
+										if (isset($_GET['id_usuario'])) {
+											$query = "SELECT * FROM usuario WHERE id_usuario=$_GET[id_usuario]";									
+											
+											$result = mysql_query($query);
+											if(mysql_num_rows($result) > 0){
+												$rows = mysql_fetch_array($result);
+												$nome = $rows['nome'];
+												$sobrenome = $rows['sobrenome'];
+												$apelido = $rows['apelido'];
+												$cpf = $rows['cpf'];
+												$rg = $rows['rg'];
+												$dt_nasc = $rows['dt_nasc'];
+												$dt_assoc = $rows['dt_assoc'];
+												$logradouro = $rows['logradouro'];
+												$cidade = $rows['cidade'];
+												$estado = $rows['estado'];		
+												$telefone = $rows['telefone'];
+												$celular = $rows['celular'];
+												$email = $rows['email'];
+												$login = $rows['login'];
+												$senha = $rows['senha'];
+												$aprovacao = $rows['aprovacao'];
+											}
+										}else if(isset($_SESSION['id_usuario'])){
+											$query = "SELECT * FROM usuario WHERE id_usuario = $_SESSION[id_usuario]";									
+											
+											$result = mysql_query($query);
+											if(mysql_num_rows($result) > 0){
+												$rows = mysql_fetch_array($result);
+												$nome = $rows['nome'];
+												$sobrenome = $rows['sobrenome'];
+												$apelido = $rows['apelido'];
+												$cpf = $rows['cpf'];
+												$rg = $rows['rg'];
+												$dt_nasc = $rows['dt_nasc'];
+												$dt_assoc = $rows['dt_assoc'];
+												$logradouro = $rows['logradouro'];
+												$cidade = $rows['cidade'];
+												$estado = $rows['estado'];		
+												$telefone = $rows['telefone'];
+												$celular = $rows['celular'];
+												$email = $rows['email'];
+												$login = $rows['login'];
+												$senha = $rows['senha'];
+												$aprovacao = $rows['aprovacao'];
+											}
 										}
-									}else if(isset($_SESSION['id_usuario'])){
-										$query = "SELECT * FROM usuario WHERE id_usuario = $_SESSION[id_usuario]";									
-										
-										$result = mysql_query($query);
-										if(mysql_num_rows($result) > 0){
-											$rows = mysql_fetch_array($result);
-											$nome = $rows['nome'];
-											$sobrenome = $rows['sobrenome'];
-											$apelido = $rows['apelido'];
-											$cpf = $rows['cpf'];
-											$rg = $rows['rg'];
-											$dt_nasc = $rows['dt_nasc'];
-											$dt_assoc = $rows['dt_assoc'];
-											$logradouro = $rows['logradouro'];
-											$cidade = $rows['cidade'];
-											$estado = $rows['estado'];		
-											$telefone = $rows['telefone'];
-											$celular = $rows['celular'];
-											$email = $rows['email'];
-											$login = $rows['login'];
-											$senha = $rows['senha'];
-											$aprovacao = $rows['aprovacao'];
-										}
-									} 
+									}
+									else{
+										$nome = '';
+										$sobrenome = '';
+										$apelido = '';
+										$cpf = '';
+										$rg = '';
+										$dt_nasc = '';
+										$dt_assoc = '';
+										$logradouro = '';
+										$cidade = '';
+										$estado = '';		
+										$telefone = '';
+										$celular = '';
+										$email = '';
+										$login = '';
+										$senha = '';
+										$aprovacao = '';
+									}
 								?>	
 
 
@@ -343,10 +399,10 @@
 									</div>
 
 									<input type="submit" id="submit" name= "submit" value="Enviar">
+									
 									<input type="checkbox" <?php if ($aprovacao == "1"){ echo 'checked = "checked"';}?> name="OPCAO" value="1"> ATIVO
 									<input type="checkbox" <?php if ($aprovacao == "0"){ echo 'checked = "checked"';}?> name="OPCAO" value="0"> INATIVO
-
-								
+						
 													
 							
 								<?php
@@ -389,9 +445,7 @@
 											celular ='$_POST[cel]',
 											login = '$_POST[login]',
 											apelido ='$_POST[apelido]' 
-											WHERE id_usuario = $_GET[id_usuario]";
-											
-		
+											WHERE id_usuario = $_GET[id_usuario]";										
 										}else{
 											$sql = "INSERT INTO `usuario` 
 											(`cpf`, 
