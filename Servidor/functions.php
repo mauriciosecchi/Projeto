@@ -39,8 +39,8 @@ function montaCombo($nome, $rs, $valor, $descricao) {
 	echo("</select>");
 }
 
-//----------------Função Inserção Cadastro de Modalidades---------------------      
-function insereModalidade(){
+//----------------Função Inserção Cadastro de Quadra---------------------      
+function insereQuadra(){
 	$desc_quadra = $_POST['quadra'];
 	$horario_ini = $_POST['horario_ini'];
 	$horario_fim = $_POST['horario_fim'];
@@ -53,7 +53,19 @@ function insereModalidade(){
 			)" ;
 	$result = query($sql);
     
+}
+
+//----------------Função Inserção Cadastro de Modalidade---------------------      
+function insereModalidade(){
+	$desc_modalidade = $_POST['modalidade'];
+		
+	$sql = "INSERT INTO modalidade(
+			id_modalidade, desc_modalidade ) VALUES( '', 
+			'" . $desc_modalidade . "')" ;
+	$result = query($sql);
+    
 }        
+        
 
 // --------------------- Funçao Gerar Horários ---------------------------------
 

@@ -1,13 +1,10 @@
 <?php
 	session_start();
 	
-	if(isset($_SESSION['logado'])){
-		/*if($_SESSION['logado'] != 1)
-			header("Location:login.php");*/
-	}
-	else{
+	if(!isset($_SESSION['logado'])){
 		header("Location:login.php");
 	}
+
 ?>
 <?php
   include_once "functions.php";
@@ -80,6 +77,7 @@
 			$("#reservas").show();
 			$("#cadastro").show();
 			$("#reservar").show();
+			$("#modalidades").show();
 			$("#quadras").show();
 			$("#usuarios").show();
 			$("#contato").show();
@@ -89,6 +87,7 @@
 			$("#reservas").show();
 			$("#cadastro").show();
 			$("#reservar").show();
+			$("#modalidades").hide();
 			$("#quadras").hide();
 			$("#usuarios").hide();
 			$("#contato").show();
@@ -98,6 +97,7 @@
 			$("#reservas").hide();
 			$("#cadastro").show();
 			$("#reservar").hide();
+			$("#modalidades").hide();
 			$("#quadras").hide();
 			$("#usuarios").hide();
 			$("#contato").show();
@@ -122,10 +122,11 @@
 						<li id="reservas"><a href="#!/page_Reservas"><span></span><strong>Reservas</strong></a></li>
 						<li id="cadastro"><a href="#!/page_Cadastro"><span></span><strong>Cadastro</strong></a></li>
 						<li id="reservar"><a href="#!/page_CadReservas"><span></span><strong>Reservar</strong></a></li>
+						<li id="modalidades"><a href="#!/page_Modalidade"><span></span><strong>Modalidades</strong></a></li>
 						<li id="quadras"><a href="#!/page_Quadra"><span></span><strong>Quadras</strong></a></li>
 						<li id="usuarios"><a href="#!/page_Usuarios"><span></span><strong>Usuarios</strong></a></li>
 						<li id="contato"><a href="#!/page_Contact"><span></span><strong>Contato</strong></a></li>
-						<li id="sair"><a href="login.php" onclick="<?php session_destroy() ?>" ><span></span><strong>Sair</strong></a></li>
+						<li id="sair"><a href="login.php" onclick="" ><span></span><strong>Sair</strong></a></li>
 					</ul>
 				</nav>
 			</header>
@@ -151,13 +152,14 @@
 					</li>
 
 					<!===========================================PAGINA VISUALIZAÇAO DE RESERVAS    =======================================================>
-										<li id="page_Reservas">
+					
+					<li id="page_Reservas">
 						<div class="box1">
 							<div class="inner">
 								<a href="#" class="close" data-type="close"><span></span></a>
 								<div class="wrapper">
 									<h2>Reservas</h2>
-									<form action="" method="post">
+									<form name="visuForm" action="" method="post">
 										<p>    <!-- Buscando modalidades -->
 										<label for="nome"> Modalidade:</label>
 										<?php  
@@ -572,15 +574,49 @@
 							</div>
 						</div>
 					</li>
+					<!===========================================PAGINA CADASTRO DE MODALIDADES  ===================================================>
 					
-					<!===========================================PAGINA CADASTRO DE MODALIDADES  =======================================================>
+					<li id="page_Modalidade">
+						<div class="box1">
+							<div class="inner">
+								<a href="#" class="close" data-type="close"><span></span></a>
+								<h2>Cadastro de Modalidades</h2>
+								<form name="ModalidadeForm" id="Form" method="POST" action="index.php" onSubmit="">
+																	
+									<div class="wrapper"> 
+										<label for="modalidade"> Modalidade:</label> 
+										<input class="input" type="text" value="" name="modalidade" id="modalidade" onblur="validaName('modalidade');" onFocus="limpa_campo('modalidade');">
+									</div>
+									
+									<div class="wrapper"> 
+										<input type="submit" name="submitModalidade" value="Enviar">
+									</div>
+									
+									
+									
+								</form>
+								
+								<?php
+
+									if(isset($_POST['submitModalidade'])){
+										insereModalidade($_POST);
+										echo "<script type='text/javascript'> alert('Dados inseridos com sucesso!') </script>";	
+									}	
+								?>
+								
+								
+							</div>
+						</div>
+					</li>
+					
+					<!===========================================PAGINA CADASTRO DE QUADRAS  =======================================================>
 					
 					<li id="page_Quadra">
 						<div class="box1">
 							<div class="inner">
 								<a href="#" class="close" data-type="close"><span></span></a>
 								<h2>Cadastro de Quadras</h2>
-								<form name="ReservForm" id="Form" method="POST" action="index.php#!/page_Home" onSubmit="">
+								<form name="QuadraForm" id="Form" method="POST" action="index.php#!/page_Home" onSubmit="">
 									
 									<div class="wrapper"> 
 										<label for="nome"> Modalidade:</label>
@@ -610,22 +646,17 @@
 											<input class="input" type="time" name="horario_base">
 										</div>
 									</div>
-									<input type="submit" name="submit1" value="Enviar">
+									<input type="submit" name="submitQuadra" value="Enviar">
 								</form>
-								
-								
-								<! aqui tem problema, onde esta comentado nesse php >
-								
+																
 								<?php
 
-									if(isset($_POST['submit1'])){
-										insereModalidade($_POST);
+									if(isset($_POST['submitQuadra'])){
+										insereQuadra($_POST);
 										echo "<script type='text/javascript'> alert('Dados inseridos com sucesso!') </script>";
 											
 									}	
-								?>
-								
-								
+								?>	
 							</div>
 						</div>
 					</li>

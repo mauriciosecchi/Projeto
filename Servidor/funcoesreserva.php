@@ -15,8 +15,4 @@ require_once "functions.php";
 			echo "<option value ='-1'>Nenhuma quadra localizada</option>";
 		}
 	}
-	/*else{
-		echo "<option value ='-1'>Nenhuma quadra localizada</option>";
-	}*/
-
 ?>
