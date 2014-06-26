@@ -77,8 +77,8 @@
 			$("#reservas").show();
 			$("#cadastro").show();
 			$("#reservar").show();
-			$("#modalidades").show();
-			$("#quadras").show();
+			$("#modalidade").show();
+			$("#quadra").show();
 			$("#usuarios").show();
 			$("#contato").show();
 			$("#sair").show();
@@ -87,8 +87,8 @@
 			$("#reservas").show();
 			$("#cadastro").show();
 			$("#reservar").show();
-			$("#modalidades").hide();
-			$("#quadras").hide();
+			$("#modalidade").hide();
+			$("#quadra").hide();
 			$("#usuarios").hide();
 			$("#contato").show();
 			$("#sair").show();
@@ -97,8 +97,8 @@
 			$("#reservas").hide();
 			$("#cadastro").show();
 			$("#reservar").hide();
-			$("#modalidades").hide();
-			$("#quadras").hide();
+			$("#modalidade").hide();
+			$("#quadra").hide();
 			$("#usuarios").hide();
 			$("#contato").show();
 			$("#sair").show();
@@ -122,8 +122,8 @@
 						<li id="reservas"><a href="#!/page_Reservas"><span></span><strong>Reservas</strong></a></li>
 						<li id="cadastro"><a href="#!/page_Cadastro"><span></span><strong>Cadastro</strong></a></li>
 						<li id="reservar"><a href="#!/page_CadReservas"><span></span><strong>Reservar</strong></a></li>
-						<li id="modalidades"><a href="#!/page_Modalidade"><span></span><strong>Modalidades</strong></a></li>
-						<li id="quadras"><a href="#!/page_Quadra"><span></span><strong>Quadras</strong></a></li>
+						<li id="modalidade"><a href="#!/page_Modalidade"><span></span><strong>Modalidades</strong></a></li>
+						<li id="quadra"><a href="#!/page_Quadra"><span></span><strong>Quadras</strong></a></li>
 						<li id="usuarios"><a href="#!/page_Usuarios"><span></span><strong>Usuarios</strong></a></li>
 						<li id="contato"><a href="#!/page_Contact"><span></span><strong>Contato</strong></a></li>
 						<li id="sair"><a href="login.php" onclick="" ><span></span><strong>Sair</strong></a></li>

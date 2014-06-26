@@ -11,8 +11,5 @@ require_once "functions.php";
 			  echo("t<option value='$linha[id_modalidade]' >$linha[desc_quadra]</option>");
 			}
 		}
-		else{
-			echo "<option value ='-1'>Nenhuma quadra localizada</option>";
-		}
 	}
 ?>
