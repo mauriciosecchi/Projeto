@@ -58,6 +58,7 @@
 							$_SESSION['apelido'] = $rows['apelido'];
 							$_SESSION['logado'] = 1;
 							$_SESSION['tipo_usuario'] = $rows['tipo_usuario'];
+							gerardata();
 							header("Location:index.php");
 						}
 						else{

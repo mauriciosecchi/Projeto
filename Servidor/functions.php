@@ -65,27 +65,35 @@ function insereModalidade(){
 	$result = query($sql);
     
 }        
-        
-
-// --------------------- Funçao Gerar Horários ---------------------------------
-
-function gerarhorarios()
-  {
-    $horainicial = 10;
-	$horafinal = 20;
-    for ($i=$horainicial;$i<$horafinal;$i++)
-	{
-		echo "<tr>";
-		echo "<td class='bg'><strong>$i:00</strong></td>";
-		echo "<td><a href='index.html' class='itemreserva'>12345678 12345678</a></td>";
-		echo "<td class='bg'><a href='index.html' class='itemreserva'>12345678 12345678</a></td>";
-		echo "<td><a href='index.html' class='itemreserva'>12345678 12345678</a></td>";
-		echo "<td class='bg'><a href='index.html' class='itemreserva'>12345678 12345678</a></td>";
-		echo "<td><a href='index.html' class='itemreserva'>12345678 12345678</a></td>";
-		echo "<td class='bg'><a href='index.html' class='itemreserva'>12345678 12345678</a></td>";
-		echo "<td><a href='index.html' class='itemreserva'>12345678 12345678</a></td>";
-		echo "</tr>";
-	}
-  
-  }
-?>
+//---------------Função para gerar o dia da semana de acordo com a data------------
+function gerardata()
+{
+	$_SESSION['dataatual'] = date("d/m/y");
+	$dia =  substr($_SESSION['dataatual'],0,2);
+	$mes =  substr($_SESSION['dataatual'],3,2);
+	$ano =  substr($_SESSION['dataatual'],6,9);
+	$diasemana = date("w", mktime(0,0,0,$mes,$dia,$ano) );
+	switch($diasemana){  
+			case"0": $_SESSION['dataatual'] = strtotime("-6 days");  break;  
+			case"1": break;  
+			case"2": $_SESSION['dataatual'] = strtotime("-1 days");  break;  
+			case"3": $_SESSION['dataatual'] = strtotime("-2 days");  break;  
+			case"4": $_SESSION['dataatual'] = strtotime("-3 days");  break;  
+			case"5": $_SESSION['dataatual'] = strtotime("-4 days");  break;  
+			case"6": $_SESSION['dataatual'] = strtotime("-5 days");  break;  
+		 }
+}
+//----------Função para conversão de segundos para horas e minuros H:i ------------------
+ function converterHora($total_segundos){
+			
+	$hora = sprintf("%02s",floor($total_segundos / (60*60)));
+	$total_segundos = ($total_segundos % (60*60));
+	
+	$minuto = sprintf("%02s",floor ($total_segundos / 60 ));
+	$total_segundos = ($total_segundos % 60);
+	
+	$hora_minuto = $hora.":".$minuto;
+	return $hora_minuto;
+}
+ 
+?> 

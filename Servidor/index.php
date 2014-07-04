@@ -48,19 +48,36 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("#tabreserva").hide();
 		$("#modalidades").change( function() {
 			$("#quadras").hide();
 			$("#result").html('buscando...');
 			var uf = $(this).val();
 							
 			$.post("funcoesreserva.php", {dados: uf}, function(msg){
-				   if (msg != ''){
+			    if (msg != ''){
 					$("#quadras").html(msg).show();
 					$("#result").html('');
 				}
 				else{
 					$("#result").html('Sem Resultados');
 				}                     
+			});
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#quadras").change( function() {
+			var valor = $(this).val();
+			$.post("exibir.php", {dados: valor}, function(msg){
+				if (msg != ''){
+					$("#exibe").html(msg).show();	
+				}
+				else{
+					$("#exibe").html('Sem Resultados');
+				}		
 			});
 		});
 	});
@@ -143,8 +160,9 @@
 								<div class="wrapper">
 									<div class="col1">
 										<h2>Estrutura</h2>
-										<p class="quot"> A AABB fundada em xxxx, conta com uma infraestrutura completa para seus sócios dentre eles Piscinas, Quadras de Tenis, Quadra de Futebol de Salão, <img src="images/quot2.png" alt=""></p>
-										<p>Texto</p>
+										<p class="quot"> 
+											A AABB fundada em xxxx, conta com uma infraestrutura completa para seus sócios dentre eles Piscinas, Quadras de Tenis, Quadra de Futebol de Salão, <img src="images/quot2.png" alt="">
+										</p>
 									</div>
 								</div>
 							</div>
@@ -170,34 +188,13 @@
 
 										<p>
 										<label for="nome"> Quadras:</label>
-										<select id="quadras" name="quadra">Quadras:
+										<select id="quadras" name="quadra" >Quadras:
 											<option value ='-1'>Nenhuma quadra localizada</option>
 										</select>
 										</p>
 									</form>
-									    <div class="table">
-										<table>
-											<thead>
-												<tr>
-													<th class="bg"></th>
-													<th><strong>Segunda</strong></th>
-													<th class="bg"><strong>Terça</strong></th>
-													<th><strong>Quarta</strong></th>
-													<th class="bg"><strong>Quinta</strong></th>
-													<th><strong>Sexta</strong></th>
-													<th class="bg"><strong>Sábado</strong></th>
-													<th><strong>Domingo</strong></th>
-												</tr>
-											</thead>
-											<?php
-												gerarhorarios();
-											?>
-					
-					
-					
-											<tbody>
-											</tbody>
-										</table>
+									    <div class="table" id="exibe">
+											
 									</div>
 								</div>
 							</div>
