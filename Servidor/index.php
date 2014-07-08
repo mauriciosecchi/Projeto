@@ -11,7 +11,14 @@
   include_once "funcoesreserva.php";
   $db = conectadb();
 ?>
-
+<?php
+if(isset ($_POST['exclui'])){
+	if($_SESSION['reserva_id'] != 0){
+		$sql = "DELETE FROM reserva WHERE id_reserva ='" .$_SESSION['reserva_id']."'";
+		mysql_query($sql);
+	}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -556,52 +563,81 @@
 								<h2>Cadastro de Reservas</h2>
 								<form name="ReservForm" id="Form" method="post" action="" onSubmit="return validaform('formcont');">
 								
-									<div class="wrapper"> 
-										<label for="id"> ID: </label> 
-										<input class="input" type="text" value="1234" disabled="disabled" onblur="if(this.value=='') this.value='1234'" onFocus="if(this.value =='ID' ) this.value=''" >
-									</div>
+									<?php
+									
+
+
+									if(isset($_SESSION['id_usuario'])){
+										$sql = "SELECT nome FROM usuario WHERE id_usuario = $_SESSION[id_usuario]";
+										$result = mysql_query($sql);
+										$linha = mysql_fetch_assoc($result);
+										$reserva_nome = $linha['nome'];
+										$sql = "SELECT desc_quadra, desc_modalidade FROM quadra join modalidade on modalidade.id_modalidade = quadra.id_modalidade WHERE id_quadra = $_SESSION[reserva_quadra_id]";
+										$result = mysql_query($sql) or die (mysql_error()); 
+										$linha = mysql_fetch_assoc($result);
+										$reserva_modalidade = $linha['desc_modalidade'];
+										$reserva_quadra = $linha['desc_quadra'];
+										$reserva_data = date("Y-m-d", $_SESSION['reserva_data']);
+										$reserva_hora = converterHora($_SESSION['reserva_hora']);
+
+									}
+									?>
 									
 									<div class="wrapper"> 
 										<label for="nome"> Nome:</label> 
-										<input class="input" type="text" value="Alonso da Silva" disabled="disabled" onblur="if(this.value=='') this.value='Nome'" onFocus="if(this.value =='Nome' ) this.value=''" >
+										<input class="input" type="text" <?php echo ("value= '$reserva_nome'") ?> disabled="disabled" onblur="if(this.value=='') this.value='Nome'" onFocus="if(this.value =='Nome' ) this.value=''" >
 									</div>
 									
 									<div class="wrapper"> 
-										<label for="nome"> Modalidade:</label>
-										<?php
-												$rs = mysql_query("SELECT * FROM modalidade");
-												montaCombo("escolhemodalidade", $rs, "id_modalidade", "desc_modalidade");
-										?>
+										<label for="modalidade"> Modalidade:</label> 
+										<input class="input" type="text" <?php echo ("value= '$reserva_modalidade'") ?> disabled="disabled" onblur="if(this.value=='') this.value='Modalidade'" onFocus="if(this.value =='Modalidade' ) this.value=''" >
 									</div>
 									
 									<div class="wrapper"> 
-										<label for="nome"> Quadra:</label>
-										<?php
-												$rs = mysql_query("SELECT * FROM quadra q JOIN modalidade m WHERE q.id_modalidade = m.id_modalidade");
-												montaCombo("escolhequadra", $rs, "id_quadra", "desc_quadra");
-										?>
+										<label for="quadra"> Quadra:</label> 
+										<input class="input" type="text" <?php echo ("value= '$reserva_quadra'") ?> disabled="disabled" onblur="if(this.value=='') this.value='Quadra'" onFocus="if(this.value =='Quadra' ) this.value=''" >
 									</div>
 
 									<div id="data-reserva" class="clearfix">
-										<div class="wrapper input-date"> 
-											<label for="dt_nasc">Data:</label>
-											<input class="input" type="date">
-										</div>
+									<div class="wrapper"> 
+										<label for="date">Data:</label> 
+										<input class="input" id = "date" name = "date" type="text" <?php echo ("value= '$reserva_data'") ?> disabled="disabled" onblur="if(this.value=='') this.value='Data'" onFocus="if(this.value =='Data' ) this.value=''" >
+									</div>
 										
-										<div class="wrapper input-time"> 
-											<label for="dt_assoc">Horário:</label>
-											<input class="input" type="time">
-										</div>
+										<div class="wrapper"> 
+										<label for="hora">Hora:</label> 
+										<input class="input" id = "hora" name = "hora" type="text" <?php echo ("value= '$reserva_hora'") ?> disabled="disabled" onblur="if(this.value=='') this.value='hora'" onFocus="if(this.value =='hora' ) this.value=''" >
+									</div>
 									</div>
 
 									<div class="wrapper1">
-										<label for="desc_reserva">Observação:</label>										
-										<textarea class="textarea" cols="50" rows="3" value="Insira uma observação..."  onblur="if(this.value=='') this.value='Insira uma observação...'" onFocus="if(this.value =='Insira uma observação...' ) this.value=''" ></textarea>	
+										<label for="obs">Observação:</label>										
+										<textarea class="textarea" name = 'obs' cols="50" rows="3" value="Insira uma observação..."  onblur="if(this.value=='') this.value='Insira uma observação...'" onFocus="if(this.value =='Insira uma observação...' ) this.value=''" ></textarea>	
 									</div>
-										
+									<input type="submit" name= "submit_reserva" value="Enviar">
+									<input type="submit" name = "exclui" value = "Cancelar Reserva">
 								</form>
-													
-								<input type="submit" value="Enviar Informações" value="Place order" class = "enviar_">
+
+								<?php
+
+									$id_usuario = $_SESSION['id_usuario'];
+											$id_quadra = $_SESSION['reserva_quadra_id'];
+											$id = $_SESSION['reserva_id'];
+											
+											if (isset($_POST['submit_reserva'])) {
+												$obs = $_POST['obs'];
+														
+										if (isset($_SESSION['id_usuario'])){
+											
+											$sql = "INSERT INTO reserva (id_usuario, id_quadra, desc_reserva, obs, dt_reserva, horario) VALUES ('" . $id_usuario . "','" . $id_quadra . "', '" . $reserva_quadra . "', '" . $obs . "', '" . $reserva_data . "', '" . $reserva_hora . "')" ;
+											mysql_query($sql);
+											
+
+										}
+									}
+											?>
+									
+											
 							</div>
 						</div>
 					</li>
