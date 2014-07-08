@@ -426,59 +426,80 @@
 									if (empty($nome) || empty($sobrenome) || empty($apelido) || empty($cpf) || empty($rg) || empty($dt_nasc) || empty($dt_assoc) || empty($logradouro) || empty($cidade) || empty($estado) || empty($telefone) || empty($celular) || empty($email) || empty($login) || empty($senha)){
 										 echo "<script type='text/javascript'> alert('Preencha os campos em branco!') </script>";
 									}else{	
-										if (isset($_SESSION['id_usuario'])){
 
-											$sql = "UPDATE usuario SET 
-											cpf= '$_POST[cpf]', 
-											nome= '$_POST[nome]', 
-											rg='$_POST[rg]', 
-											dt_nasc = '$_POST[dt_nasc]', 
-											dt_assoc = '$_POST[dt_assoc]', 
-											logradouro ='$_POST[ender]', 
-											cidade = '$_POST[cidade]', 
-											estado = '$_POST[estado]',
-											email = '$_POST[email]',
-											senha = '$_POST[senha]',
-											sobrenome = '$_POST[sobre]',
-											telefone= '$_POST[fone]',
-											celular ='$_POST[cel]',
-											login = '$_POST[login]',
-											apelido ='$_POST[apelido]' 
-											WHERE id_usuario = $_GET[id_usuario]";										
-										}else{
-											$sql = "INSERT INTO `usuario` 
-											(`cpf`, 
-											`nome`, 
-											`rg`, 
-											`dt_nasc`, 
-											`dt_assoc`, 
-											`logradouro`, 
-											`cidade`, 
-											`estado`, 
-											`email`, 
-											`senha`, 
-											`sobrenome`, 
-											`telefone`, 
-											`celular`, 
-											`login`, 
-											`apelido`) VALUES
-											('$_POST[cpf]', 
-											 '$_POST[nome]', 
-											 '$_POST[rg]', 
-											 '$_POST[dt_nasc]', 
-											 '$_POST[dt_assoc]', 
-											 '$_POST[ender]', 
-											 '$_POST[cidade]', 
-											 '$_POST[estado]', 
-											 '$_POST[email]', 
-											 '$_POST[senha]', 
-											 '$_POST[sobre]', 
-											 '$_POST[fone]', 
-											 '$_POST[cel]', 
-											 '$_POST[login]', 
-											 '$_POST[apelido]')";
-										}
-										
+										if(isset($_SESSION['tipo_usuario'])){
+											if (isset($_GET['id_usuario'])) {
+												$sql = "UPDATE usuario SET 
+												cpf= '$_POST[cpf]', 
+												nome= '$_POST[nome]', 
+												rg='$_POST[rg]', 
+												dt_nasc = '$_POST[dt_nasc]', 
+												dt_assoc = '$_POST[dt_assoc]', 
+												logradouro ='$_POST[ender]', 
+												cidade = '$_POST[cidade]', 
+												estado = '$_POST[estado]',
+												email = '$_POST[email]',
+												senha = '$_POST[senha]',
+												sobrenome = '$_POST[sobre]',
+												telefone= '$_POST[fone]',
+												celular ='$_POST[cel]',
+												login = '$_POST[login]',
+												apelido ='$_POST[apelido]'
+												WHERE id_usuario = $_GET[id_usuario]";
+											}else if(isset($_SESSION['id_usuario'])){
+												$sql = "UPDATE usuario SET 
+												cpf= '$_POST[cpf]', 
+												nome= '$_POST[nome]', 
+												rg='$_POST[rg]', 
+												dt_nasc = '$_POST[dt_nasc]', 
+												dt_assoc = '$_POST[dt_assoc]', 
+												logradouro ='$_POST[ender]', 
+												cidade = '$_POST[cidade]', 
+												estado = '$_POST[estado]',
+												email = '$_POST[email]',
+												senha = '$_POST[senha]',
+												sobrenome = '$_POST[sobre]',
+												telefone= '$_POST[fone]',
+												celular ='$_POST[cel]',
+												login = '$_POST[login]',
+												apelido ='$_POST[apelido]' 
+												WHERE id_usuario = $_SESSION[id_usuario]";
+											}else{
+												$sql = "INSERT INTO `usuario` 
+												(`cpf`, 
+												`nome`, 
+												`rg`, 
+												`dt_nasc`, 
+												`dt_assoc`, 
+												`logradouro`, 
+												`cidade`, 
+												`estado`, 
+												`email`, 
+												`senha`, 
+												`sobrenome`, 
+												`telefone`, 
+												`celular`, 
+												`login`, 
+												`apelido`) VALUES
+												('$_POST[cpf]', 
+												 '$_POST[nome]', 
+												 '$_POST[rg]', 
+												 '$_POST[dt_nasc]', 
+												 '$_POST[dt_assoc]', 
+												 '$_POST[ender]', 
+												 '$_POST[cidade]', 
+												 '$_POST[estado]', 
+												 '$_POST[email]', 
+												 '$_POST[senha]', 
+												 '$_POST[sobre]', 
+												 '$_POST[fone]', 
+												 '$_POST[cel]', 
+												 '$_POST[login]', 
+												 '$_POST[apelido]')";
+											}
+									}
+
+
 										if (isset($_POST['OPCAO'])){
 											
 											if (isset($_GET['id_usuario'])){
@@ -493,6 +514,19 @@
 													$checkk = "UPDATE usuario SET 
 													aprovacao= '$_POST[OPCAO]'
 													WHERE id_usuario = $_GET[id_usuario]";
+		    									}
+	    									}else if(isset($_SESSION['id_usuario'])){
+	    										$checkk= "INSERT INTO `usuario` ('aprovacao') VALUES ($_POST[OPCAO])";
+		    									//$valorcheck = $_POST['OPCAO'];
+		    									//echo "valor " .$valorcheck;s
+		    									if (isset($valorcheck)){
+		    										$checkk = "UPDATE usuario SET 
+													aprovacao= '$_POST[OPCAO]'
+													WHERE id_usuario = $_SESSION[id_usuario]";
+												}else{
+													$checkk = "UPDATE usuario SET 
+													aprovacao= '$_POST[OPCAO]'
+													WHERE id_usuario = $_SESSION[id_usuario]";
 		    									}
 	    									}
 	    									mysql_query($checkk);

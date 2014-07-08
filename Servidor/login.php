@@ -42,7 +42,7 @@
                 <button type="submit" name="submit">Entrar</button>
 				<ul>
 					<li style="width: 80px; padding-left: 5px; padding-top: 10px; border: 2px;" ><a href="index.php#!/page_Cadastro">Cadastre-se</a></li>
-					<li style="width: 150px; padding-left: 0px; padding-top: 10px; border: 2px;"><a href="index.php#!/page_Cadastro">Esqueceu sua senha?</a></li>
+					<li style="width: 150px; padding-left: 0px; padding-top: 10px; border: 2px;"><a href="senha.php">Esqueceu sua senha?</a></li>
 				</ul>
                 <div class="error"><span>+</span></div>
 				<?php
