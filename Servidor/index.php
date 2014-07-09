@@ -565,9 +565,13 @@ if(isset ($_POST['exclui'])){
 								
 									<?php
 									
+									$reserva_modalidade = '';
+									$reserva_quadra = '';
+									$reserva_data = date("Y-m-d");
+									$reserva_hora = converterHora(1222);
+									$reserva_nome = '';
 
-
-									if(isset($_SESSION['id_usuario'])){
+									if(isset($_SESSION['id_usuario']) and (isset($_SESSION['reserva_data']))){
 										$sql = "SELECT nome FROM usuario WHERE id_usuario = $_SESSION[id_usuario]";
 										$result = mysql_query($sql);
 										$linha = mysql_fetch_assoc($result);
