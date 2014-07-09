@@ -4,7 +4,7 @@
 	if(!isset($_SESSION['logado'])){
 		header("Location:login.php");
 	}
-
+//comentario//
 ?>
 <?php
   include_once "functions.php";
