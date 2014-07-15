@@ -5,6 +5,7 @@
 	require_once 'functions.php';
 	$db = conectadb();
 	$_SESSION['logado'] = 0;
+	$_SESSION['tipo_usuario'] = 0;
 ?>
 
 <html lang="en" class="no-js">
@@ -58,6 +59,7 @@
 							$_SESSION['apelido'] = $rows['apelido'];
 							$_SESSION['logado'] = 1;
 							$_SESSION['tipo_usuario'] = $rows['tipo_usuario'];
+							$_SESSION['num_dias'] = 0;
 							gerardata();
 							header("Location:index.php");
 						}

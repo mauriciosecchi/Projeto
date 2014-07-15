@@ -53,49 +53,13 @@ if(isset ($_POST['exclui'])){
 		</div>
 	<![endif]-->
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#tabreserva").hide();
-		$("#modalidades").change( function() {
-			$("#quadras").hide();
-			$("#result").html('buscando...');
-			var uf = $(this).val();
-							
-			$.post("funcoesreserva.php", {dados: uf}, function(msg){
-			    if (msg != ''){
-					$("#quadras").html(msg).show();
-					$("#result").html('');
-				}
-				else{
-					$("#result").html('Sem Resultados');
-				}                     
-			});
-		});
-	});
-</script>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#quadras").change( function() {
-			var valor = $(this).val();
-			$.post("exibir.php", {dados: valor}, function(msg){
-				if (msg != ''){
-					$("#exibe").html(msg).show();	
-				}
-				else{
-					$("#exibe").html('Sem Resultados');
-				}		
-			});
-		});
-	});
-</script>
-
+<!-- Exibe combo quadras na tela de Visualização de reservas -->
 <script type="text/javascript">
     $(document).ready(function () {
         
-		var view = "<?php echo $_SESSION['logado']?>";
-		var tp_usuario = "<?php echo $_SESSION['tipo_usuario']?>";
-		 		
+		var view = <?php echo $_SESSION['logado']?>;
+		var tp_usuario = <?php echo $_SESSION['tipo_usuario']?>;
+		
 		if(tp_usuario == 1){
 			$("#home").show();
 			$("#reservas").show();
@@ -126,9 +90,89 @@ if(isset ($_POST['exclui'])){
 			$("#usuarios").hide();
 			$("#contato").show();
 			$("#sair").show();
-		}
+		} 
     });
-</script>	
+</script>
+<!--Controla os menus conforme o tipo de usuario e se está logado ou não -->
+	
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#tabreserva").hide();
+		$("#modalidades").change( function() {
+			$("#quadras").hide();
+			$("#result").html('buscando...');
+			var uf = $(this).val();
+							
+			$.post("funcoesreserva.php", {dados: uf}, function(msg){
+			    if (msg != ''){
+					$("#quadras").html(msg).show();
+					$("#result").html('');
+				}
+				else{
+					$("#result").html('Sem Resultados');
+				}                     
+			});
+		});
+	});
+</script>
+
+<!-- Exibe tabela de reservas tela de Visualização de reservas -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#quadras").change( function() {
+			var valor = $(this).val();
+			$("#exibe1").hide();
+			$("#exibe").hide();
+			$.post("exibir.php", {dados: valor}, function(msg){
+				if (msg != ''){
+					$("#exibe").html(msg).show();	
+				}
+				else{
+					$("#exibe").html('Sem Resultados');
+				}		
+			});
+		});
+	});
+</script>
+
+<!-- Avança e volta paginas na tela de Visualização de reservas -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#next").click( function(){ 
+			$("#modalidades").attr('selected','selected');
+			$("#quadras").attr('selected','selected');
+			$("#exibe").hide();
+			var quadras = $('#quadras').val();
+			$.post("exibir.php", {dados: quadras, soma: 7}, function(msg){
+				if (msg != ''){
+					$("#exibe1").html(msg).show();	
+				}
+				else{
+					$("#exibe1").html('Sem Resultados');
+				}		
+			});
+		});	
+		
+		$("#previous").click( function(){ 
+			$("#modalidades").attr('selected','selected');
+			$("#quadras").attr('selected','selected');
+			var quadras = $('#quadras').val();
+			$("#exibe").hide();
+			$.post("exibir.php", {dados: quadras, soma: -7}, function(msg){
+				if (msg != ''){
+					$("#exibe1").html(msg).show();	
+				}
+				else{
+					$("#exibe1").html('Sem Resultados');
+				}		
+			});
+		});	
+		
+		
+	});	
+	
+</script>
+		
 
 </head>
 
@@ -182,28 +226,38 @@ if(isset ($_POST['exclui'])){
 						<div class="box1">
 							<div class="inner">
 								<a href="#" class="close" data-type="close"><span></span></a>
-								<div class="wrapper">
-									<h2>Reservas</h2>
-									<form name="visuForm" action="" method="post">
-										<p>    <!-- Buscando modalidades -->
-										<label for="nome"> Modalidade:</label>
-										<?php  
-										   $rs = mysql_query("SELECT * FROM modalidade");
-										   montaCombo("modalidades", $rs, "id_modalidade", "desc_modalidade", '');
-										 ?>
-										</p>
+								
+								<h2>Reservas</h2>
+								<form name="visuForm" id="Form" action="" method="post">
+									
+									<div class="mod-combo">
+										<div class="wrapper">
+											<label for="nome"> Modalidade:</label>
+											<?php  
+											   $rs = mysql_query("SELECT * FROM modalidade");
+											   montaCombo("modalidades", $rs, "id_modalidade", "desc_modalidade");
+											 ?>
+										</div>
 
-										<p>
-										<label for="nome"> Quadras:</label>
-										<select id="quadras" name="quadra" >Quadras:
-											<option value ='-1'>Nenhuma quadra localizada</option>
-										</select>
-										</p>
-									</form>
-									    <div class="table" id="exibe">
-											
-									</div>
+										<div class="wrapper">
+											<label for="quadras"> Quadras:</label>
+											<select class="combo" id="quadras" name="quadra" >Quadras:
+												<option value ='-1'>Nenhuma quadra localizada</option>
+											</select>	
+										</div>
+									</div>												
+								
+								</form>
+								<div>
+									<input id="previous" type="image" src="images\left_grey.png" name="left" width="36" height="36" align="left">
+									<input id="next" type="image" src="images\right_grey.png" name="left" width="36" height="36" align="right" >
 								</div>
+								
+								<div class="table" id="exibe">		
+								</div>
+								<div class="table" id="exibe1">		
+								</div>
+								
 							</div>
 						</div>
 					</li>
@@ -270,7 +324,7 @@ if(isset ($_POST['exclui'])){
 											}
 										}
 									}
-									else{
+									if($_SESSION['logado'] == 0){
 										$nome = '';
 										$sobrenome = '';
 										$apelido = '';
@@ -408,31 +462,31 @@ if(isset ($_POST['exclui'])){
 									
 									<input type="checkbox" <?php if ($aprovacao == "1"){ echo 'checked = "checked"';}?> name="OPCAO" value="1"> ATIVO
 									<input type="checkbox" <?php if ($aprovacao == "0"){ echo 'checked = "checked"';}?> name="OPCAO" value="0"> INATIVO
-						
-													
+					
 							
 								<?php
-								if (isset($_POST['submit'])) {
-									 		$nome = $_POST['nome'];
-											$sobrenome = $_POST['sobre'];
-											$apelido = $_POST['apelido'];
-											$cpf = $_POST['cpf'];
-											$rg = $_POST['rg'];
-											$dt_nasc = $_POST['dt_nasc'];
-											$dt_assoc = $_POST['dt_assoc'];
-											$logradouro = $_POST['ender'];
-											$cidade = $_POST['cidade'];
-											$estado = $_POST['estado'];		
-											$telefone = $_POST['fone'];
-											$celular = $_POST['cel'];
-											$email = $_POST['email'];
-											$login = $_POST['login'];
-											$senha = $_POST['senha'];
+									if (isset($_POST['submit'])) {
+										$nome = $_POST['nome'];
+										$sobrenome = $_POST['sobre'];
+										$apelido = $_POST['apelido'];
+										$cpf = $_POST['cpf'];
+										$rg = $_POST['rg'];
+										$dt_nasc = $_POST['dt_nasc'];
+										$dt_assoc = $_POST['dt_assoc'];
+										$logradouro = $_POST['ender'];
+										$cidade = $_POST['cidade'];
+										$estado = $_POST['estado'];		
+										$telefone = $_POST['fone'];
+										$celular = $_POST['cel'];
+										$email = $_POST['email'];
+										$login = $_POST['login'];
+										$senha = $_POST['senha'];
 										
 	
 									if (empty($nome) || empty($sobrenome) || empty($apelido) || empty($cpf) || empty($rg) || empty($dt_nasc) || empty($dt_assoc) || empty($logradouro) || empty($cidade) || empty($estado) || empty($telefone) || empty($celular) || empty($email) || empty($login) || empty($senha)){
 										 echo "<script type='text/javascript'> alert('Preencha os campos em branco!') </script>";
-									}else{	
+									}
+									else{	
 
 										if(isset($_SESSION['tipo_usuario'])){
 											if (isset($_GET['id_usuario'])) {
@@ -482,8 +536,10 @@ if(isset ($_POST['exclui'])){
 												`cidade`, 
 												`estado`, 
 												`email`, 
-												`senha`, 
-												`sobrenome`, 
+												`senha`,
+												`tipo_usuario`,												
+												`sobrenome`,
+												`aprovacao`,
 												`telefone`, 
 												`celular`, 
 												`login`, 
@@ -497,22 +553,21 @@ if(isset ($_POST['exclui'])){
 												 '$_POST[cidade]', 
 												 '$_POST[estado]', 
 												 '$_POST[email]', 
-												 '$_POST[senha]', 
+												 '$_POST[senha]',
+												 '0',
 												 '$_POST[sobre]', 
+												 '0',
 												 '$_POST[fone]', 
 												 '$_POST[cel]', 
 												 '$_POST[login]', 
 												 '$_POST[apelido]')";
 											}
-									}
+										}
 
 
 										if (isset($_POST['OPCAO'])){
-											
 											if (isset($_GET['id_usuario'])){
 												$checkk= "INSERT INTO `usuario` ('aprovacao') VALUES ($_POST[OPCAO])";
-		    									//$valorcheck = $_POST['OPCAO'];
-		    									//echo "valor " .$valorcheck;s
 		    									if (isset($valorcheck)){
 		    										$checkk = "UPDATE usuario SET 
 													aprovacao= '$_POST[OPCAO]'
@@ -524,8 +579,6 @@ if(isset ($_POST['exclui'])){
 		    									}
 	    									}else if(isset($_SESSION['id_usuario'])){
 	    										$checkk= "INSERT INTO `usuario` ('aprovacao') VALUES ($_POST[OPCAO])";
-		    									//$valorcheck = $_POST['OPCAO'];
-		    									//echo "valor " .$valorcheck;s
 		    									if (isset($valorcheck)){
 		    										$checkk = "UPDATE usuario SET 
 													aprovacao= '$_POST[OPCAO]'
@@ -536,10 +589,15 @@ if(isset ($_POST['exclui'])){
 													WHERE id_usuario = $_SESSION[id_usuario]";
 		    									}
 	    									}
-	    									mysql_query($checkk);
+											if(isset($checkk)){
+												mysql_query($checkk);
+											}
+	    									
     									}
-
-										mysql_query($sql);
+										if(isset($sql)){
+											mysql_query($sql);
+										}
+										
 									
 										if (isset($_SESSION['id_usuario'])){
 											echo "<script type='text/javascript'> alert('Dados alterados com sucesso!') </script>";
@@ -593,7 +651,7 @@ if(isset ($_POST['exclui'])){
 									</div>
 									
 									<div class="wrapper"> 
-										<label for="modalidade"> Modalidade:</label> 
+										<label for="modalidades"> Modalidade:</label> 
 										<input class="input" type="text" <?php echo ("value= '$reserva_modalidade'") ?> disabled="disabled" onblur="if(this.value=='') this.value='Modalidade'" onFocus="if(this.value =='Modalidade' ) this.value=''" >
 									</div>
 									
@@ -655,8 +713,8 @@ if(isset ($_POST['exclui'])){
 								<form name="ModalidadeForm" id="Form" method="POST" action="index.php" onSubmit="">
 																	
 									<div class="wrapper"> 
-										<label for="modalidade"> Modalidade:</label> 
-										<input class="input" type="text" value="" name="modalidade" id="modalidade" onblur="validaName('modalidade');" onFocus="limpa_campo('modalidade');">
+										<label for="nome"> Modalidade:</label> 
+										<input class="input" type="text" value="" name="modalidade" id="modalidades" onblur="validaName('modalidade');" onFocus="limpa_campo('modalidade');">
 									</div>
 									
 									<div class="wrapper"> 
@@ -678,7 +736,6 @@ if(isset ($_POST['exclui'])){
 								
 							</div>
 						</div>
-					</li>
 					
 					<!===========================================PAGINA CADASTRO DE QUADRAS  =======================================================>
 					
@@ -693,13 +750,13 @@ if(isset ($_POST['exclui'])){
 										<label for="nome"> Modalidade:</label>
 										<?php
 												$rs = mysql_query("SELECT * FROM modalidade");
-												montaCombo("modalidade", $rs, "id_modalidade", "desc_modalidade");
+												montaCombo("modalidades", $rs, "id_modalidade", "desc_modalidade");
 										?>
 									</div>
 									
 									<div class="wrapper"> 
 										<label for="quadra"> Quadra:</label> 
-										<input class="input" type="text" value="" name="quadra" id="quadra" onblur="validaName('quadra');" onFocus="limpa_campo('quadra');">
+										<input class="input" type="text" value="" name="quadra" id="quadras" onblur="validaName('quadra');" onFocus="limpa_campo('quadra');">
 									</div>
 									
 									<div id="data-reserva" class="clearfix">									
@@ -855,6 +912,8 @@ $('.spinner').fadeOut();
 $('body').css({overflow:'inherit'})
  })
  </script>
+ 
+ 
 </body>
 </html>
 

@@ -28,8 +28,8 @@ if ( $contagem == 1 ) {
 
 $mail = new PHPMailer();
 
-$remetente = "email do remetente"; // Aqui vai do email remetente o qual aparecerá no e-mail enviado;
-$senharemetente = "senha do remetente"; // senha da conta de e-mail do remetente;
+$remetente = "aabbchapeco@gmail.com"; // Aqui vai do email remetente o qual aparecerá no e-mail enviado;
+$senharemetente = "jucaruivo123"; // senha da conta de e-mail do remetente;
 
 // Define os dados do servidor e tipo de conexão
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 12-Jun-2014 às 02:39
+-- Generation Time: 15-Jul-2014 às 01:12
 -- Versão do servidor: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `aabb`
 --
-CREATE DATABASE IF NOT EXISTS `aabb` DEFAULT CHARACTER SET ascii COLLATE ascii_bin;
+CREATE DATABASE IF NOT EXISTS `aabb` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `aabb`;
 
 -- --------------------------------------------------------
@@ -31,9 +31,9 @@ USE `aabb`;
 DROP TABLE IF EXISTS `modalidade`;
 CREATE TABLE IF NOT EXISTS `modalidade` (
   `id_modalidade` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `desc_modalidade` varchar(45) DEFAULT NULL,
+  `desc_modalidade` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   PRIMARY KEY (`id_modalidade`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
 -- Extraindo dados da tabela `modalidade`
@@ -46,10 +46,10 @@ INSERT INTO `modalidade` (`id_modalidade`, `desc_modalidade`) VALUES
 (4, 'Volei de areia'),
 (5, 'Futsal'),
 (6, 'Basquete'),
-(7, 'Natação'),
+(7, 'Natacao'),
 (8, 'Academia'),
-(9, 'Futebol'),
-(10, 'Outras');
+(9, 'Outras'),
+(10, 'Futebol');
 
 -- --------------------------------------------------------
 
@@ -61,15 +61,13 @@ DROP TABLE IF EXISTS `quadra`;
 CREATE TABLE IF NOT EXISTS `quadra` (
   `id_quadra` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_modalidade` int(10) unsigned NOT NULL,
-  `desc_quadra` varchar(45) DEFAULT NULL,
+  `desc_quadra` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `horario_base` time DEFAULT NULL,
   `horario_ini` time DEFAULT NULL,
   `horario_fim` time DEFAULT NULL,
   PRIMARY KEY (`id_quadra`),
   KEY `quadra_FKIndex1` (`id_modalidade`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
-
-
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=32 ;
 
 -- --------------------------------------------------------
 
@@ -82,14 +80,14 @@ CREATE TABLE IF NOT EXISTS `reserva` (
   `id_reserva` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_usuario` int(10) unsigned NOT NULL,
   `id_quadra` int(10) unsigned NOT NULL,
-  `desc_reserva` varchar(45) DEFAULT NULL,
-  `obs` varchar(255) DEFAULT NULL,
+  `desc_reserva` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `obs` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `dt_reserva` date DEFAULT NULL,
-  `horario` datetime DEFAULT NULL,
+  `horario` time DEFAULT NULL,
   PRIMARY KEY (`id_reserva`),
   KEY `id_usuario` (`id_usuario`),
   KEY `id_quadra` (`id_quadra`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
@@ -105,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `restricao` (
   `dt_fim` date DEFAULT NULL,
   PRIMARY KEY (`id_restricao`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -116,30 +114,32 @@ CREATE TABLE IF NOT EXISTS `restricao` (
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id_usuario` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `cpf` varchar(15) NOT NULL,
-  `nome` varchar(45) DEFAULT NULL,
-  `id_socio` varchar(15) DEFAULT NULL,
-  `rg` varchar(45) DEFAULT NULL,
+  `cpf` varchar(15) CHARACTER SET latin1 NOT NULL,
+  `nome` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `id_socio` varchar(15) CHARACTER SET latin1 DEFAULT NULL,
+  `rg` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `dt_nasc` date DEFAULT NULL,
   `dt_assoc` date DEFAULT NULL,
-  `logradouro` varchar(255) DEFAULT NULL,
-  `cep` varchar(15) DEFAULT NULL,
-  `cidade` varchar(45) DEFAULT NULL,
-  `estado` varchar(2) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `senha` varchar(45) NOT NULL,
-  `obs` varchar(255) DEFAULT NULL,
+  `logradouro` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `cep` varchar(15) CHARACTER SET latin1 DEFAULT NULL,
+  `cidade` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `estado` varchar(2) CHARACTER SET latin1 DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `senha` varchar(45) CHARACTER SET latin1 NOT NULL,
+  `obs` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `tipo_usuario` int(10) unsigned DEFAULT NULL,
-  `sobrenome` varchar(45) DEFAULT NULL,
+  `sobrenome` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `aprovacao` int(10) unsigned DEFAULT NULL,
-  `telefone` varchar(45) DEFAULT NULL,
-  `celular` varchar(45) DEFAULT NULL,
-  `login` varchar(20) NOT NULL,
-  `apelido` varchar(10) NOT NULL,
-  PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `telefone` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `celular` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `login` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `apelido` varchar(10) CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY (`id_usuario`),
+  UNIQUE KEY `cpf` (`cpf`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
-
+--
+-- Constraints for dumped tables
 --
 
 --
