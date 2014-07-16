@@ -135,6 +135,23 @@ if(isset ($_POST['exclui'])){
 	});
 </script>
 
+<!-- Seleciona modalidade para mostrar quadras -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#exibemodalidade").change( function() {
+			var valor = $(this).val();
+			$.post("exibirquadras.php", {dados: valor}, function(msg){
+				if (msg != ''){
+					$("#mostrar").html(msg).show();	
+				}
+				else{
+					$("#mostrar").html('Sem Resultados');
+				}		
+			});
+		});
+	});
+</script>
+
 <!-- Avança e volta paginas na tela de Visualização de reservas -->
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -733,9 +750,14 @@ if(isset ($_POST['exclui'])){
 									}	
 								?>
 								
+								<?php
+									include_once "listarmodalidades.php";
+									exibirmodalidades();
+								?>
 								
 							</div>
 						</div>
+					</li>
 					
 					<!===========================================PAGINA CADASTRO DE QUADRAS  =======================================================>
 					
@@ -783,8 +805,15 @@ if(isset ($_POST['exclui'])){
 										insereQuadra($_POST);
 										echo "<script type='text/javascript'> alert('Dados inseridos com sucesso!') </script>";
 											
-									}	
+									}
+									echo"<h2>Lista de Quadras por Modalidade</h2>";			
+									echo"<label for='nome'> Modalidade:</label>";
+									$rs = mysql_query("SELECT * FROM modalidade");
+									montaCombo("exibemodalidade", $rs, "id_modalidade", "desc_modalidade", '');									
 								?>	
+								<div class="tablevini" id="mostrar">
+											
+								</div>
 							</div>
 						</div>
 					</li>
@@ -824,8 +853,8 @@ if(isset ($_POST['exclui'])){
 
 									$query = mysql_query($sql);
 									 
-									echo "<div id = 'tabela_1' align = 'center'>";
-									echo "<table border='2px' id = 'tab_1' align = 'center'>";
+									echo "<div class = 'tabelapadrao' align = 'center'>";
+									echo "<table border='2px' class = 'tab' align = 'center'>";
 									            echo "<tr><th padding = '72px'>Nome</th><th padding = '2px'>Aprovação</th>";
 									while($resultado = mysql_fetch_array($query)){
 									    echo "<tr>";
