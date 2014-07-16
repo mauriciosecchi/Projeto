@@ -64,7 +64,7 @@ if(isset ($_POST['exclui'])){
 			$("#home").show();
 			$("#reservas").show();
 			$("#cadastro").show();
-			$("#reservar").show();
+			$("#reservar").hide();
 			$("#modalidade").show();
 			$("#quadra").show();
 			$("#usuarios").show();
@@ -74,7 +74,7 @@ if(isset ($_POST['exclui'])){
 			$("#home").show();
 			$("#reservas").show();
 			$("#cadastro").show();
-			$("#reservar").show();
+			$("#reservar").hide();
 			$("#modalidade").hide();
 			$("#quadra").hide();
 			$("#usuarios").hide();

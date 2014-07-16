@@ -45,7 +45,7 @@ function insereQuadra(){
 	$horario_ini = $_POST['horario_ini'];
 	$horario_fim = $_POST['horario_fim'];
 	$horario_base = $_POST['horario_base'];
-	$id_modalidade = $_POST['modalidade'];		
+	$id_modalidade = $_POST['modalidades'];		
 	
 	$sql = "INSERT INTO quadra(
 			id_quadra, id_modalidade, desc_quadra, horario_base, horario_ini, horario_fim ) VALUES( '', 
