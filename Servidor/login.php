@@ -53,17 +53,28 @@
 						$query = "SELECT * FROM usuario WHERE login = '$_POST[username]' AND senha = '$_POST[password]'";
 						$result = query($query, $db);
 						//Testa se retornou um registro
-						if(mysql_num_rows($result) > 0){
-							$rows = mysql_fetch_assoc($result);
-							$_SESSION['id_usuario'] = $rows['id_usuario'];
-							$_SESSION['apelido'] = $rows['apelido'];
-							$_SESSION['logado'] = 1;
-							$_SESSION['tipo_usuario'] = $rows['tipo_usuario'];
-							$_SESSION['num_dias'] = 0;
-							gerardata();
-							header("Location:index.php");
+						if(mysql_num_rows($result) > 0)
+						{
+						  $rows = mysql_fetch_assoc($result);
+						  if($rows['aprovacao'] != 1)
+							{
+							  echo "<script LANGUAGE=\"Javascript\">
+								alert(\"Aguardando aprovação do cadastro\");
+								</SCRIPT>";
+							}
+							else
+							{
+								$_SESSION['id_usuario'] = $rows['id_usuario'];
+								$_SESSION['apelido'] = $rows['apelido'];
+								$_SESSION['logado'] = 1;
+								$_SESSION['tipo_usuario'] = $rows['tipo_usuario'];
+								$_SESSION['num_dias'] = 0;
+								gerardata();
+								header("Location:index.php");
+							}
 						}
-						else{
+						else
+						{
 							echo "<script LANGUAGE=\"Javascript\">
 								alert(\"Usuario ou senha inválidos.\");
 								</SCRIPT>";
