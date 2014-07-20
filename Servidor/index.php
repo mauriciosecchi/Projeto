@@ -19,6 +19,11 @@ if(isset ($_POST['exclui'])){
 	}
 }
 ?>
+<?php
+	if(isset($_POST['submit_relatorio'])){
+		require_once "relatorio.php";
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -262,14 +267,19 @@ if(isset ($_POST['exclui'])){
 												<option value ='-1'>Nenhuma quadra localizada</option>
 											</select>	
 										</div>
-									</div>												
-								
+									</div>	
+									<form action="" name="imprimeRelat" method="post">
+									<?php
+										if($_SESSION['tipo_usuario'] == 1){
+											echo "<input type='submit' name= 'submit_relatorio' value='Imprimir'>";
+										}
+									?>
+								</form>											
 								</form>
 								<div>
 									<input id="previous" type="image" src="images\left_grey.png" name="left" width="36" height="36" align="left">
 									<input id="next" type="image" src="images\right_grey.png" name="left" width="36" height="36" align="right" >
 								</div>
-								
 								<div class="table" id="exibe">		
 								</div>
 								<div class="table" id="exibe1">		
