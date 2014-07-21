@@ -268,12 +268,14 @@ if(isset ($_POST['exclui'])){
 											</select>	
 										</div>
 									</div>	
+									<div id = "relat">
 									<form action="" name="imprimeRelat" method="post">
 									<?php
 										if($_SESSION['tipo_usuario'] == 1){
-											echo "<input type='submit' name= 'submit_relatorio' value='Imprimir'>";
+											echo "<input type='submit' name= 'submit_relatorio' value='Relatório'>";
 										}
 									?>
+								</div>
 								</form>											
 								</form>
 								<div>
