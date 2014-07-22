@@ -68,7 +68,7 @@ require_once "functions.php";
 					$apelido = $linha['apelido'];
 					if ($_SESSION['id_usuario'] == $linha['id_usuario'])
 					{
-						$exibir = "<a href='tmp.php?id_reserva = $id_reserva&id_quadra=$quadra&data=$timestamp&hora=$soma' class='itemreservado'>$apelido</a>";		
+						$exibir = "<a href='tmp.php?id_reserva=$id_reserva&id_quadra=$quadra&data=$timestamp&hora=$soma' class='itemreservado'>$apelido</a>";		
 					}
 					else
 					{
@@ -79,7 +79,7 @@ require_once "functions.php";
 				{
 					$id_reserva =  0;
 					$apelido = 'Disponível';
-					$exibir = "<a href='tmp.php?id_reserva = $id_reserva&id_quadra=$quadra&data=$timestamp&hora=$soma' class='itemreserva'>$apelido</a>";		
+					$exibir = "<a href='tmp.php?id_reserva=$id_reserva&id_quadra=$quadra&data=$timestamp&hora=$soma' class='itemreserva'>$apelido</a>";		
 				}
 				
 				echo "<td>$exibir</td>";
