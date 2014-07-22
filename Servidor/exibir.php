@@ -5,7 +5,12 @@ require_once "functions.php";
 
 	
  $db = conectadb();
-
+	/*  Faz a consulta dos horarios do banco de dados já traz convertido para segundos os horarios
+	 *  Monta a tabela de visualização, da semana, exibindo por default a semana que possui a data atual
+	 *	De acordo com a variavel vinda da sessão num_dias, faz os calculos para avançar as semana caso o usuario avançar ou voltar 
+	 *  somando e subtraindo setedias da data atual e calculando a semana.
+	 *  A data atual vem por default a segunda feira da semana.
+	 */
 	if (isset($_POST['dados']))
 	{	
 		$quadra = $_POST['dados'];
@@ -51,7 +56,9 @@ require_once "functions.php";
 		echo "		</tr> ";
 		echo "	</thead> ";
 		
-		//Insere dados na tabela
+		/* 
+		 *	Carrega os dados na tabela, utiliza a funcao converterHora(), para converter os segundos no formato desejado
+		 */
 		while ($horafinal >= $soma)
 		{		 
 			echo "<tr>";

@@ -62,13 +62,14 @@
 								alert(\"Aguardando aprovação do cadastro\");
 								</SCRIPT>";
 							}
-							else
-							{
+							else{
+								//Armaze na sessao o id do usuario logado, o apelido, o tipo do usuario se é admin ou não ou se o usuario está logado
 								$_SESSION['id_usuario'] = $rows['id_usuario'];
 								$_SESSION['apelido'] = $rows['apelido'];
 								$_SESSION['logado'] = 1;
 								$_SESSION['tipo_usuario'] = $rows['tipo_usuario'];
 								$_SESSION['num_dias'] = 0;
+								//Função que prepara a data para ser exibida na tela de visualizaçào de reservas
 								gerardata();
 								header("Location:index.php");
 							}
@@ -83,8 +84,6 @@
 				?>
             </form>
             <br>
-            <!--<a class = "link" href="#">Esqueci minha senha</a>
-            <a class = "link" href="#" style="margin-left:65px;" >Cadastre-se</a>-->
         </div>
 
         <!-- Javascript -->

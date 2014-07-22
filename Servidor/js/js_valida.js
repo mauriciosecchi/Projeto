@@ -1,31 +1,108 @@
-/*function validaName(campo){
-		var name = document.getElementById(campo);
-
-		if(name.value == ""){
-			name.focus();
-			name.value= "Preenchimento obrigatório deste campo.";
-			return false;
-		}
-}
-
-function tem_numeros(texto){
-	var numeros="0123456789";
-		for(i=0; i<texto.length; i++){
-    	 	if (numeros.indexOf(texto.charAt(i),0)!=-1){
-      	 		return 1;
-    		}
-   		}
-  		return 0;
- }
-
  function limpa_campo(campo){
     var name = document.getElementById(campo);
     
-        if(name.value == "Preenchimento obrigatório deste campo."){
+        if(name.value == "Preenchimento obrigatório!" || name.value == "CPF incorreto! Digite novamente!"){
         name.value= "";
         }
- }*/
+ }
 
+ function valida_envia(){ 
+    //valido o nome
+	test = 0;	
+    if (document.CadForm.nome.value == ""){ 
+        alert("Preencha o campo nome"); 
+        document.CadForm.nome.focus(); 
+        test = 1;
+		return false; 
+    } 
+    if(document.CadForm.sobre.value == ""){
+        alert("Preencha o campo sobrenome"); 
+        document.CadForm.sobre.focus();
+		test = 1;
+		return false; 
+    }
+    if(document.CadForm.apelido.value == ""){
+        alert("Preencha o campo apelido"); 
+        document.CadForm.apelido.focus();
+		test = 1;
+        return false;  
+    }
+    if(document.CadForm.rg.value == ""){
+        alert("Preencha o campo RG");
+        document.CadForm.rg.focus();
+		test = 1;
+        return false; 
+    }
+    if(document.CadForm.dt_nasc.value == ""){
+        alert("Preencha o campo Data Nasc.");
+        document.CadForm.dt_nasc.focus();
+		test = 1;
+        return false;  
+    }
+    if(document.CadForm.dt_assoc.value == ""){
+        alert("Preencha o campo Data Associação");
+        document.CadForm.dt_assoc.focus();
+		test = 1;
+        return false; 
+    }
+    if(document.CadForm.cpf.value == ""){        
+        alert("Preencha o campo CPF"); 
+        document.CadForm.cpf.focus();
+		test = 1;
+        return false;  
+	}
+    if(document.CadForm.ender.value == ""){        
+        alert("Preencha o campo Endereço");
+        document.CadForm.ender.focus();
+        test = 1;
+		return false; 
+	}
+    if(document.CadForm.cidade.value == ""){        
+        alert("Preencha o campo Cidade");
+        document.CadForm.cidade.focus();
+		test = 1;
+        return false; 
+	}
+    if(document.CadForm.fone.value == ""){        
+        alert("Preencha o campo Telefone"); 
+        document.CadForm.fone.focus();
+        test = 1;
+		return false; 
+	}
+    if(document.CadForm.email.value == ""){        
+        alert("Preencha o campo Email");
+        document.CadForm.email.focus();
+		test = 1;
+        return false; 
+	}
+    if(document.CadForm.login.value == ""){        
+        alert("Preencha o campo Login");
+        document.CadForm.login.focus();
+		test = 1;
+        return false; 
+	}
+    if(document.CadForm.senha.value == ""){        
+        alert("Preencha o campo Senha"); 
+        document.CadForm.senha.focus();
+		test = 1;
+        return false; 
+	}
+	
+    //o formulário se envia 
+    if(test == 0){
+		alert("Formulário enviado com sucesso!"); 
+		document.CadForm.submit();
+		return true;
+	}
+	else{
+		alert("Erro!");
+		return false;
+	}
+	 
+} 
+
+
+ 
  //Função para validar CPF 
  
  function valida_Cpf(campo) {
@@ -35,7 +112,7 @@ function tem_numeros(texto){
     var Resto;
     Soma = 0;
     if (CPF == ""){
-    	document.getElementById('cpf').value="Preenchimento obrigatório deste campo.";
+    	document.getElementById('cpf').value="Preenchimento obrigatório!";
 		CPF.focus();
     	return false;
     }
