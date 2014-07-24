@@ -51,6 +51,18 @@
 		test = 1;
         return false;  
 	}
+	 if(document.CadForm.cpf.value == "Preenchimento obrigatório!"){        
+        alert("CPF é um campo obrigatório!"); 
+        document.CadForm.cpf.focus();
+        test = 1;
+        return false;  
+    }
+    if(document.CadForm.cpf.value == "CPF incorreto! Digite novamente!"){        
+        alert("Preencha Corretamente o CPF!"); 
+        document.CadForm.cpf.focus();
+        test = 1;
+        return false;  
+    }
     if(document.CadForm.ender.value == ""){        
         alert("Preencha o campo Endereço");
         document.CadForm.ender.focus();
